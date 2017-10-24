@@ -7,7 +7,7 @@
 
         <div class="sideProfile">
             <a href="#" title="" class="profileFace"><img width="40" src="source\backend\admin\images\user.png" /></a>
-            <span>Xin chào: <strong>admin! </strong></span>
+            <span>Xin chào: <strong>Admin! </strong></span>
             <span><?php if(Session::has('admin')) echo Session::get('admin') ?></span>
             <div class="clear"></div>
         </div>
@@ -18,7 +18,7 @@
 
             <li class="home">
 
-                <a href="admin/home.html" class="active" id="current">
+                <a href="{{route('admin/dashboard')}}" class="active" id="current">
                     <span>Bảng điều khiển</span>
                     <strong></strong>
                 </a>
@@ -35,11 +35,11 @@
                 <ul class="sub">
                     <li >
                         <a href="admin/tran.html">
-                            Giao dịch							</a>
+                            Danh sách đơn hàng							</a>
                     </li>
                     <li >
                         <a href="admin/product_order.html">
-                            Đơn hàng sản phẩm							</a>
+                            Đơn hàng chi tiết							</a>
                     </li>
                 </ul>
 
@@ -90,25 +90,6 @@
                 </ul>
 
             </li>
-            <li class="support">
-
-                <a href="admin/support.html" class=" exp" >
-                    <span>Hỗ trợ và liên hệ</span>
-                    <strong>2</strong>
-                </a>
-
-                <ul class="sub">
-                    <li >
-                        <a href="admin/support.html">
-                            Hỗ trợ							</a>
-                    </li>
-                    <li >
-                        <a href="admin/contact.html">
-                            Liên hệ							</a>
-                    </li>
-                </ul>
-
-            </li>
             <li class="content">
 
                 <a href="admin/content.html" class=" exp" >
@@ -118,7 +99,7 @@
 
                 <ul class="sub">
                     <li >
-                        <a href="admin/slide.html">
+                        <a href="{{route('admin/slide/index')}}">
                             Slide							</a>
                     </li>
                     <li >

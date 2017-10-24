@@ -16,6 +16,13 @@
 
     </script>
 
+    {{--<link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>--}}
+    {{--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>--}}
+    {{--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">--}}
+    {{--<link rel="stylesheet" href="source/frontend/assets/dest/css/font-awesome.min.css">--}}
+    {{--<link rel="stylesheet" href="source/frontend/assets/dest/vendors/colorbox/example3/colorbox.css">--}}
+    {{--<link rel="stylesheet" href="source/frontend/assets/dest/rs-plugin/css/settings.css">--}}
+
     <script type="text/javascript" src="source/backend/js/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="source/backend/js/jquery/jquery-ui.min.js"></script>
 

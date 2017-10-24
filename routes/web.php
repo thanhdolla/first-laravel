@@ -137,9 +137,34 @@ Route::get('admin/logout',[
 
 Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
     Route::group(['prefix'=>'slide'],function (){
-        Route::get('slide',[
-            'as'=>'slide',
-            'uses'=>'SlideController@getSlide'
+        Route::get('index',[
+            'as'=>'admin/slide/index',
+            'uses'=>'SlideController@index'
+        ]);
+
+        Route::get('add',[
+            'as'=>'admin/slide/add',
+            'uses'=>'SlideController@getAdd'
+        ]);
+
+        Route::post('add',[
+            'as'=>'admin/slide/add',
+            'uses'=>'SlideController@add'
+        ]);
+
+        Route::get('edit/{id}',[
+            'as'=>'admin/slide/edit{id}',
+            'uses'=>'SlideController@getEdit'
+        ]);
+
+        Route::post('edit/{id}',[
+            'as'=>'admin/slide/edit/{id}',
+            'uses'=>'SlideController@edit'
+        ]);
+
+        Route::get('delete/{id}',[
+            'as'=>'admin/slide/delete/{id}',
+            'uses'=>'SlideController@delete'
         ]);
     });
 
@@ -147,6 +172,11 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
         'as'=>'admin/dashboard',
         'uses'=>'DashboardController@index'
     ]);
+
+//    Route::get('slide',[
+//       'as'=>'admin/slide',
+//       'user'=>'SlideController@index'
+//    ]);
 });
 
 
