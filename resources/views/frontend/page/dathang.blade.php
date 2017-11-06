@@ -20,35 +20,32 @@
         <form action="{{route('dathang')}}" method="post" class="beta-form-checkout">
             <input name="_token" type="hidden" value="{{csrf_token()}}"/>
             <div class="row">
+                <div><h3>Form nhập thông tin mua hàng</h3>
+                </div><hr></hr>
+                <h5>Tông tiền cần thanh toán: <b style="color: red"><?php  $tong_tien = Cart::subtotal();
+
+                        echo $tong_tien ?></b></h5>
                 <div class="col-sm-6">
-                    <h4>Đặt hàng</h4>
                     <div class="space20">&nbsp;</div>
 
                     <div class="form-block">
                         <label for="name">Họ tên*</label>
-                        <input type="text" id="name" name="name" placeholder="Họ tên" required>
+                        <input type="text"  id="name" name="name" placeholder="Họ tên" required value="<?php echo isset($kh->ten_kh) ? $kh->ten_kh :'' ?>">
                     </div>
-                    <div class="form-block">
-                        <label>Giới tính </label>
-                        <input id="gender" type="radio" class="input-radio" name="gender" value="nam" checked="checked" style="width: 10%"><span style="margin-right: 10%">Nam</span>
-                        <input id="gender" type="radio" class="input-radio" name="gender" value="nữ" style="width: 10%"><span>Nữ</span>
-
-                    </div>
-
                     <div class="form-block">
                         <label for="email">Email*</label>
-                        <input type="email" name="email" id="email" required placeholder="expample@gmail.com">
+                        <input type="email" name="email" id="email" required placeholder="expample@gmail.com" value="<?php echo isset($kh->email_kh) ? $kh->email_kh :'' ?>">
                     </div>
 
                     <div class="form-block">
                         <label for="diachi">Địa chỉ*</label>
-                        <input type="text" name="diachi" id="diachi" placeholder="Street Address" required>
+                        <input type="text" name="diachi" id="diachi" placeholder="Street Address" required  value="<?php echo isset($kh->dia_chi_kh) ? $kh->dia_chi_kh :'' ?>">
                     </div>
 
 
                     <div class="form-block">
                         <label for="sdt">Điện thoại*</label>
-                        <input type="text" name="sdt" id="sdt" required>
+                        <input type="text" name="sdt" id="sdt" required value="<?php echo isset($kh->sdt_kh) ? $kh->sdt_kh :'' ?>">
                     </div>
 
                     <div class="form-block">

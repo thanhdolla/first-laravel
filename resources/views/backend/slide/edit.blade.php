@@ -1,5 +1,5 @@
 @extends('masteradmin')
-@section('content')
+@section('contentadmin')
 
     <div id="rightSide">
         <div class="titleArea">
@@ -27,6 +27,7 @@
             </div>
         </div>
         <div class="line"></div>
+
         <div class="wrapper">
 
             <!-- Form -->

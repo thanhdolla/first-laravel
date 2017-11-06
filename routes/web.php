@@ -69,7 +69,7 @@ Route::get('removecart/{id}',[
     'uses'=>'HomeController@removeCart'
 ]);
 
-Route::get('updatecart/{id}',[
+Route::get('updatecart',[
     'as'=>'updatecart',
     'uses'=>'HomeController@updateCart'
 ]);
@@ -112,6 +112,16 @@ Route::post('sigin',[
 Route::get('logout',[
     'as'=>'logout',
     'uses'=>'HomeController@logout'
+]);
+
+Route::get('quanlitaikhoan',[
+    'as'=>'quanlitaikhoan',
+    'uses'=>'HomeController@quanLiTaiKhoan'
+]);
+
+Route::post('luuthongtinkhachhang',[
+    'as'=>'luuthongtinkhachhang',
+    'uses'=>'HomeController@luuTaiKhoan'
 ]);
 
 Route::get('timkiem',[
@@ -168,15 +178,40 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
         ]);
     });
 
+    Route::group(['prefix'=>'donhang'],function(){
+        Route::get('index',[
+            'as'=>'admin/donhang/index',
+            'uses'=>'DonhangController@index'
+        ]);
+
+        Route::get('xuli/{id}',[
+            'as'=>'admin/donhang/xuli/{id}',
+            'uses'=>'DonhangController@XuLi'
+        ]);
+
+        Route::get('delete/{id}',[
+            'as'=>'admin/donhang/delete/{id}',
+            'uses'=>'DonhangController@delete'
+        ]);
+    });
+
+    Route::group(['prefix'=>'donhangchitet'],function(){
+        Route::get('index',[
+            'as'=>'admin/donhangchitiet/index',
+            'uses'=>'DonHangChiTietController@index'
+        ]);
+
+        Route::get('delete/{id}',[
+            'as'=>'admin/donhangchitiet/delete/{id}',
+            'uses'=>'DonhangController@delete'
+        ]);
+    });
+
     Route::get('dashboard',[
         'as'=>'admin/dashboard',
         'uses'=>'DashboardController@index'
     ]);
 
-//    Route::get('slide',[
-//       'as'=>'admin/slide',
-//       'user'=>'SlideController@index'
-//    ]);
 });
 
 

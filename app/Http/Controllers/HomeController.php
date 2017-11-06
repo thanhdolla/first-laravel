@@ -16,7 +16,6 @@ use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Auth;
 
 
-
 class HomeController extends Controller
 {
     public function getIndex()
@@ -72,7 +71,7 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    public function updateCart($id, Request $request)
+    public function updateCart(Request $request)
     {
 //        $giohang = Cart::content();//lấy nội dung cart
 //        foreach ($giohang as $key=>$row){
@@ -111,8 +110,13 @@ class HomeController extends Controller
 
     public function getDatHang()
     {
+        if (Session::has('khach_hang_id')) {
+            $id = Session::get('khach_hang_id');
+            $kh = Khach_hang::find($id);
+            Session::put('kh_info', $kh);
+        }
 
-        return view('frontend.page.dathang');
+        return view('frontend.page.dathang', compact('kh'));
     }
 
     public function datHang(Request $req)
@@ -142,13 +146,10 @@ class HomeController extends Controller
         $bill->dia_chi = $req->diachi;
         $bill->email = $req->email;
         $bill->sdt = $req->sdt;
-        $bill->thoi_gian = date('Y-m-d');
         $bill->thanh_toan = $tong;
         $bill->note = $req->note;
         $bill->stt_don_hang = 0;
         $bill->save();
-//        $id_bill = $bill->id;
-
         foreach ($content as $key => $value) {
             $bill_detail = new Don_hang_chi_tiet;
             $bill_detail->don_hangID = $bill->id;
@@ -185,11 +186,11 @@ class HomeController extends Controller
         );
         $email = $req->input('email');
         $pass = $req->input('password');
-        $check = Khach_hang::where(['email_kh'=>$email,'mk_kh'=>$pass])->get();
-        $kh = Khach_hang::where(['email_kh'=>$email,'mk_kh'=>$pass])->first();
-        if(count($check)>0) {
-            Session::put('khach_hang',$kh->ten_kh);
-            Session::put('khach_hang_id',$kh->id);
+        $check = Khach_hang::where(['email_kh' => $email, 'mk_kh' => $pass])->get();
+        $kh = Khach_hang::where(['email_kh' => $email, 'mk_kh' => $pass])->first();
+        if (count($check) > 0) {
+            Session::put('khach_hang', $kh->ten_kh);
+            Session::put('khach_hang_id', $kh->id);
             return redirect('index')->with(['flag' => 'success', 'message' => 'Đăng nhập thành công']);
         } else {
             return redirect()->back()->with(['flag' => 'danger', 'message' => 'Đăng nhập không thành công']);
@@ -243,6 +244,23 @@ class HomeController extends Controller
 
     }
 
+    public function quanLiTaiKhoan(){
+        $id = Session::get('khach_hang_id');
+        $kh = Khach_hang::find($id);
+        return view('frontend.page.quanlitaikhoan',compact('kh'));
+    }
+
+    public function luuTaiKhoan(Request $req){
+        $id = Session::get('khach_hang_id');
+        $kh = Khach_hang::find($id);
+        $kh->ten_kh = $req->name;
+        $kh->mk_kh = $req->mk_kh;
+        $kh->email_kh = $req->email;
+        $kh->dia_chi_kh = $req->diachi;
+        $kh->sdt_kh = $req->sdt;
+        $kh->save();
+        return back()->with('thongbao','Lưu thành công');
+    }
     public function timKiem(Request $req)
     {
         $product = San_pham::where('ten_sp', 'like', '%' . $req->key . '%')->get();

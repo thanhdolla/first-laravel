@@ -80,7 +80,7 @@
                     </tr>
 
                 @endforeach
-                </form>
+
                 <tr>
 
                     <td colspan="5" style="padding-left:20%;">
@@ -88,7 +88,7 @@
                         <a style="width:30px;color: black;" href="{{route('removeallcart')}}">
                             <input class="btn btn-danger" type="button" value="Xóa tất cả">
                         </a>
-                        <!--type= button k phải submit;-->
+
                     </td>
                 </tr>
 
@@ -97,7 +97,7 @@
 
 
                     <td colspan="5" style="padding-left:2%;">
-                        <a style="" href="<?php  ?>" class="updatecart">
+                        <a style="" id="{{ $row->rowId }}" href="<?php echo route('updatecart') ?>" class="updatecart">
                             <input class="btn btn-success" type="button" value="Update">
                         </a>
 
@@ -109,6 +109,7 @@
 
                 </tr>
                 </tbody>
+                </form>
             </table>
             {{--</form>--}}
             <?php else: ?>

@@ -1,5 +1,5 @@
 @extends('masteradmin')
-@section('content')
+@section('contentadmin')
     <!-- Right side -->
     <div id="rightSide">
 

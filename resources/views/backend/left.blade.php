@@ -34,11 +34,11 @@
 
                 <ul class="sub">
                     <li >
-                        <a href="admin/tran.html">
+                        <a href="{{route('admin/donhang/index')}}">
                             Danh sách đơn hàng							</a>
                     </li>
                     <li >
-                        <a href="admin/product_order.html">
+                        <a href="{{route('admin/donhangchitiet/index')}}">
                             Đơn hàng chi tiết							</a>
                     </li>
                 </ul>
@@ -71,7 +71,7 @@
 
                 <a href="admin/account.html" class=" exp" >
                     <span>Tài khoản</span>
-                    <strong>3</strong>
+                    <strong>2</strong>
                 </a>
 
                 <ul class="sub">
@@ -80,12 +80,8 @@
                             Ban quản trị							</a>
                     </li>
                     <li >
-                        <a href="admin/admin_group.html">
-                            Nhóm quản trị							</a>
-                    </li>
-                    <li >
                         <a href="admin/user.html">
-                            Thành viên							</a>
+                            Khách hàng thành viên						</a>
                     </li>
                 </ul>
 
@@ -94,7 +90,7 @@
 
                 <a href="admin/content.html" class=" exp" >
                     <span>Nội dung</span>
-                    <strong>4</strong>
+                    <strong>2</strong>
                 </a>
 
                 <ul class="sub">
@@ -105,14 +101,6 @@
                     <li >
                         <a href="admin/news.html">
                             Tin tức							</a>
-                    </li>
-                    <li >
-                        <a href="admin/info.html">
-                            Trang thông tin							</a>
-                    </li>
-                    <li >
-                        <a href="admin/video.html">
-                            Video							</a>
                     </li>
                 </ul>
 
