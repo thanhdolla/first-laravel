@@ -206,6 +206,37 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
             'uses'=>'DonhangController@delete'
         ]);
     });
+    Route::group(['prefix'=>'product'],function (){
+        Route::get('index',[
+            'as'=>'admin/product/index',
+            'uses'=>'ProductManagementController@index'
+        ]);
+
+        Route::get('add',[
+            'as'=>'admin/product/add',
+            'uses'=>'ProductManagementController@getAdd'
+        ]);
+
+        Route::post('add',[
+            'as'=>'admin/product/add',
+            'uses'=>'ProductManagementController@add'
+        ]);
+
+        Route::get('edit/{id}',[
+            'as'=>'admin/product/edit{id}',
+            'uses'=>'ProductManagementController@getEdit'
+        ]);
+
+        Route::post('edit/{id}',[
+            'as'=>'admin/product/edit/{id}',
+            'uses'=>'ProductManagementController@edit'
+        ]);
+
+        Route::get('delete/{id}',[
+            'as'=>'admin/product/delete/{id}',
+            'uses'=>'ProductManagementController@delete'
+        ]);
+    });
 
     Route::get('dashboard',[
         'as'=>'admin/dashboard',
