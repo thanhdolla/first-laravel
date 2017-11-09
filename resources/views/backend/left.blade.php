@@ -53,7 +53,7 @@
 
                 <ul class="sub">
                     <li >
-                        <a href="admin/product.html">
+                        <a href="{{route('admin/product/index')}}">
                             Sản phẩm							</a>
                     </li>
                     <li >
