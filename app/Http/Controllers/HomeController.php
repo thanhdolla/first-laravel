@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Binh_luan;
+use App\Compare;
 use App\Don_hang;
 use App\Don_hang_chi_tiet;
 use App\Khach_hang;
+use App\Phan_hoi;
 use Cart;
-// Gloudemans\Shoppingcart\Cart
 use App\Loai_san_pham;
 use App\Slide;
 use Illuminate\Http\Request;
@@ -44,13 +46,64 @@ class HomeController extends Controller
     public function getChiTietSanPham($id)
     {
         $chitiet = San_pham::where('id', $id)->first();
-//        $loai_sp = Loai_san_pham::where('id',$type)->first();
-        return view('frontend.page.chitietsanpham', compact('chitiet'));
+        $id = $chitiet->id;
+        $binhluan = Binh_luan::where('san_phamID', $id)->orderBy('id', 'DESC')->get();
+        return view('frontend.page.chitietsanpham', compact('chitiet', 'binhluan'));
     }
 
     public function getLienHe()
     {
         return view("frontend.page.lienhe");
+    }
+
+    public function phanHoi(Request $request)
+    {
+        if (!Session::has('khach_hang')) {
+            return back()->with('loi', 'Bạn phải đăng nhập mới có thể giử phản hồi');
+        }
+
+        $phanhoi = new Phan_hoi;
+        $phanhoi->khach_hangID = Session::get('khach_hang_id');
+        $phanhoi->noi_dung = $request->message;
+        $phanhoi->save();
+        return back()->with('thongbao', 'gửi phản hồi thành công');
+    }
+
+    public function binhLuan(Request $request, $id)
+    {
+        $chitiet = San_pham::where('id', $id)->first();
+        echo "$chitiet";
+        if (!Session::has('khach_hang')) {
+            return back()->with('loi', 'Bạn phải đăng nhập mới có thể giử bình luận');
+        }
+
+        $cmt = new Binh_luan;
+        $cmt->ten_kh = Session::get('khach_hang');
+        $cmt->khach_hangID = Session::get('khach_hang_id');
+        $cmt->san_phamID = $chitiet->id;
+        $cmt->noi_dung = $request->message;
+        $cmt->save();
+        return back()->with('thongbao', 'Gửi bình luận thành công');
+    }
+
+    public function addToCompare(Request $request, $id)
+    {
+        $sanpham = San_pham::find($id);
+        $oldCompare = Session('compare') ? Session::get('compare') : null;
+        $compare = new Compare($oldCompare);
+        $compare->add($sanpham, $id);
+        $request->session()->put('compare', $compare);
+        return back()->with('thongbao', 'Add to compare thành công');
+    }
+
+    public function getCompare()
+    {
+        $oldCompare = Session('compare') ? Session::get('compare') : null;
+        $compare = new Compare($oldCompare);
+        $count = $compare->totalQty;
+        $list = (Session::get('compare'));
+        $cp = $list->items;
+        return view('frontend.page.compare', compact('cp', 'count'));
     }
 
     public function getGioiThieu()
@@ -67,7 +120,6 @@ class HomeController extends Controller
             $gia = $product->gia_sp - $product->khuyen_mai;
         }
         Cart::add(array('id' => $id, 'name' => $product->ten_sp, 'qty' => 1, 'price' => $gia));
-//        $content = Cart::content();
         return redirect()->back();
     }
 
@@ -244,13 +296,15 @@ class HomeController extends Controller
 
     }
 
-    public function quanLiTaiKhoan(){
+    public function quanLiTaiKhoan()
+    {
         $id = Session::get('khach_hang_id');
         $kh = Khach_hang::find($id);
-        return view('frontend.page.quanlitaikhoan',compact('kh'));
+        return view('frontend.page.quanlitaikhoan', compact('kh'));
     }
 
-    public function luuTaiKhoan(Request $req){
+    public function luuTaiKhoan(Request $req)
+    {
         $id = Session::get('khach_hang_id');
         $kh = Khach_hang::find($id);
         $kh->ten_kh = $req->name;
@@ -259,8 +313,9 @@ class HomeController extends Controller
         $kh->dia_chi_kh = $req->diachi;
         $kh->sdt_kh = $req->sdt;
         $kh->save();
-        return back()->with('thongbao','Lưu thành công');
+        return back()->with('thongbao', 'Lưu thành công');
     }
+
     public function timKiem(Request $req)
     {
         $product = San_pham::where('ten_sp', 'like', '%' . $req->key . '%')->get();

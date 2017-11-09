@@ -10,11 +10,12 @@
             </div>
             <div class="pull-right auto-width-right">
                 <ul class="top-details menu-beta l-inline">
-                    <li><a href="#"><i class="fa fa-user"></i>Tài khoản</a></li>
+
                     @if(!Session::has('khach_hang'))
                         <li><a href="{{route('sigin')}}">Đăng kí</a></li>
                         <li><a href="{{route('login')}}">Đăng nhập</a></li>
                     @else
+                        <li><a href="#"><i class="fa fa-user"></i>Lịch sử giỏ hàng</a></li>
                         <li><a href="{{route('quanlitaikhoan')}}">{{Session::get('khach_hang')}}</a></li>
                         <li><a href="{{route('logout')}}">Logout</a></li>
                     @endif
@@ -52,6 +53,7 @@
 
                     </div> <!-- .cart -->
                 </div>
+                <div class="beta-comp"> <li><a href="{{route('getcompare')}}">Compare({{Session('compare')->totalQty}})</a></li></div>
             </div>
             <div class="clearfix"></div>
         </div> <!-- .container -->

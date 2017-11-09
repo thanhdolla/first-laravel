@@ -25,29 +25,27 @@
                 <div class="space50">&nbsp;</div>
                 <div class="row"  style="border: whitesmoke solid thin">
                     <div class="col-sm-8">
-                        <h2>Contact Form</h2>
+                        <h2>Gửi phẩn hồi</h2>
                         <div class="space20">&nbsp;</div>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                            culpa qui officia deserunt mollit ani m id est laborum.</p>
+                        <p>Hãy đưa ra phản hồi về sản phẩm, phục vụ... để chúng tôi có thể hoàn thiện hơn!</p>
                         <div class="space20">&nbsp;</div>
-                        <form action="#" method="post" class="contact-form">
+                        @if(Session::has('thongbao'))
+                            <div class="alert alert-success" style="background:#00ced1;width:80%">
+                                {{Session::get('thongbao')}}
+                            </div>
+                        @endif
+                        @if(Session::has('loi'))
+                            <div class="alert alert-danger" style="width:80%">
+                                {{Session::get('loi')}}
+                            </div>
+                        @endif
+                        <form action="{{route('phanhoi')}}" method="post" class="contact-form">
+                            <input name="_token" type="hidden" value="{{csrf_token()}}"/>
                             <div class="form-block">
-                                <input name="your-name" type="text" placeholder="Your Name (required)">
+                                <textarea name="message" placeholder="Your Message"></textarea>
                             </div>
                             <div class="form-block">
-                                <input name="your-email" type="email" placeholder="Your Email (required)">
-                            </div>
-                            <div class="form-block">
-                                <input name="your-subject" type="text" placeholder="Subject">
-                            </div>
-                            <div class="form-block">
-                                <textarea name="your-message" placeholder="Your Message"></textarea>
-                            </div>
-                            <div class="form-block">
-                                <button type="submit" class="beta-btn primary">Send Message <i
-                                            class="fa fa-chevron-right"></i></button>
+                                <button type="submit" class="btn btn-success">Gửi phản hồi</button>
                             </div>
                         </form>
                     </div>

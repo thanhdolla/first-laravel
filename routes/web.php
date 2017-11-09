@@ -129,6 +129,26 @@ Route::get('timkiem',[
     'uses'=>'HomeController@timKiem'
 ]);
 
+Route::post('phanhoi',[
+    'as'=>'phanhoi',
+    'uses'=>'HomeController@phanHoi'
+]);
+
+Route::post('binhluan/{id}',[
+    'as'=>'binhluan/{id}',
+    'uses'=>'HomeController@binhLuan'
+]);
+
+Route::get('addtocompare/{id}',[
+    'as'=>'addtocompare/{id}',
+    'uses'=>'HomeController@addToCompare'
+]);
+
+Route::get('getcompare',[
+    'as'=>'getcompare',
+    'uses'=>'HomeController@getCompare'
+]);
+
 Route::get('admin/login',[
     'as'=>'admin/login',
     'uses'=>'AdminController@getLogin'
@@ -181,21 +201,21 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
     Route::group(['prefix'=>'donhang'],function(){
         Route::get('index',[
             'as'=>'admin/donhang/index',
-            'uses'=>'DonhangController@index'
+            'uses'=>'DonHangController@index'
         ]);
 
         Route::get('xuli/{id}',[
             'as'=>'admin/donhang/xuli/{id}',
-            'uses'=>'DonhangController@XuLi'
+            'uses'=>'DonHangController@XuLi'
         ]);
 
         Route::get('delete/{id}',[
             'as'=>'admin/donhang/delete/{id}',
-            'uses'=>'DonhangController@delete'
+            'uses'=>'DonHangController@delete'
         ]);
     });
 
-    Route::group(['prefix'=>'donhangchitet'],function(){
+    Route::group(['prefix'=>'donhangchitiet'],function(){
         Route::get('index',[
             'as'=>'admin/donhangchitiet/index',
             'uses'=>'DonHangChiTietController@index'
@@ -203,8 +223,9 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
 
         Route::get('delete/{id}',[
             'as'=>'admin/donhangchitiet/delete/{id}',
-            'uses'=>'DonhangController@delete'
+            'uses'=>'DonHangChiTietController@delete'
         ]);
+
     });
 
     Route::get('dashboard',[
