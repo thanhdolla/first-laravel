@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2017 at 07:55 PM
+-- Generation Time: Nov 14, 2017 at 01:22 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -101,7 +101,11 @@ CREATE TABLE `don_hang` (
 --
 
 INSERT INTO `don_hang` (`id`, `khach_hangID`, `ten`, `dia_chi`, `email`, `sdt`, `thanh_toan`, `note`, `created_at`, `updated_at`, `stt_don_hang`) VALUES
-(45, 0, 'adsfb', 'adadf', 'as@gmail.com', 32423423, 0, 'dsfd', '2017-11-06', '2017-11-06', b'0');
+(49, 19, 'dfds', 'Street Address', 'as@gmail.com', 111111132, 19990000, 'đ', '2017-11-10', '2017-11-10', b'0'),
+(48, 19, 'dfds', 'Street Address', 'as@gmail.com', 111111132, 55970000, 'dgd', '2017-11-10', '2017-11-10', b'0'),
+(47, 12, 'Nguyễn Duy', 'p11 b5 ktx bách khoa', 'a@gmail.com', 111111153, 5990000, 'fd', '2017-11-10', '2017-11-10', b'0'),
+(45, 0, 'adsfb', 'adadf', 'as@gmail.com', 32423423, 0, 'dsfd', '2017-11-06', '2017-11-06', b'0'),
+(46, 0, 'Nguyễn Duy', 'p11 b5 ktx bách khoa', 'a@gmail.com', 111111153, 55970000, 'ddd', '2017-11-10', '2017-11-10', b'0');
 
 -- --------------------------------------------------------
 
@@ -119,6 +123,18 @@ CREATE TABLE `don_hang_chi_tiet` (
   `created_at` date NOT NULL,
   `stt_don_hang_chi_tiet` int(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `don_hang_chi_tiet`
+--
+
+INSERT INTO `don_hang_chi_tiet` (`id`, `don_hangID`, `san_phamID`, `so_luong`, `tinh_tien`, `updated_at`, `created_at`, `stt_don_hang_chi_tiet`) VALUES
+(64, '49', '14', 1, 19990000, '2017-11-10', '2017-11-10', 0),
+(63, '48', '12', 1, 5990000, '2017-11-10', '2017-11-10', 0),
+(62, '48', '13', 2, 24990000, '2017-11-10', '2017-11-10', 0),
+(61, '47', '12', 1, 5990000, '2017-11-10', '2017-11-10', 0),
+(60, '46', '13', 2, 24990000, '2017-11-10', '2017-11-10', 0),
+(59, '46', '12', 1, 5990000, '2017-11-10', '2017-11-10', 0);
 
 -- --------------------------------------------------------
 
@@ -431,12 +447,12 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `don_hang`
 --
 ALTER TABLE `don_hang`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT for table `don_hang_chi_tiet`
 --
 ALTER TABLE `don_hang_chi_tiet`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 --
 -- AUTO_INCREMENT for table `khach_hang`
 --
