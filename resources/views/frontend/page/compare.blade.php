@@ -15,7 +15,7 @@
                     <div class="box-center" style="width:90%;margin:auto;margin-bottom: 200px;">
                         <!-- The box-center product-->
                         <div class="box-content-center product"><!-- The box-content-center -->
-                            <?php if($count > 0) : ?>
+                            <?php if(Session::get('compare_qty') > 0) : ?>
 
                             <form method="post" action="">
                                 <input name="_token" type="hidden" value="{{csrf_token()}}"/>
@@ -51,6 +51,10 @@
                                                    href="{{route('addcart',$sanpham->id)}}"><i
                                                             class="fa fa-shopping-cart"></i></a>
                                             </div>
+                                            <a style="width:30px;color: black;" href="xoasanphamsosanh/{{$sanpham->id}}">
+                                                <input class="btn btn-success" type="button" value="Xóa">
+                                            </a>
+
                                         </div>
                                     </div>
                                 @endforeach

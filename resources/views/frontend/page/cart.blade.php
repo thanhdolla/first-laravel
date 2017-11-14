@@ -33,7 +33,7 @@
                 <th style="text-align:center;">Xóa</th>
                 </thead>
 
-                <form method="post" action="">
+                <form method="post" action="{{route('updatecart')}}">
                     <input name="_token" type="hidden" value="{{csrf_token()}}"/>
 
                 @foreach($cart as $row )
@@ -63,7 +63,7 @@
                         {{--</td>--}}
                         {{--<td>--}}
                         <td>
-                            <input name="qty_cart" value="<?php echo $row->qty; ?>" size="2"/>
+                            <a><input name="qty_cart" value="<?php echo $row->qty; ?>" size="2"/></a>
                         </td>
                         </td>
                         <td>
@@ -94,11 +94,9 @@
 
                 <tr>
 
-
-
                     <td colspan="5" style="padding-left:2%;">
-                        <a style="" id="{{ $row->rowId }}" href="<?php echo route('updatecart') ?>" class="updatecart">
-                            <input class="btn btn-success" type="button" value="Update">
+                        <a style="" id="{{ $row->rowId }}" class="updatecart">
+                            <button class="btn btn-success" type="submit" >Cập nhật</button>
                         </a>
 
                         <a style=" margin-left:80%;width:30px;color: black;" href="<?php echo route('dathang') ?>">

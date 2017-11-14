@@ -1,15 +1,26 @@
 @extends('master')
 @section('content')
-    @if(Session::has('flag'))
-        <div class="alert alert-{{Session::get('flag')}}">{{Session::get('message')}}
 
-        </div>
-    @endif
     <div class="container"style="border: whitesmoke solid 2px;width: 90%">
         <div id="content" class="space-top-none">
             <div class="main-content">
                 <div class="space60">&nbsp;</div>
                 <div class="row">
+                    @if(Session::has('flag'))
+                        <div class="alert alert-{{Session::get('flag')}}">{{Session::get('message')}}
+
+                        </div>
+                    @endif
+                    @if(Session::has('thongbao'))
+                        <div class="alert alert-success" style="background:#00ced1">
+                            {{Session::get('thongbao')}}
+                        </div>
+                    @endif
+                    @if(Session::has('loi'))
+                        <div class="alert alert-danger" style="background:Red; color:black;font-size:20px;">
+                            {{Session::get('loi')}}
+                        </div>
+                    @endif
                     <div class="col-sm-12">
                         <div class="beta-products-list">
                             <h4>Sản phẩm mới</h4>

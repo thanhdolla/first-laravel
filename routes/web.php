@@ -69,7 +69,7 @@ Route::get('removecart/{id}',[
     'uses'=>'HomeController@removeCart'
 ]);
 
-Route::get('updatecart',[
+Route::post('updatecart',[
     'as'=>'updatecart',
     'uses'=>'HomeController@updateCart'
 ]);
@@ -124,6 +124,11 @@ Route::post('luuthongtinkhachhang',[
     'uses'=>'HomeController@luuTaiKhoan'
 ]);
 
+Route::get('lichsugiohang',[
+    'as'=>'lichsugiohang',
+    'uses'=>'HomeController@lichSuGioHang'
+]);
+
 Route::get('timkiem',[
     'as'=>'timkiem',
     'uses'=>'HomeController@timKiem'
@@ -147,6 +152,11 @@ Route::get('addtocompare/{id}',[
 Route::get('getcompare',[
     'as'=>'getcompare',
     'uses'=>'HomeController@getCompare'
+]);
+
+Route::get('xoasanphamsosanh/{id}',[
+    'as'=>'xoasanphamsosanh/{id}',
+    'uses'=>'HomeController@deleteCompare'
 ]);
 
 Route::get('admin/login',[

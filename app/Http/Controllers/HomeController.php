@@ -91,16 +91,32 @@ class HomeController extends Controller
         $sanpham = San_pham::find($id);
         $oldCompare = Session('compare') ? Session::get('compare') : null;
         $compare = new Compare($oldCompare);
-        $compare->add($sanpham, $id);
-        $request->session()->put('compare', $compare);
-        return back()->with('thongbao', 'Add to compare thành công');
+        $count = $compare->totalQty;
+        if($count < 3){
+            $compare->add($sanpham, $id);
+            $request->session()->put('compare', $compare);
+            return back()->with('thongbao', 'Add to compare thành công');
+
+        }else{
+            return back()->with('loi','Chỉ thêm được hai sản phẩm vào so sánh');
+        }
+
+
+    }
+
+    public function deleteCompare($id){
+        $sanpham = San_pham::find($id);
+        $oldCompare = Session('compare') ? Session::get('compare') : null;
+        $compare = new Compare($oldCompare);
+        $compare->reduceByOne($sanpham->id);
+        return back()->with('thongbao','Xóa thành công');
     }
 
     public function getCompare()
     {
         $oldCompare = Session('compare') ? Session::get('compare') : null;
         $compare = new Compare($oldCompare);
-        $count = $compare->totalQty;
+        Session::put('compare_qty',$compare->totalQty);
         $list = (Session::get('compare'));
         $cp = $list->items;
         return view('frontend.page.compare', compact('cp', 'count'));
@@ -125,18 +141,14 @@ class HomeController extends Controller
 
     public function updateCart(Request $request)
     {
-//        $giohang = Cart::content();//lấy nội dung cart
-//        foreach ($giohang as $key=>$row){
-////            $all = $request->all();
-////            print_r($all);
-//            $tong_sp=$request->qty_cart;
-//            print_r($tong_sp);
-//            $data=array();
-//        $key=$data['rowid'];
-////            $data['qty']=$tong_sp;
-//            Cart::update($key,$tong_sp);
-//        }
-//        return redirect()->route('cart');
+        $giohang = Cart::content();//lấy nội dung cart
+        foreach ($giohang as $row){
+            $id =$row->rowId;
+            $qty = $request->qty_cart;
+            Cart::update($id,$qty);
+        }
+
+        return redirect()->route('cart');
     }
 
 
@@ -188,12 +200,13 @@ class HomeController extends Controller
         }
 //        echo $tong_tien;
         $kh = new Khach_hang;
-        if (!$kh->id) {
-            $kh->id = 0;
+        $bill = new Don_hang;
+        if (!Session('khach_hang_id')){
+            $bill->khach_hangID  = 0;
         }
 
-        $bill = new Don_hang;
-        $bill->khach_hangID = $kh->id;
+
+        $bill->khach_hangID = Session('khach_hang_id');
         $bill->ten = $req->name;
         $bill->dia_chi = $req->diachi;
         $bill->email = $req->email;
@@ -314,6 +327,34 @@ class HomeController extends Controller
         $kh->sdt_kh = $req->sdt;
         $kh->save();
         return back()->with('thongbao', 'Lưu thành công');
+    }
+
+    public function lichSuGioHang(){
+        if(Session::has('khach_hang_id')) {
+            $id = Session::get('khach_hang_id');
+            $donhang = Don_hang::where('khach_hangID', $id)->get();
+            foreach ($donhang as $row) {
+                $dhct = Don_hang_chi_tiet::where('don_hangID', $row->id)->get();
+                foreach ($dhct as $sp ){
+                    $sp_id = $sp->san_phamID;
+                    print_r($sp_id);
+                $sp = San_pham::where('id',$sp_id)->get();
+                }
+            }
+
+            return view('frontend.page.lichsugiohang',compact('donhang','dhct','sp'));
+        }
+    }
+
+    public function lichSuGioHangChiTiet(){
+        if(Session::has('khach_hang_id')) {
+            $id = Session::get('khach_hang_id');
+            $donhang = Don_hang::where('khach_hangID', $id)->get();
+            foreach ($donhang as $row) {
+                $dhct = Don_hang_chi_tiet::where('don_hangID', $row->id)->get();
+            }
+            return view('frontend.page.lichsugiohang',compact('dhct'));
+        }
     }
 
     public function timKiem(Request $req)
