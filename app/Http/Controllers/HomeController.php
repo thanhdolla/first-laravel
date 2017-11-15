@@ -72,7 +72,7 @@ class HomeController extends Controller
     public function binhLuan(Request $request, $id)
     {
         $chitiet = San_pham::where('id', $id)->first();
-        echo "$chitiet";
+
         if (!Session::has('khach_hang')) {
             return back()->with('loi', 'Bạn phải đăng nhập mới có thể giử bình luận');
         }
@@ -144,10 +144,10 @@ class HomeController extends Controller
         $giohang = Cart::content();//lấy nội dung cart
         foreach ($giohang as $row){
             $id =$row->rowId;
-            $qty = $request->qty_cart;
+            $qty = $request->$id;
             Cart::update($id,$qty);
         }
-
+      
         return redirect()->route('cart');
     }
 
@@ -186,7 +186,6 @@ class HomeController extends Controller
     public function datHang(Request $req)
     {
         $cart = Session::get('cart');
-//        print_r($cart);
         $total_items = Cart::count();
         $content = Cart::content();
         $total = Cart::subtotal();
@@ -198,15 +197,15 @@ class HomeController extends Controller
         foreach ($content as $row) {
             $tong_tien = $total;
         }
-//        echo $tong_tien;
         $kh = new Khach_hang;
         $bill = new Don_hang;
         if (!Session('khach_hang_id')){
             $bill->khach_hangID  = 0;
         }
+        else{
+            $bill->khach_hangID = Session('khach_hang_id');
+        }
 
-
-        $bill->khach_hangID = Session('khach_hang_id');
         $bill->ten = $req->name;
         $bill->dia_chi = $req->diachi;
         $bill->email = $req->email;
@@ -337,7 +336,7 @@ class HomeController extends Controller
                 $dhct = Don_hang_chi_tiet::where('don_hangID', $row->id)->get();
                 foreach ($dhct as $sp ){
                     $sp_id = $sp->san_phamID;
-                    print_r($sp_id);
+                
                 $sp = San_pham::where('id',$sp_id)->get();
                 }
             }
