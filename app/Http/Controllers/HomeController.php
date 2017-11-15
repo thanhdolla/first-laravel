@@ -91,35 +91,43 @@ class HomeController extends Controller
         $sanpham = San_pham::find($id);
         $oldCompare = Session('compare') ? Session::get('compare') : null;
         $compare = new Compare($oldCompare);
+        $cp = $compare->items;
         $count = $compare->totalQty;
-        if($count < 3){
-            $compare->add($sanpham, $id);
-            $request->session()->put('compare', $compare);
-            return back()->with('thongbao', 'Add to compare thành công');
+        if($count >=2 ){
+            return back()->with('loi','Chỉ thêm tối đa được hai sản phẩm vào so sánh');
 
         }else{
-            return back()->with('loi','Chỉ thêm được hai sản phẩm vào so sánh');
+            foreach($cp as $row){
+                $sp = $row['item'];
+                if($id == $sp->id){
+                    return back()->with('loi','Sản phẩm đã tồn tại trong danh mục so sánh');
+                }
+            }
+
+            $compare->add($sanpham, $id);
+            Session::put('compare_qty', $compare->totalQty);
+            $request->session()->put('compare', $compare);
+            return back()->with('thongbao', 'Thêm vào so sánh sản phẩm thành công');
         }
-
-
     }
 
-    public function deleteCompare($id){
-        $sanpham = San_pham::find($id);
+    public function deleteCompare(Request $request,$id){
         $oldCompare = Session('compare') ? Session::get('compare') : null;
         $compare = new Compare($oldCompare);
-        $compare->reduceByOne($sanpham->id);
+        $compare->reduceByOne($id);
+        Session::put('compare_qty', $compare->totalQty);
+        $request->session()->put('compare', $compare);
         return back()->with('thongbao','Xóa thành công');
     }
 
     public function getCompare()
     {
-        $oldCompare = Session('compare') ? Session::get('compare') : null;
-        $compare = new Compare($oldCompare);
-        Session::put('compare_qty',$compare->totalQty);
-        $list = (Session::get('compare'));
-        $cp = $list->items;
-        return view('frontend.page.compare', compact('cp', 'count'));
+            $oldCompare = Session('compare') ? Session::get('compare') : null;
+            $compare = new Compare($oldCompare);
+            $list = (Session::get('compare'));
+            $cp = $list->items;
+            return view('frontend.page.compare', compact('cp', 'count'));
+
     }
 
     public function getGioiThieu()
@@ -267,6 +275,7 @@ class HomeController extends Controller
         if (Session::has('khach_hang')) {
             $request->session()->forget('khach_hang');
         }
+
         return redirect('index');
     }
 
