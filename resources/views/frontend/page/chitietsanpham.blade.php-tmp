@@ -40,22 +40,24 @@
                                 <p class="single-item-title"><b>{{$chitiet->ten_sp}}</b></p>
                                 <p class="single-item-price">
                                     <a class="single-item-price">
-                                        <?php $price_new = $chitiet->gia_sp - $chitiet->khuyen_mai ?>
-                                        <?php if ($chitiet->khuyen_mai > 0): ?>
-                                        <a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
-                                            <?php echo number_format($chitiet->gia_sp); ?>Đ
+<?php $price_new = $chitiet->gia_sp-$chitiet->khuyen_mai?>
+                                        <?php if ($chitiet->khuyen_mai > 0):?>
+<a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
+<?php echo number_format($chitiet->gia_sp);?>Đ
                                         </a>
                                         <a class="ga" style="color:red;padding-top: 10px;font-size: 20px;">
-                                            <b><?php echo number_format($price_new) ?>Đ</b>
+                                            <b><?php echo number_format($price_new)?>Đ</b>
                                         </a>
-                                        <?php else: ?>
-                                        <a style="color:red;font-size: 20px;"><b><?php echo number_format($chitiet->gia_sp); ?>
-                                                Đ</b></a>
-                                        <?php endif; ?>
+<?php  else :?>
+                                        <a style="color:red;font-size: 20px;"><b><?php echo number_format($chitiet->gia_sp);
+?>
+Đ</b></a>
+<?php endif;?>
                                     </a>
                                 </p>
                             </div>
                             <div style="background: red;color:black">
+
                             </div>
 
 

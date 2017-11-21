@@ -21,50 +21,56 @@
                 <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                 <div class="row">
                     <div class="col-sm-3"></div>
-                    @if(count($errors)> 0)
-                        <div class="alert alert-danger">
-                            @foreach($errors->all() as $err)
-                                {{$err}}
-                                @endforeach
-                        </div>
-                    @endif
-                    @if(Session::has('thanhcong'))
-                        <div class="alert alert-success">
-                            {{Session::get('thanhcong')}}
-                        </div>
-                    @endif
+
                     <div class="col-sm-6">
+                        @if(count($errors)> 0)
+                            <div class="alert alert-danger">
+                                @foreach($errors->all() as $err)
+                                    {{$err}}<br>
+                                @endforeach
+                            </div>
+                        @endif
+                            @if(Session::has('loi'))
+                                <div class="alert alert-danger">
+                                    {{Session::get('loi')}}
+                                </div>
+                            @endif
+                        @if(Session::has('thanhcong'))
+                            <div class="alert alert-success">
+                                {{Session::get('thanhcong')}}
+                            </div>
+                        @endif
                         <h4>Đăng kí</h4>
                         <div class="space20">&nbsp;</div>
 
 
                         <div class="form-block">
                             <label for="email">Email address*</label>
-                            <input type="email" name="email" id="email" required>
+                            <input type="email" name="email" id="email" >
                         </div>
 
                         <div class="form-block">
                             <label for="your_last_name">Fullname*</label>
-                            <input type="text" name ="fullname" id="your_last_name" required>
+                            <input type="text" name ="fullname" id="your_last_name" >
                         </div>
 
                         <div class="form-block">
                             <label for="adress">Address*</label>
-                            <input type="text" name="address" id="address" value="Street Address" required>
+                            <input type="text" name="address" id="address" value="Street Address" >
                         </div>
 
 
                         <div class="form-block">
                             <label for="phone">Phone*</label>
-                            <input type="text" name="phone" id="phone" required>
+                            <input type="text" name="phone" id="phone" >
                         </div>
                         <div class="form-block">
                             <label for="phone">Password*</label>
-                            <input type="password" name="password" id="password" required>
+                            <input type="password" name="password" id="password" >
                         </div>
                         <div class="form-block">
                             <label for="phone">Re password*</label>
-                            <input type="password" name="re_password" id="pho1ne" required>
+                            <input type="password" name="re_password" id="pho1ne" >
                         </div>
                         <div class="form-block">
                             <button type="submit" class="btn btn-primary">Register</button>

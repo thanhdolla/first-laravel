@@ -13,11 +13,7 @@
             <div class="clearfix"></div>
         </div>
     </div>
-    @if(Session::has('flag'))
-        <div class="alert alert-{{Session::get('flag')}}">{{Session::get('message')}}
 
-        </div>
-    @endif
     <div class="container">
         <div id="content">
 
@@ -27,17 +23,35 @@
                     <div class="col-sm-3"></div>
 
                     <div class="col-sm-6">
+                        @if(count($errors)> 0)
+                            <div class="alert alert-danger">
+                                @foreach($errors->all() as $err)
+                                    {{$err}}<br>
+                                @endforeach
+                            </div>
+                        @endif
+                            @if(Session::has('loi'))
+                                <div class="alert alert-danger">
+                                    {{Session::get('loi')}}
+                                </div>
+                            @endif
+                        @if(Session::has('thongbao'))
+                            <div class="alert alert-success">
+                                {{Session::get('thongbao')}}
+                            </div>
+                        @endif
+
                         <h4>Đăng nhập</h4>
                         <div class="space20">&nbsp;</div>
 
 
                         <div class="form-block">
                             <label for="email">Email address*</label>
-                            <input type="email" name="email" id="email" required>
+                            <input type="email" name="email" id="email" >
                         </div>
                         <div class="form-block">
                             <label for="phone">Password*</label>
-                            <input type="password" id="pasw" name="password" required>
+                            <input type="password" id="pasw" name="password" >
                         </div>
                         <div class="form-block">
                             <button type="submit" class="btn btn-primary">Login</button>

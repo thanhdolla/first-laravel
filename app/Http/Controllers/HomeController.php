@@ -24,7 +24,7 @@ class HomeController extends Controller
     {
         $slide = Slide::all();
 //        print_r($slide);  exit;
-        $newpr = San_pham::where('san_pham_moi', 1)->paginate(4);
+        $newpr = San_pham::orderBy('id', 'DESC')->paginate(4);
 //        print_r($newpr);
         $khuyenmai = San_pham::where('khuyen_mai', '<>', 0)->paginate(8);
 
@@ -91,16 +91,18 @@ class HomeController extends Controller
         $sanpham = San_pham::find($id);
         $oldCompare = Session('compare') ? Session::get('compare') : null;
         $compare = new Compare($oldCompare);
-        $cp = $compare->items;
         $count = $compare->totalQty;
         if($count >=2 ){
             return back()->with('loi','Chỉ thêm tối đa được hai sản phẩm vào so sánh');
-
         }else{
-            foreach($cp as $row){
-                $sp = $row['item'];
-                if($id == $sp->id){
-                    return back()->with('loi','Sản phẩm đã tồn tại trong danh mục so sánh');
+            //khi đã có sản phẩm trong danh mục so sánh mơi ktra điều kiện này
+            if($count >0) {
+                $cp = $compare->items;
+                foreach ($cp as $row) {
+                    $sp = $row['item'];
+                    if ($id == $sp->id) {
+                        return back()->with('loi', 'Sản phẩm đã tồn tại trong danh mục so sánh');
+                    }
                 }
             }
 
@@ -213,7 +215,29 @@ class HomeController extends Controller
         else{
             $bill->khach_hangID = Session('khach_hang_id');
         }
+        $this->validate($req,
+            [
+                'email' => 'required|email',
+                'name' => 'required',
+                'sdt' => 'required|min:6&&max:11|integer',
+                'diachi' => 'required',
+                'note' => 'required'
 
+            ],
+            [
+                'email.required' => "Vui lòng nhập email",
+                'email.email' => "Email không hợp lệ",
+                'email.umique' => 'Email đã tồn tại',
+                'name.required' => "Vui lòng nhập họ tên",
+                'note.required' => "Vui lòng nhập chú thích ngày giờ bạn muốn nhận hàng",
+                'diachi.required' => "Vui lòng nhập địa chỉ",
+                'sdt.min' => 'Số điện thoại phải lớn hơn 5 số',
+                'sdt.max' => 'Số điện thoại phải nhỏ hơn 12 số',
+                'sdt.integer' => 'Số điện thoại là số từ 1 đến 9',
+                'sdt.required' => 'Vui lòng nhập số điện thoại',
+
+            ]
+        );
         $bill->ten = $req->name;
         $bill->dia_chi = $req->diachi;
         $bill->email = $req->email;
@@ -233,7 +257,6 @@ class HomeController extends Controller
         }
         Session::forget('cart');
         return redirect()->route('trang_chu')->with('thongbao', "Đặt hàng thành công");
-
     }
 
     public function getLogin()
@@ -251,7 +274,6 @@ class HomeController extends Controller
             [
                 'email.required' => "Nhập email",
                 'email.email' => "Email không hợp lệ",
-                'email.umique' => 'Email đã tồn tại',
                 'password.required' => "Vui lòng nhập mật khẩu",
                 'password.min' => 'Mật khẩu ít nhất 3 kí tự'
             ]
@@ -263,9 +285,9 @@ class HomeController extends Controller
         if (count($check) > 0) {
             Session::put('khach_hang', $kh->ten_kh);
             Session::put('khach_hang_id', $kh->id);
-            return redirect('index')->with(['flag' => 'success', 'message' => 'Đăng nhập thành công']);
+            return redirect('index')->with(['thongbao', 'Đăng nhập thành công']);
         } else {
-            return redirect()->back()->with(['flag' => 'danger', 'message' => 'Đăng nhập không thành công']);
+            return redirect()->back()->with(['loi' => 'Email hoặc mật khẩu không đúng']);
         }
 
     }
@@ -291,17 +313,23 @@ class HomeController extends Controller
                 'email' => 'required|email',
                 'password' => 'required|min:6',
                 'fullname' => 'required',
-                'phone' => 'required:min:9',
+                'phone' => 'required|min:6&&max:11|integer',
                 're_password' => 'required|same:password'
 
             ],
             [
-                'email.required' => "Nhập email",
+                'email.required' => "Vui lòng nhập email",
+                'fullname.required' => "Vui lòng nhập họ tên",
                 'email.email' => "Email không hợp lệ",
                 'email.umique' => 'Email đã tồn tại',
+                'phone.required' => 'Vui lòng nhập số điện thoại',
+                'phone.max' => 'Số điện thoại phải nhỏ hơn 12 số',
+                'phone.min' => 'Số điện thoại phải lớn hơn 5 số',
+                'phone.integer' => 'Số điện thoại là số từ 1 đến 9',
                 'password.required' => "Vui lòng nhập mật khẩu",
+                'password.min' => 'Mật khẩu ít nhất 6 kí tự',
                 're_password.same' => "Mật khẩu không giống nhau",
-                'password.min' => 'Mật khẩu ít nhất 6 kí tự'
+                're_password.required' => "Vui lòng nhập lại mật khẩu",
 
             ]
         );
