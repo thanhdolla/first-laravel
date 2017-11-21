@@ -22,9 +22,8 @@
         <hr>
 
         <div class="box-content-center product"><!-- The box-content-center -->
-            <?php if ($count > 0): ?>
-
-            <table id="cart_ccontents" style="width:80%;margin:auto;">
+<?php if ($count > 0):?>
+<table id="cart_ccontents" style="width:80%;margin:auto;">
                 <thead style="text-align:center;color: red;padding-left: 5px;">
                 <th style="text-align:center;">Sản phẩm</th>
                 <th style="text-align:center;">Giá</th>
@@ -40,21 +39,21 @@
                     <tr>
                         <td style="width:25%;">
                             <div style="text-align:center; ">
-                                <?php echo $row->name; ?>
-                            </div>
+<?php echo $row->name;?>
+</div>
                         </td>
                         <td>
                             <div style="text-align:center ">
-                                <?php echo number_format($row->price); ?>đ
+<?php echo number_format($row->price);?>đ
                             </div>
-                   
+
                         <td>
-                            <a><input name="<?php echo $row->rowId ?>" value="<?php echo $row->qty; ?>" size="2"/></a>
+                            <a><input name="<?php echo $row->rowId?>" value="<?php echo $row->qty;?>" size="2"/></a>
                         </td>
                         </td>
                         <td>
                             <div style="text-align:center ">
-                                <?php echo number_format(($row->price) * $row->qty); ?>đ
+<?php echo number_format(($row->price)*$row->qty);?>đ
                             </div>
                         </td>
 
@@ -70,7 +69,7 @@
                 <tr>
 
                     <td colspan="5" style="padding-left:20%;">
-                        Thành tiền: <b style="padding-right: 40%;color:red"><?php echo($total)?>đ</b>
+                        Thành tiền: <b style="padding-right: 40%;color:red"><?php echo ($total)?>đ</b>
                         <a style="width:30px;color: black;" href="{{route('removeallcart')}}">
                             <input class="btn btn-danger" type="button" value="Xóa tất cả">
                         </a>
@@ -85,7 +84,7 @@
                             <button class="btn btn-success" type="submit" >Cập nhật</button>
                         </a>
 
-                        <a style=" margin-left:80%;width:30px;color: black;" href="<?php echo route('dathang') ?>">
+                        <a style=" margin-left:80%;width:30px;color: black;" href="<?php echo route('dathang')?>">
                             <input class="btn btn-success" type="button" value="Đặt hàng">
                         </a>
 
@@ -96,11 +95,11 @@
                 </form>
             </table>
             {{--</form>--}}
-            <?php else: ?>
-            <h4>Hiện chưa có sản phẩm nào trong giỏ hàng</h4>
+<?php  else :?>
+<h4>Hiện chưa có sản phẩm nào trong giỏ hàng</h4>
             {{--</form>--}}
-            <?php endif; ?>
-        </div>
+<?php endif;?>
+</div>
     </div>
 
 @endsection

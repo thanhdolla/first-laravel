@@ -62,7 +62,7 @@
                             </form>
 
                             <?php else: ?>
-                            <h4>Hiện chưa có sản phẩm nào trong giỏ hàng</h4>
+                            <h4>Hiện chưa có sản phẩm nào để so sánh</h4>
                             <?php endif; ?>
                         </div>
                     </div>
