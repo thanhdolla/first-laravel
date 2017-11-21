@@ -113,7 +113,7 @@
                                     <div class="formRight">
                                 <span class="oneTwo">
                                     <input type="number" min="0" step="1000" id="param_name" name="price"
-                                           placeholder="Nhập giá theo đơn vị VNĐ" required>
+                                            required> VNĐ
 
                                 </span>
                                         <span class="autocheck" name="name_autocheck"></span>
@@ -121,7 +121,44 @@
                                     </div>
                                     <div class="clear"></div>
                                 </div>
+                                <div class="formRow">
+                                    <label for="param_name" class="formLeft">Khuyến mãi:<span
+                                                class="req">*</span></label>
+                                    <div class="formRight">
+                                <span class="oneTwo">
+                                    <input type="number" min="0" step="1000" id="param_name" name="discount"
+                                            required> VNĐ
 
+                                </span>
+                                        <span class="autocheck" name="name_autocheck"></span>
+                                        <div class="clear error" name="name_error"></div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="formRow">
+                                    <label for="param_name" class="formLeft">Bảo hành:<span
+                                                class="req">*</span></label>
+                                    <div class="formRight">
+                                <span class="oneTwo">
+                                    <input type="text" id="param_name" name="warranty" required>
+                                </span>
+                                        <span class="autocheck" name="name_autocheck"></span>
+                                        <div class="clear error" name="name_error"></div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="formRow">
+                                    <label for="param_name" class="formLeft">Ngày sản xuất:<span
+                                                class="req">*</span></label>
+                                    <div class="formRight">
+                                <span class="oneTwo">
+                                    <input type="text" id="param_name" name="mfg" required>
+                                </span>
+                                        <span class="autocheck" name="name_autocheck"></span>
+                                        <div class="clear error" name="name_error"></div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
                                 <div class="formRow">
                                     <label class="formLeft">Hình ảnh:<span class="req">*</span></label>
                                     <div class="formRight">
