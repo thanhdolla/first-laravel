@@ -94,9 +94,9 @@
                                 <thead>
                                 <tr>
                                     <td style="width:60px;">Mã số</td>
-                                    <td>Ảnh</td>
                                     <td>Tên</td>
                                     <td>Giá</td>
+                                    <td style="width:75px;">Ngày sản xuất</td>
                                     <td style="width:120px;">Hành động</td>
                                 </tr>
                                 </thead>
@@ -108,28 +108,28 @@
                                 <tr>
 
                                     <td class="textC">{{$pd->id}}</td>
-
                                     <td>
                                         <div class="image_thumb">
                                             <img src="source/frontend/image/product/{{$pd->anh_sp }}" height="50">
                                             <div class="clear"></div>
                                         </div>
 
-
-
-
-                                    </td>
-                                    <td>
                                         <a href="" class="tipS" title="" target="_blank">
                                             <b>{{$pd->ten_sp}}</b>
                                         </a>
+
+                                        <div class="f11" >
+                                            Đã bán: 0					  | Xem: {{$pd->luot_view}}					</div>
+
                                     </td>
+
+
 
                                     <td class="textR">
                                         {{$pd->gia_sp}} đ
 
                                     </td>
-
+                                    <td class="textC">{{$pd->ngay_sx}}</td>
 
                                     <td class="option textC">
                                         <a class="tipS" title="Chỉnh sửa" href="admin/product/edit/{{$pd->id}}">

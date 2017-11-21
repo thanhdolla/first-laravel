@@ -240,32 +240,32 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
     Route::group(['prefix'=>'product'],function (){
         Route::get('index',[
             'as'=>'admin/product/index',
-            'uses'=>'ProductManagementController@index'
+            'uses'=>'SanPhamController@index'
         ]);
 
         Route::get('add',[
             'as'=>'admin/product/add',
-            'uses'=>'ProductManagementController@getAdd'
+            'uses'=>'SanPhamController@getAdd'
         ]);
 
         Route::post('add',[
             'as'=>'admin/product/add',
-            'uses'=>'ProductManagementController@add'
+            'uses'=>'SanPhamController@add'
         ]);
 
         Route::get('edit/{id}',[
             'as'=>'admin/product/edit{id}',
-            'uses'=>'ProductManagementController@getEdit'
+            'uses'=>'SanPhamController@getEdit'
         ]);
 
         Route::post('edit/{id}',[
             'as'=>'admin/product/edit/{id}',
-            'uses'=>'ProductManagementController@edit'
+            'uses'=>'SanPhamController@edit'
         ]);
 
         Route::get('delete/{id}',[
             'as'=>'admin/product/delete/{id}',
-            'uses'=>'ProductManagementController@delete'
+            'uses'=>'SanPhamController@delete'
         ]);
     });
 
