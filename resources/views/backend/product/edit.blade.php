@@ -1,6 +1,10 @@
 @extends('masteradmin')
 @section('contentadmin')
 
+    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> <script type="text/javascript">
+        bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+    </script>
+
     <div id="rightSide">
         <div class="titleArea">
             <div class="wrapper">
@@ -95,7 +99,7 @@
                                     <label for="param_name" class="formLeft">Mô tả:<span class="req">*</span></label>
                                     <div class="formRight">
                                 <span class="oneTwo">
-                                    <textarea name="description" id="param_name" value="{{$product->mo_ta_sp}}" required></textarea>
+                                    <textarea name="description" id="param_name" value="{{$product->mo_ta_sp}}" ></textarea>
 
                                 </span>
                                         <span class="autocheck" name="name_autocheck"></span>
@@ -159,9 +163,9 @@
                                         <div class="left" style="float:left">
                                             <input type="file" name="image" id="image" size="25"/>
                                         </div>
-                                        <div style="float:left">
+                                        <div style="float:left;height:150px;">
                                             <img src="upload/product/add/{{$product->anh_sp}}"
-                                                 style="width:300px;">
+                                                 style="width:100px;">
                                         </div>
                                         <div class="clear error" name="image_error"></div>
                                     </div>

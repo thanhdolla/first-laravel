@@ -1,6 +1,8 @@
 @extends('masteradmin')
 @section('contentadmin')
-
+    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> <script type="text/javascript">
+        bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+    </script>
     <!-- Right side -->
     <div id="rightSide">
 
@@ -100,7 +102,7 @@
                                     <label for="param_name" class="formLeft">Mô tả:<span class="req">*</span></label>
                                     <div class="formRight">
                                 <span class="oneTwo">
-                                    <textarea name="description" id="param_name" required></textarea>
+                                    <textarea name="description" id="param_name" ></textarea>
 
                                 </span>
                                         <span class="autocheck" name="name_autocheck"></span>
