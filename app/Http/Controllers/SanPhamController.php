@@ -30,6 +30,30 @@ class SanPhamController extends Controller
         return view('backend.product.add', compact('cate'));
     }
     public function add(Request $request){
+        $this->validate($request,
+            [
+                'name' => 'required',
+                'category' => 'required',
+                'description' => 'required',
+                'price' => 'required',
+                'mfg' => 'required',
+//                'discount' => 'required',
+                'warranty' => 'required',
+
+                'image' => 'required',
+            ],
+            [
+                'name.required' => "Nhập tên sản phẩm",
+                'description.required' => "Nhập mô tả sản phẩm",
+                'price.required' => "Nhập giá sản phẩm",
+                'mfg.required' => "Nhập ngày sản xuất sản phẩm",
+//                'discount.required' => "Nhập tên sản phẩm",
+                'warranty.required' => "Nhập thời gian bảo hành",
+                'name.unique' => "Tên đã tồn tại",
+
+                'image.required' => "Chọn ảnh mới",
+            ]
+        );
         $product = new San_pham();
         $product->ten_sp = $request->name;
         $product->loai_spID = $request->category;
@@ -65,40 +89,61 @@ class SanPhamController extends Controller
 
     public function edit(Request $request, $id)
     {
-        $product = San_pham::find($id);
         $this->validate($request,
             [
                 'name' => 'required',
+                'category' => 'required',
+                'description' => 'required',
+                'price' => 'required',
+                'mfg' => 'required',
+//                'discount' => 'required',
+                'warranty' => 'required',
+
+                'image' => 'required',
             ],
             [
-                'name.required' => "Nhập tên slide",
+                'name.required' => "Nhập tên sản phẩm",
+                'description.required' => "Nhập mô tả sản phẩm",
+                'price.required' => "Nhập giá sản phẩm",
+                'mfg.required' => "Nhập ngày sản xuất sản phẩm",
+//                'discount.required' => "Nhập tên sản phẩm",
+                'warranty.required' => "Nhập thời gian bảo hành",
                 'name.unique' => "Tên đã tồn tại",
+
+                'image.required' => "Chọn ảnh mới",
             ]
         );
+        $product = San_pham::find($id);
+        $product->ten_sp = $request->name;
+        $product->loai_spID = $request->category;
+        $product->mo_ta_sp = $request->description;
+        $product->gia_sp = $request->price;
+        $product->ngay_sx = $request->mfg;
+        $product->khuyen_mai = $request->discount;
+        $product->bao_hanh = $request->warranty;
 
-        $slide->ten_slide = ($request->name);
-        $anh_cu = $slide->anh_slide;
+        $anh_cu = $product->anh_sp;
 //        print_r($request->name);
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $duoi = $file->getClientOriginalExtension();
             if ($duoi != 'jpg' && $duoi != 'png') {
-                return redirect('admin/slide/edit/'.$id)->with('loi', 'Bạn phải chọn file ảnh');
+                return redirect('admin/product/edit/'.$id)->with('loi', 'Bạn phải chọn file ảnh');
             }
 
             $name = $file->getClientOriginalName();
-            while (file_exists("upload/slide/.$name")) {
+            while (file_exists("upload/product/.$name")) {
                 $name = $request->file('image')->getClientOriginalName();
             }
 
-            $slide->anh_slide = $name;
+            $product->anh_sp = $name;
 
 
-            unlink("upload/slide/add/".$anh_cu);
-            $file->move('upload/slide/add', $name);
+            unlink("upload/product/add/".$anh_cu);
+            $file->move('upload/product/add', $name);
 
-            $slide->save();
-            return redirect('admin/slide/edit/'.$id)->with('thongbao', "Sửa slide thành công");
+            $product->save();
+            return redirect('admin/product/edit/'.$id)->with('thongbao', "Sửa sản phẩm thành công");
         }
     }
 

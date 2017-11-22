@@ -25,11 +25,13 @@ class SlideController extends Controller
         $this->validate($request,
             [
                 'name' => 'required',
-                'image' => 'required|image'
+
+                'image' => 'required',
             ],
             [
-                'name.required' => "Nhập tên slide",
-                'image.required' => "Thêm ảnh slide",
+                'name.required' => "Nhập tiêu đề",
+                'name.unique' => "Tên đã tồn tại",
+                'image.required' => "Chọn ảnh mới",
             ]
         );
 
@@ -66,15 +68,20 @@ class SlideController extends Controller
         $this->validate($request,
             [
                 'name' => 'required',
+
+                'image' => 'required',
             ],
             [
-                'name.required' => "Nhập tên slide",
+                'name.required' => "Nhập tiêu đề",
                 'name.unique' => "Tên đã tồn tại",
+                'image.required' => "Chọn ảnh mới",
             ]
         );
 
+
         $slide->ten_slide =$request->name;
         $anh_cu = $slide->anh_slide;
+
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $duoi = $file->getClientOriginalExtension();
