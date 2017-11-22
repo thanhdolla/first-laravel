@@ -41,6 +41,25 @@
                 @endif
 
                 <table cellpadding="0" cellspacing="0" width="100%" class="sTable mTable myTable" id="checkAll">
+                    <thead class="filter"><tr><td colspan="6">
+                            <form class="list_filter form" action="{{route('admin/product/index')}}" method="get">
+                                <table cellpadding="0" cellspacing="0" width="80%"><tbody>
+
+                                    <tr>
+                                        <td class="label" style="width:40px;"><label for="filter_id">Mã số</label></td>
+                                        <td class="item"><input name="searchid" value="" type="text" style="width:55px;" /></td>
+                                        <td class="label" style="width:40px;"><label>Tên</label></td>
+                                        <td class="item" style="width:155px;" ><input name="searchname" value=""  type="text" style="width:155px;" /></td>
+                                        <td style='width:150px'>
+                                            <button type="submit" class="btn btn-success" >Search</button>
+                                        </td>
+
+                                    </tr>
+                                    </tbody></table>
+                            </form>
+                        </td></tr>
+                    </thead>
+
                     <thead>
                     <tr>
                         <td style="width:10%;">Mã số</td>

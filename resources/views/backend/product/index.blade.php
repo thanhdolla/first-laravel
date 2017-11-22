@@ -3,7 +3,6 @@
     <!-- Right side -->
     <div id="rightSide">
 
-
         <div class="titleArea">
             <div class="wrapper">
                 <div class="pageTitle">
@@ -31,12 +30,6 @@
         <div class="line"></div>
 
         <!-- Message -->
-
-
-
-
-
-
         <!-- Main content wrapper -->
         <div class="wrapper">
             <div class="widget">
@@ -52,38 +45,33 @@
                         sản phẩm
                     </h6>
                 </div>
-
                 <div class="line"></div>
 
                     <div class="wrapper" id="main_product">
                         <div class="widget">
 
-
-
                             <table cellpadding="0" cellspacing="0" width="100%" class="sTable mTable myTable" id="checkAll">
 
                                 <thead class="filter"><tr><td colspan="6">
-                                        <form class="list_filter form" action="index.php/admin/product.html" method="get">
+                                        <form class="list_filter form" action="{{route('admin/product/index')}}" method="get">
                                             <table cellpadding="0" cellspacing="0" width="80%"><tbody>
 
                                                 <tr>
                                                     <td class="label" style="width:40px;"><label for="filter_id">Mã số</label></td>
-                                                    <td class="item"><input name="id" value="" id="filter_id" type="text" style="width:55px;" /></td>
+                                                    <td class="item"><input name="searchid" value="" type="text" style="width:55px;" /></td>
 
-                                                    <td class="label" style="width:40px;"><label for="filter_id">Tên</label></td>
-                                                    <td class="item" style="width:155px;" ><input name="name" value="" id="filter_iname" type="text" style="width:155px;" /></td>
-
-                                                    <td class="label" style="width:60px;"><label for="filter_status">Thể loại</label></td>
+                                                    <td class="label" style="width:40px;"><label>Tên</label></td>
+                                                    <td class="item" style="width:155px;" ><input name="searchname" value=""  type="text" style="width:155px;" /></td>
                                                     <td class="item">
                                                         <select name="catalog">
-                                                            <option value=""></option>
-
+                                                            @foreach($cate as $ct)
+                                                                <option selected value="{{$ct->ten_loai_sp}}"></option>
+                                                            @endforeach
                                                         </select>
                                                     </td>
 
                                                     <td style='width:150px'>
-                                                        <input type="submit" class="button blueB" value="Lọc" />
-                                                        <input type="reset" class="basic" value="Reset" onclick="window.location.href = 'index.php/admin/product.html'; ">
+                                                        <button type="submit" class="btn btn-success" >Search</button>
                                                     </td>
 
                                                 </tr>
@@ -123,8 +111,6 @@
 
                                     </td>
 
-
-
                                     <td class="textR">
                                         {{$pd->gia_sp}} đ
 
@@ -141,20 +127,22 @@
                                         </a>
                                     </td>
 
-
                                 </tr>
                                 @endforeach
-
-
                                 </tbody>
 
                             </table>
+                            {{--<div class>{{$product->links()}}</div>--}}
                         </div>
 
-                    </div>		<div class="clear mt30"></div>
-
+                    </div>
+                    <div class="clear mt30"></div>
             </div>
         </div>
-        <div class="clear mt30"></div>
     </div>
+
+        <div class="clear mt30"></div>
+
+    </div>
+
 @endsection

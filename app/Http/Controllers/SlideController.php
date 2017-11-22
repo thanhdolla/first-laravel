@@ -22,16 +22,16 @@ class SlideController extends Controller
 
     public function add(Request $request)
     {
-//        $this->validate($request,
-//            [
-//                'name' => 'required',
-//                'image' => 'required|image'
-//            ],
-//            [
-//                'name.required' => "Nhập tên slide",
-//                'image.required' => "Thêm ảnh slide",
-//            ]
-//        );
+        $this->validate($request,
+            [
+                'name' => 'required',
+                'image' => 'required|image'
+            ],
+            [
+                'name.required' => "Nhập tên slide",
+                'image.required' => "Thêm ảnh slide",
+            ]
+        );
 
         $slide = new Slide;
         $slide->ten_slide = $request->name;
@@ -73,9 +73,8 @@ class SlideController extends Controller
             ]
         );
 
-        $slide->ten_slide = ($request->name);
+        $slide->ten_slide =$request->name;
         $anh_cu = $slide->anh_slide;
-//        print_r($request->name);
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $duoi = $file->getClientOriginalExtension();

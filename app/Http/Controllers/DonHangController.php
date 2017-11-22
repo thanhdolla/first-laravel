@@ -8,8 +8,16 @@ use Illuminate\Http\Request;
 
 class DonHangController extends Controller
 {
-    public function index(){
-        $list = Don_hang::all();
+    public function index(Request $req){
+        if($req->searchid) {
+            $list = San_pham::where('id', 'like', '%' . $req->searchid . '%')->get();
+        }
+        else if($req->searchname) {
+            $product = San_pham::where('ten_sp', 'like', '%' . $req->searchname . '%')->get();
+        }
+        else {
+            $product = San_pham::orderby('id', 'desc')->get();
+        }
         return view('backend.donhang.index',compact('list'));
     }
 

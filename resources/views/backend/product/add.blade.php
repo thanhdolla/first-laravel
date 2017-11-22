@@ -61,11 +61,6 @@
                             <h6>Thêm mới sản phẩm</h6>
                         </div>
 
-                        {{--<ul class="tabs">--}}
-                        {{--<li class="activeTab"><a href="#tab1">Thông tin chung</a></li>--}}
-
-                        {{--</ul>--}}
-
                         <div class="tab_container">
                             <div class="tab_content pd0" id="tab1" style="display: block;">
                                 <div class="formRow">

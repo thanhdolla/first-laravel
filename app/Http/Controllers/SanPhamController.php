@@ -9,12 +9,20 @@ use Illuminate\Http\Request;
 
 class SanPhamController extends Controller
 {
-    public function index()
+    public function index(Request $req)
     {
+        if($req->searchid) {
+            $product = San_pham::where('id', 'like', '%' . $req->searchid . '%')->get();
+        }
+        else if($req->searchname) {
+            $product = San_pham::where('ten_sp', 'like', '%' . $req->searchname . '%')->get();
+        }
+        else {
+            $product = San_pham::orderby('id', 'desc')->get();
+        }
+        $cate = Loai_san_pham::all();
 
-        $product = San_pham::all();
-
-        return view('backend.product.index', compact('product'));
+        return view('backend.product.index', compact('product','cate'));
     }
     public function getAdd()
     {
@@ -95,10 +103,22 @@ class SanPhamController extends Controller
     }
 
     public function delete($id){
-//        $s = Slide::find($id);
-//        $s->delete();
-//        return back()->with('thongbao',"Xóa thành công");
+        $s = San_pham::find($id);
+        $s->delete();
+        return back()->with('thongbao',"Xóa thành công");
     }
 
+    public function timKiem(Request $req)
+    {
+        if($req->searchid) {
+            $product = San_pham::where('id', 'like', '%' . $req->searchid . '%')->get();
+        }
+
+        else if($req->searchname){
+        $product = San_pham::where('ten_sp', 'like', '%' . $req->searchname . '%')->get();
+
+    }
+        return view('backend.product.timkiem', compact('product'));
+    }
 
 }

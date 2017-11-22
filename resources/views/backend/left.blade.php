@@ -76,11 +76,11 @@
 
                 <ul class="sub">
                     <li >
-                        <a href="admin/admin.html">
+                        <a href="{{route('admin/nhanvien/index')}}">
                             Ban quản trị							</a>
                     </li>
                     <li >
-                        <a href="admin/user.html">
+                        <a href="{{route('admin/khachhang/index')}}">
                             Khách hàng thành viên						</a>
                     </li>
                 </ul>
@@ -99,7 +99,7 @@
                             Slide							</a>
                     </li>
                     <li >
-                        <a href="admin/news.html">
+                        <a href="{{route('admin/tintuc/index')}}">
                             Tin tức							</a>
                     </li>
                 </ul>

@@ -1,34 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-//
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-//Route::get('aa',function(){
-//echo  "<h1>dgdddd</h1>";
-//});
-//Route::get('aaa/{ten}',function ($ten){
-//    echo "ten: ".$ten;
-//});
-//Route::get('Laravel/{ngay}',function($ngay){
-//    echo "ngay lh :".$ngay;
-//});
-//Route::get('Route1',['as'=>'Myoute',function(){
-//    echo 'dinh danh';
-//}]);
-////Route::get('goicontroller','MyController@Hello');
-//Route::get('thamso/{ten}','MyController@Hello');
-//
 Route::get('index',[
     'as'=>'trang_chu',
     'uses'=>'HomeController@getIndex'
@@ -174,7 +145,6 @@ Route::get('admin/logout',[
     'uses'=>'AdminController@logout'
 ]);
 
-
 Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
     Route::group(['prefix'=>'slide'],function (){
         Route::get('index',[
@@ -208,6 +178,38 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
         ]);
     });
 
+    Route::group(['prefix'=>'tintuc'],function (){
+        Route::get('index',[
+            'as'=>'admin/tintuc/index',
+            'uses'=>'TinTucController@index'
+        ]);
+
+        Route::get('add',[
+            'as'=>'admin/tintuc/add',
+            'uses'=>'TinTucController@getAdd'
+        ]);
+
+        Route::post('add',[
+            'as'=>'admin/tintuc/add',
+            'uses'=>'TinTucController@add'
+        ]);
+
+        Route::get('edit/{id}',[
+            'as'=>'admin/tintuc/edit{id}',
+            'uses'=>'TinTucController@getEdit'
+        ]);
+
+        Route::post('edit/{id}',[
+            'as'=>'admin/tintuc/edit/{id}',
+            'uses'=>'TinTucController@edit'
+        ]);
+
+        Route::get('delete/{id}',[
+            'as'=>'admin/tintuc/delete/{id}',
+            'uses'=>'TinTucController@delete'
+        ]);
+    });
+
     Route::group(['prefix'=>'donhang'],function(){
         Route::get('index',[
             'as'=>'admin/donhang/index',
@@ -237,6 +239,53 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
         ]);
 
     });
+
+    Route::group(['prefix'=>'nhanvien'],function(){
+        Route::get('index',[
+            'as'=>'admin/nhanvien/index',
+            'uses'=>'NhanVienController@index'
+        ]);
+
+        Route::get('add',[
+            'as'=>'admin/nhanvien/add',
+            'uses'=>'NhanVienController@getAdd'
+        ]);
+
+        Route::post('add',[
+            'as'=>'admin/nhanvien/add',
+            'uses'=>'NhanVienController@add'
+        ]);
+
+        Route::get('edit/{id}',[
+            'as'=>'admin/nhanvien/edit{id}',
+            'uses'=>'NhanVienController@getEdit'
+        ]);
+
+        Route::post('edit/{id}',[
+            'as'=>'admin/nhanvien/edit/{id}',
+            'uses'=>'NhanVienController@edit'
+        ]);
+
+        Route::get('delete/{id}',[
+            'as'=>'admin/nhanvien/delete/{id}',
+            'uses'=>'NhanVienController@delete'
+        ]);
+
+    });
+
+    Route::group(['prefix'=>'khachhang'],function(){
+        Route::get('index',[
+            'as'=>'admin/khachhang/index',
+            'uses'=>'KhachHangController@index'
+        ]);
+
+        Route::get('delete/{id}',[
+            'as'=>'admin/khachhang/delete/{id}',
+            'uses'=>'KhachHangController@delete'
+        ]);
+
+    });
+
     Route::group(['prefix'=>'product'],function (){
         Route::get('index',[
             'as'=>'admin/product/index',
@@ -267,6 +316,7 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
             'as'=>'admin/product/delete/{id}',
             'uses'=>'SanPhamController@delete'
         ]);
+
     });
 
     Route::get('dashboard',[

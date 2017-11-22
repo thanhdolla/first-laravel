@@ -99,8 +99,7 @@
                                     <label for="param_name" class="formLeft">Mô tả:<span class="req">*</span></label>
                                     <div class="formRight">
                                 <span class="oneTwo">
-                                    <textarea name="description" id="param_name" value="{{$product->mo_ta_sp}}" ></textarea>
-
+                                    <textarea name="description" id="param_name" >{{$product->mo_ta_sp}}</textarea>
                                 </span>
                                         <span class="autocheck" name="name_autocheck"></span>
                                         <div class="clear error" name="name_error"></div>
