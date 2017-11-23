@@ -16,7 +16,7 @@
 
                             <div class="row">
                                 @foreach($product as $new)
-                                    <div class="col-sm-4" style="padding-left: 50px;">
+                                    <div class="col-sm-3" style="padding-left: 50px;">
                                         <div class="single-item" style="margin-bottom: 40px;">
                                             <div class="single-item-header" style="height: 230px;">
                                                 <a href="{{route('chitietsanpham',$new->id)}}"><img src="source/frontend/image/product/{{$new->anh_sp}}" style="text-align:center;height:230px;width: 210px;" alt=""></a>
@@ -29,10 +29,12 @@
                                                     <a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
                                                         <?php echo number_format($new->gia_sp); ?>Đ
                                                     </a>
+                                                        <br>
                                                     <a class="ga" style="color:red;padding-top: 10px;font-size: 20px;">
                                                         <b><?php echo number_format($price_new) ?>Đ</b>
                                                     </a>
                                                     <?php else: ?>
+                                                        <i style="font-size: 15px;">chưa có khuyến mại</i>
                                                     <a style="color:red;font-size: 20px;"><b><?php echo number_format($new->gia_sp); ?>
                                                             Đ</b></a>
                                                     <?php endif; ?>
@@ -125,36 +127,6 @@
                                             </li>
                                             @endforeach
                                         </ul>
-                                </div>
-
-                            </div>
-                            <div class="panel panel-success">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title" style="text-align:center;">Thông báo mới </h3>
-                                </div>
-                                <div>
-                                    <ul>
-                                        <!--bien list1 này lấy từ core- MY_controller-->
-                                        <?php foreach ($tintuc as $row): ?>
-                                        <li style="list-style-type: none;padding-top: 10px;background: window;">
-                                            <a href="">
-                                                <table>
-                                                    <tr>
-                                                        <td style="height:70px;width:120px;">
-                                                            <img style="padding-right: 15px;height:70px;width:120px;"
-                                                                 src="upload/tintuc/add/{{$row->anh_tb}}">
-                                                        </td>
-                                                        <td>
-                                                            <span style="font-size:14px;color:#003399;">
-                                                                <?php echo $row->tieu_de_tb ?>
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </a>
-                                        </li>
-                                        <?php endforeach; ?>
-                                    </ul>
                                 </div>
 
                             </div>

@@ -46,10 +46,12 @@
                                                     <a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
                                                         <?php echo number_format($new->gia_sp); ?>Đ
                                                     </a>
+                                                        <br>
                                                     <a class="ga" style="color:red;padding-top: 10px;font-size: 20px;">
                                                         <b><?php echo number_format($price_new) ?>Đ</b>
                                                     </a>
                                                     <?php else: ?>
+                                                        <i style="font-size: 15px;">chưa có khuyến mại</i>
                                                     <a style="color:red;font-size: 20px;"><b><?php echo number_format($new->gia_sp); ?>
                                                             Đ</b></a>
                                                     <?php endif; ?>
@@ -100,11 +102,13 @@
                                                 <a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
                                                     <?php echo number_format($km->gia_sp); ?>Đ
                                                 </a>
+                                                    <br>
                                                 <a class="ga" style="color:red;padding-top: 10px;font-size: 20px;">
                                                     <b><?php echo number_format($price_new) ?>Đ</b>
                                                 </a>
                                                 <?php else: ?>
-                                                <a style="color:red;font-size: 20px;"><b><?php echo number_format($km->gia_sp); ?>
+                                                    <i style="font-size: 15px;">chưa có khuyến mại</i>
+                                                    <a style="color:red;font-size: 20px;"><b><?php echo number_format($km->gia_sp); ?>
                                                         Đ</b></a>
                                                 <?php endif; ?>
                                             </p>
@@ -203,7 +207,7 @@
                                     <!--bien list1 này lấy từ core- MY_controller-->
                                     <?php foreach ($tintuc as $row): ?>
                                     <li style="list-style-type: none;padding-top: 10px;background: window;">
-                                        <a href="">
+                                        <a href='tintuc/{{$row->id }}'>
                                             <table>
                                                 <tr>
                                                     <td style="height:70px;width:120px;">

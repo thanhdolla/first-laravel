@@ -20,6 +20,11 @@ Route::get('lienhe',[
     'uses'=>'HomeController@getLienHe'
 ]);
 
+Route::get('tintuc/{id}',[
+    'as'=>'tintuc/{id}',
+    'uses'=>'HomeController@tinTuc'
+]);
+
 Route::get('gioithieu',[
     'as'=>'gioithieu',
     'uses'=>'HomeController@getGioiThieu'

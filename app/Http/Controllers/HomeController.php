@@ -8,6 +8,7 @@ use App\Don_hang;
 use App\Don_hang_chi_tiet;
 use App\Khach_hang;
 use App\Phan_hoi;
+use App\Thong_bao;
 use Cart;
 use App\Loai_san_pham;
 use App\Slide;
@@ -402,5 +403,10 @@ class HomeController extends Controller
             $product = San_pham::where('ten_sp', 'like', '%' . $req->key . '%')->get();
         }
         return view('frontend.page.timkiem', compact('product'));
+    }
+
+    public function tinTuc($id){
+        $tin = Thong_bao::find($id);
+        return view('frontend.page.tintuc',compact('tin'));
     }
 }

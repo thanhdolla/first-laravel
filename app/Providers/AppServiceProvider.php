@@ -55,6 +55,11 @@ class AppServiceProvider extends ServiceProvider
            $tintuc =  Thong_bao::orderby('id','desc')->get();
            $view3->with('tintuc',$tintuc);
         });
+
+        view()->composer('frontend.page.tintuc',function($view3){
+           $tintuc =  Thong_bao::orderby('id','desc')->get();
+           $view3->with('tintuc',$tintuc);
+        });
     }
 
     /**
