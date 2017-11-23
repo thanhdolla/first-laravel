@@ -1,12 +1,12 @@
 @extends('master')
 @section('content')
 
-    <div class="container"style="border: whitesmoke solid 2px;width: 90%">
+    <div class="container"style="border: whitesmoke solid 2px;width: 95%">
         <div id="content" class="space-top-none">
             <div class="main-content">
                 <div class="space60">&nbsp;</div>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-9" style="boder:whitesmoke solid thin">
                         <div class="beta-products-list">
                             <h4>Sản phẩm tìm kiếm</h4>
                             <div class="beta-products-details">
@@ -16,7 +16,7 @@
 
                             <div class="row">
                                 @foreach($product as $new)
-                                    <div class="col-sm-3" style="padding-left: 50px;">
+                                    <div class="col-sm-4" style="padding-left: 50px;">
                                         <div class="single-item" style="margin-bottom: 40px;">
                                             <div class="single-item-header" style="height: 230px;">
                                                 <a href="{{route('chitietsanpham',$new->id)}}"><img src="source/frontend/image/product/{{$new->anh_sp}}" style="text-align:center;height:230px;width: 210px;" alt=""></a>
@@ -53,12 +53,115 @@
                                     </div>
                                 @endforeach
                             </div>
+                        </div>
 
                         <!-- .beta-products-list -->
                         </div> <!-- .beta-products-list -->
-                        <hr>
+                    <div class="col-sm-3" style="border:whitesmoke solid thin;">
+                        <div class="side">
 
-                    </div> <!-- .beta-products-list -->
+
+                            <!-- The Support -->
+                            <div class="box-right">
+                                <div class="title tittle-box-right">
+                                    <h5><b>Tìm theo giá sản phẩm</b></h5>
+                                </div>
+                                <div class="content-box" style="padding-top: 15px;">
+                                    <!-- goi ra phuong thuc hien thi danh sach ho tro -->
+                                    <div class="content-box">
+                                        <!-- goi ra phuong thuc hien thi danh sach ho tro -->
+                                        <div class="price">
+                                            <form role="search" method="get" id="searchform" action="{{route('timkiem')}}">
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            Từ
+                                                        </td>
+                                                        <td style="padding-left: 10px">
+                                                            <input style="width:200px;height:30px" type="text" value=""
+                                                                   name="gianho">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Đến
+                                                        </td>
+                                                        <td style="padding-left: 10px">
+                                                            <input style="width:200px;height:30px;" type="text" value=""
+                                                                   name="gialon">
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="margin-top: 10px;">
+                                                        <td></td>
+                                                        <td style="padding-left: 10px;padding-top: 10px">
+                                                            <button class="btn btn-success" type="submit" id="">Tìm kiếm</button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <!-- End Support -->
+                            </div>
+                            <hr>
+                            <div class="panel panel-success" style="margin-top: 20px;">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title" style="text-align:center;">Loại Sản Phẩm </h3>
+                                </div>
+                                <div style="padding-top: 20px">
+
+                                    @foreach($loai_sp4 as $loai)
+                                        <ul>
+                                            <li style="list-style-type: none;padding-top: 3px;background: window;">
+                                                <a href="{{route('loai-san-pham',$loai->id)}}"
+                                                   style="padding-left: 20px;font-size: 15px;">
+                                                    <?php echo $loai->ten_loai_sp ?>
+
+                                                </a>
+                                                <hr>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                </div>
+
+                            </div>
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title" style="text-align:center;">Thông báo mới </h3>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <!--bien list1 này lấy từ core- MY_controller-->
+                                        <?php foreach ($tintuc as $row): ?>
+                                        <li style="list-style-type: none;padding-top: 10px;background: window;">
+                                            <a href="">
+                                                <table>
+                                                    <tr>
+                                                        <td style="height:70px;width:120px;">
+                                                            <img style="padding-right: 15px;height:70px;width:120px;"
+                                                                 src="upload/tintuc/add/{{$row->anh_tb}}">
+                                                        </td>
+                                                        <td>
+                                                            <span style="font-size:14px;color:#003399;">
+                                                                <?php echo $row->tieu_de_tb ?>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </a>
+                                        </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
             </div> <!-- end section with sidebar and main content -->

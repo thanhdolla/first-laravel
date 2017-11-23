@@ -9,7 +9,7 @@
         </div>
     </div>
 
-<div class="container">
+    <div class="container" style="border: whitesmoke solid 2px;width: 95%">
     <div id="content" class="space-top-none">
         <div class="main-content">
             <div class="space60">&nbsp;</div>
@@ -31,7 +31,7 @@
 
                         <div class="row">
                             @foreach($sp as $row)
-                            <div class="col-sm-4" >
+                            <div class="col-sm-3" >
                                 <div class="single-item" style="padding-left: 20px;margin-bottom: 30px;">
                                     <div class="single-item-header">
                                         <a href="product.html"><img src="source/frontend/image/product/{{$row->anh_sp}}" alt=""></a>
@@ -77,7 +77,7 @@
                         </div>
                         <div class="row">
                             @foreach($km as $item)
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="single-item"  style="padding-left: 20px;margin-bottom: 30px;">
                                     <div class="single-item-header">
                                         <a href="product.html"><img src="source/frontend/image/product/{{$item->anh_sp}}" alt="{{$item->anh_sp}}"></a>

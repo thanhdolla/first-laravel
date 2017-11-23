@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\San_pham;
 use App\Thong_bao;
 use Illuminate\Support\ServiceProvider;
 use App\Loai_san_pham;
@@ -35,6 +36,11 @@ class AppServiceProvider extends ServiceProvider
             $view3->with('loai_sp3',$loai_sp3);
         });
 
+        view()->composer('frontend.page.timkiem',function($view3){
+            $loai_sp4 = Loai_san_pham::all();
+            $view3->with('loai_sp4',$loai_sp4);
+        });
+
         view()->composer('frontend.slide',function($view2){
            $slide =  Slide::all();
            $view2->with('slide',$slide);
@@ -45,6 +51,10 @@ class AppServiceProvider extends ServiceProvider
            $view3->with('tintuc',$tintuc);
         });
 
+        view()->composer('frontend.page.timkiem',function($view3){
+           $tintuc =  Thong_bao::orderby('id','desc')->get();
+           $view3->with('tintuc',$tintuc);
+        });
     }
 
     /**

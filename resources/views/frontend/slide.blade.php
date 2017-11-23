@@ -1,4 +1,4 @@
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="height:320px;width:90%;margin:auto">
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="height:320px;width:95%;margin:auto">
 
     <!-- Indicators -->
     <ol class="carousel-indicators">

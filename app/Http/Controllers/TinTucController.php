@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class TinTucController extends Controller
 {
-    public function index()
+    public function index(Request $req)
     {
-        $tintuc = Thong_bao::orderby('id','desc')->get();
+        $tintuc = Thong_bao::orderby('id', 'desc')->get();
         return view('backend.tintuc.index', compact('tintuc'));
     }
 

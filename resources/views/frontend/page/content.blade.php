@@ -77,7 +77,7 @@
                         <!-- .beta-products-list -->
                         </div> <!-- .beta-products-list -->
                         <hr>
-                        
+
                         <div class="beta-products-list">
                             <h4>Sản phẩm khuyến mại</h4>
                             <div class="beta-products-details">
@@ -123,25 +123,49 @@
                         </div>
                         <div style="text-align: center">{{$khuyenmai->links()}}</div>
                     </div> <!-- .beta-products-list -->
-                    <div class="col-sm-3" style="border:whitesmoke solid thin;padding-top: 80px;">
-                        <div class="side" style="padding-left: 10px;">
+                    <div class="col-sm-3" style="border:whitesmoke solid thin;padding-top: 20px;">
+                        <div class="side">
+
 
                             <!-- The Support -->
                             <div class="box-right">
                                 <div class="title tittle-box-right">
-                                    <h4><b>Hỗ trợ trực tuyến</b></h4>
+                                    <h5><b>Tìm theo giá sản phẩm</b></h5>
                                 </div>
-                                <div class="content-box">
+                                <div class="content-box" style="padding-top: 15px;">
                                     <!-- goi ra phuong thuc hien thi danh sach ho tro -->
                                     <div class="content-box">
                                         <!-- goi ra phuong thuc hien thi danh sach ho tro -->
-                                        <div class="support">
-                                            <p><span class="glyphicon glyphicon-earphone"></span> <b
-                                                        style="font-size:15px;">Liên hệ: 19001009</b></p>
-                                            <p>
-                                                <span class="glyphicon glyphicon-send"></span> <b
-                                                        style="font-size:15px;">Email: BkSmart@gmail.com</b>
-                                            </p>
+                                        <div class="price">
+                                            <form role="search" method="get" id="searchform" action="{{route('timkiem')}}">
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            Từ
+                                                        </td>
+                                                        <td style="padding-left: 10px">
+                                                            <input style="width:200px;height:30px" type="text" value=""
+                                                                   name="gianho">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Đến
+                                                        </td>
+                                                        <td style="padding-left: 10px">
+                                                            <input style="width:200px;height:30px;" type="text" value=""
+                                                                   name="gialon">
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="margin-top: 10px;">
+                                                        <td></td>
+                                                        <td style="padding-left: 10px;padding-top: 10px">
+                                                            <button class="btn btn-success" type="submit" id="">Tìm kiếm</button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

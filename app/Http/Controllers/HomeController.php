@@ -389,7 +389,18 @@ class HomeController extends Controller
 
     public function timKiem(Request $req)
     {
-        $product = San_pham::where('ten_sp', 'like', '%' . $req->key . '%')->get();
+        if($req->gianho && $req->gialon) {
+            $product = San_pham::whereBetween('gia_sp', [$req->gianho, $req->gialon])->get();
+        }
+        else if($req->gianho && !$req->gialon){
+            $product = San_pham::where('gia_sp' ,'>=' , $req->gianho)->get();
+        }
+        else if(!$req->gianho && $req->gialon){
+            $product = San_pham::where('gia_sp' ,'<=' , $req->gialon)->get();
+        }
+        else{
+            $product = San_pham::where('ten_sp', 'like', '%' . $req->key . '%')->get();
+        }
         return view('frontend.page.timkiem', compact('product'));
     }
 }
