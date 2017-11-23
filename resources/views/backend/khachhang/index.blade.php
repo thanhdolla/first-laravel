@@ -53,7 +53,23 @@
                             <div class="num f12">Số lượng: <b><?php echo count($khachhang)?></b></div>
                         </div>
                         <table width="100%" cellspacing="0" cellpadding="0" id="checkAll" class="sTable mTable myTable">
+                            <thead class="filter">
+                            <tr>
+                                <td colspan="7">
+                                    <form class="list_filter form" action="{{route('admin/khachhang/index')}}" method="get">
+                                        <table cellpadding="0" cellspacing="0" width="80%"><tbody>
+                                            <tr>
+                                                <td class="label" style="width:60px;"><label>Tên khách hàng</label></td>
+                                                <td class="item" style="width:155px;" ><input name="searchname" value=""  type="text" style="width:155px;" /></td>
+                                                <td style='width:150px'>
+                                                    <button type="submit" class="btn btn-success" >Search</button>
+                                                </td>
+                                            </tr>
+                                            </tbody></table>
+                                    </form>
+                                </td>
 
+                            </thead>
                             <thead>
                             <tr>
                                 {{--<td style="width:21px;"><img src="source/backend/admin/images//icons/tableArrows.png"></td>--}}

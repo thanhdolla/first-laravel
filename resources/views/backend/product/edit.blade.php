@@ -39,7 +39,7 @@
                   class="form">
                 <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                 @if(count($errors) >0 )
-                    <div>
+                    <div class="alert alert-danger" style="background:red;color:white">
                         @foreach($errors->all() as $err)
                             {{$err}}<br>
                         @endforeach
@@ -51,7 +51,7 @@
                     </div>
                 @endif
                 @if(Session::has('loi'))
-                    <div class="alert alert-success" style="background:red">
+                    <div class="alert alert-danger" style="background:red">
                         {{Session::get('loi')}}
                     </div>
                 @endif
@@ -111,7 +111,7 @@
                                     <div class="formRight">
                                 <span class="oneTwo">
                                     <input type="number" min="0" step="1000" id="param_name" name="price"
-                                           value="{{$product->gia_sp}}" required> VNĐ
+                                           value="{{$product->gia_sp}}" > VNĐ
 
                                 </span>
                                         <span class="autocheck" name="name_autocheck"></span>
@@ -124,8 +124,7 @@
                                     <div class="formRight">
                                 <span class="oneTwo">
                                     <input type="number" min="0" step="1000" id="param_name" name="discount"
-                                           value="{{$product->khuyen_mai}}" required> VNĐ
-
+                                           value="{{$product->khuyen_mai}}"> VNĐ
                                 </span>
                                         <span class="autocheck" name="name_autocheck"></span>
                                         <div class="clear error" name="name_error"></div>
@@ -137,7 +136,7 @@
                                                 class="req">*</span></label>
                                     <div class="formRight">
                                 <span class="oneTwo">
-                                    <input type="text" id="param_name" name="warranty" value="{{$product->bao_hanh}}" required>
+                                    <input type="text" id="param_name" name="warranty" value="{{$product->bao_hanh}}" >
                                 </span>
                                         <span class="autocheck" name="name_autocheck"></span>
                                         <div class="clear error" name="name_error"></div>
@@ -149,7 +148,7 @@
                                                 class="req">*</span></label>
                                     <div class="formRight">
                                 <span class="oneTwo">
-                                    <input type="text" id="param_name" name="mfg" value="{{$product->ngay_sx}}" required>
+                                    <input type="text" id="param_name" name="mfg" value="{{$product->ngay_sx}}" >
                                 </span>
                                         <span class="autocheck" name="name_autocheck"></span>
                                         <div class="clear error" name="name_error"></div>
@@ -160,7 +159,8 @@
                                     <label class="formLeft">Hình ảnh:<span class="req">*</span></label>
                                     <div class="formRight">
                                         <div class="left" style="float:left">
-                                            <input type="file" name="image" id="image" size="25"/>
+                                            <input type="file" name="image" id="image" onChange="getImage(even);" size="25">
+
                                         </div>
                                         <div style="float:left;height:150px;">
                                             <img src="upload/product/add/{{$product->anh_sp}}"

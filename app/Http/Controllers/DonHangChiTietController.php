@@ -8,8 +8,16 @@ use Illuminate\Http\Request;
 
 class DonHangChiTietController extends Controller
 {
-    public function index(){
-        $list = Don_hang_chi_tiet::all();
+    public function index(Request $req){
+        if($req->searchid) {
+            $list = Don_hang_chi_tiet::where('id', 'like', '%' . $req->searchid . '%')->get();
+        }
+        else if($req->searchname) {
+            $list = Don_hang_chi_tiet::where('don_hangID', 'like', '%' . $req->searchname . '%')->get();
+        }
+        else {
+            $list = Don_hang_chi_tiet::orderby('id', 'desc')->get();
+        }
         return view('backend.donhangchitiet.index',compact('list'));
     }
 

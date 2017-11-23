@@ -93,7 +93,9 @@ class TinTucController extends Controller
             }
 
             $tintuc->anh_tb = $name;
-            unlink("upload/tintuc/add/".$anh_cu);
+            if(file_exists("upload/tintuc/add/".$anh_cu)) {
+                unlink("upload/tintuc/add/" . $anh_cu);
+            }
             $file->move('upload/tintuc/add', $name);
             $tintuc->save();
             return redirect('admin/tintuc/index')->with('thongbao', "Sửa tin thành công");

@@ -32,7 +32,7 @@
                 <div class="title">
                     <!--<span class="titleIcon"><div class="checker" id="uniform-titleCheck"><span><input type="checkbox" id="titleCheck" name="titleCheck" style="opacity: 0;"></span></div></span>-->
                     <h6>Danh sách Giao dịch</h6>
-                    <div class="num f12">Tổng số: <b><?php ?></b></div>
+                    <div class="num f12">Tổng số: <b><?php count($list) ?></b></div>
                 </div>
                 @if(Session::has('thongbao'))
                     <div class="alert alert-success" style="background:#00ced1">
@@ -41,15 +41,20 @@
                 @endif
 
                 <table cellpadding="0" cellspacing="0" width="100%" class="sTable mTable myTable" id="checkAll">
-                    <thead class="filter"><tr><td colspan="6">
+
+                    <thead class="filter">
+                    <tr>
+                        <td colspan="7">
                             <form class="list_filter form" action="{{route('admin/product/index')}}" method="get">
-                                <table cellpadding="0" cellspacing="0" width="80%"><tbody>
+                                <table cellpadding="0" cellspacing="0" width="100%"><tbody>
 
                                     <tr>
                                         <td class="label" style="width:40px;"><label for="filter_id">Mã số</label></td>
                                         <td class="item"><input name="searchid" value="" type="text" style="width:55px;" /></td>
+
                                         <td class="label" style="width:40px;"><label>Tên</label></td>
                                         <td class="item" style="width:155px;" ><input name="searchname" value=""  type="text" style="width:155px;" /></td>
+
                                         <td style='width:150px'>
                                             <button type="submit" class="btn btn-success" >Search</button>
                                         </td>

@@ -23,14 +23,9 @@ class HomeController extends Controller
     public function getIndex()
     {
         $slide = Slide::all();
-//        print_r($slide);  exit;
         $newpr = San_pham::orderBy('id', 'DESC')->paginate(4);
-//        print_r($newpr);
         $khuyenmai = San_pham::where('khuyen_mai', '<>', 0)->paginate(8);
-
         return view('frontend.page.content', compact('newpr', 'slide', 'khuyenmai'));
-
-
     }
 
     public function getLoaiSanPham($type)
@@ -219,7 +214,7 @@ class HomeController extends Controller
             [
                 'email' => 'required|email',
                 'name' => 'required',
-                'sdt' => 'required|min:6&&max:11|integer',
+                'sdt' => 'required|min:6|integer',
                 'diachi' => 'required',
                 'note' => 'required'
 
@@ -232,7 +227,6 @@ class HomeController extends Controller
                 'note.required' => "Vui lòng nhập chú thích ngày giờ bạn muốn nhận hàng",
                 'diachi.required' => "Vui lòng nhập địa chỉ",
                 'sdt.min' => 'Số điện thoại phải lớn hơn 5 số',
-                'sdt.max' => 'Số điện thoại phải nhỏ hơn 12 số',
                 'sdt.integer' => 'Số điện thoại là số từ 1 đến 9',
                 'sdt.required' => 'Vui lòng nhập số điện thoại',
 

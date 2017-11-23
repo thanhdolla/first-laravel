@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 use App\Khach_hang;
+use Illuminate\Http\Request;
 
 class KhachHangController extends Controller
 {
-    public function index(){
-        $khachhang = Khach_hang::orderby('id','desc')->get();
+    public function index(Request $req){
+        if ($req->searchname) {
+            $khachhang = Khach_hang::where('ten_kh', 'like', '%' . $req->searchname . '%')->get();
+        }
+        else {
+            $khachhang = Khach_hang::orderby('id', 'desc')->get();
+        }
         return view('backend.khachhang.index', compact('khachhang'));
     }
 

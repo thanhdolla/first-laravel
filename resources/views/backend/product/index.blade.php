@@ -77,7 +77,9 @@
                                                 </tr>
                                                 </tbody></table>
                                         </form>
-                                    </td></tr></thead>
+                                    </td>
+                                </tr>
+                                </thead>
 
                                 <thead>
                                 <tr>

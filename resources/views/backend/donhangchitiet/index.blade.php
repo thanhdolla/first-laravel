@@ -10,15 +10,19 @@
 
                 <div class="horControlB menu_action">
                     <ul>
-                        <li><a href="{{route('admin/slide/add')}}">
+                        <li>
+                            <a href="{{route('admin/slide/add')}}">
                                 <img src="source/backend/admin/images/icons/control/16/add.png"/>
                                 <span>Thêm mới</span>
-                            </a></li>
+                            </a>
+                        </li>
 
-                        <li><a href="{{route('admin/slide/index')}}">
+                        <li>
+                            <a href="{{route('admin/slide/index')}}">
                                 <img src="source/backend/admin/images/icons/control/16/list.png"/>
                                 <span>Danh sách</span>
-                            </a></li>
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
@@ -31,7 +35,7 @@
             <div class="widget">
                 <div class="title">
                     <h6>Danh sách Giao dịch</h6>
-                    <div class="num f12">Tổng số: <b><?php ?></b></div>
+                    <div class="num f12">Tổng số: <b><?php count($list)?></b></div>
                 </div>
                 @if(Session::has('thongbao'))
                     <div class="alert alert-success" style="background:#00ced1">
@@ -40,29 +44,36 @@
                 @endif
 
                 <table cellpadding="0" cellspacing="0" width="100%" class="sTable mTable myTable" id="checkAll">
+                    <thead class="filter">
+                    <tr>
+                        <td colspan="7">
+                            <form class="list_filter form" action="{{route('admin/donhangchitiet/index')}}" method="get">
+                                <table cellpadding="0" cellspacing="0" width="80%"><tbody>
+                                    <tr>
+                                        <td class="label" style="width:40px;"><label for="filter_id">Mã số</label></td>
+                                        <td class="item"><input name="searchid" value="" type="text" style="width:55px;" /></td>
+                                        <td class="label" style="width:60px;"><label>Mã đơn hàng</label></td>
+                                        <td class="item" style="width:155px;" ><input name="searchname" value=""  type="text" style="width:155px;" /></td>
+                                        <td style='width:150px'>
+                                            <button type="submit" class="btn btn-success" >Search</button>
+                                        </td>
+                                    </tr>
+                                    </tbody></table>
+                            </form>
+                        </td>
+
+                    </thead>
                     <thead>
                     <tr>
                         <td style="width:10%;">Mã số</td>
-                        <td style="width:15%;">Mã đơn hàng</td>
-                        <td style="width:15%;">Mã sản phẩm</td>
+                        <td style="width:10%;">Mã đơn hàng</td>
+                        <td style="width:10%;">Mã sản phẩm</td>
                         <td style="width:20%;">Giá</td>
                         <td style="width:10%;">Số lượng</td>
                         <td style="width:20%;">Tình trạng</td>
                         <td style="width:10%;">Hành động</td>
                     </tr>
                     </thead>
-
-                    <tfoot class="auto_check_pages">
-                    <tr>
-                        <td colspan="8">
-
-                            <div class="pagination">
-
-                            </div>
-                        </td>
-                    </tr>
-                    </tfoot>
-
                     <tbody class="list_item">
                     @foreach ($list as $row)
                     <tr class="row">
