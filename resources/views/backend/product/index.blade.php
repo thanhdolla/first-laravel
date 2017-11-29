@@ -65,7 +65,7 @@
                                                     <td class="item">
                                                         <select name="catalog">
                                                             @foreach($cate as $ct)
-                                                                <option selected value="{{$ct->ten_loai_sp}}"></option>
+                                                                <option value={{$ct->id}}>{{$ct->ten_loai_sp}}</option>
                                                             @endforeach
                                                         </select>
                                                     </td>

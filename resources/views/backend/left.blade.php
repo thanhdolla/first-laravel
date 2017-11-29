@@ -57,11 +57,11 @@
                             Sản phẩm							</a>
                     </li>
                     <li >
-                        <a href="admin/cat.html">
+                        <a href="{{route('admin/category/index')}}">
                             Danh mục							</a>
                     </li>
                     <li >
-                        <a href="admin/comment.html">
+                        <a href="{{route('admin/feedback/index')}}">
                             Phản hồi							</a>
                     </li>
                 </ul>

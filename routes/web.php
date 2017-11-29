@@ -231,6 +231,19 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
             'uses'=>'DonHangController@delete'
         ]);
     });
+    Route::group(['prefix' => 'feedback'], function () {
+        Route::get('index', [
+            'as' => 'admin/feedback/index',
+            'uses' => 'PhanHoiController@index'
+        ]);
+
+        Route::get('delete/{id}', [
+            'as' => 'admin/feedback/delete/{id}',
+            'uses' => 'PhanHoiController@delete'
+        ]);
+
+
+    });
 
     Route::group(['prefix'=>'donhangchitiet'],function(){
         Route::get('index',[
@@ -320,6 +333,39 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
         Route::get('delete/{id}',[
             'as'=>'admin/product/delete/{id}',
             'uses'=>'SanPhamController@delete'
+        ]);
+
+    });
+
+    Route::group(['prefix' => 'category'], function () {
+        Route::get('index', [
+            'as' => 'admin/category/index',
+            'uses' => 'SanPhamController@cateIndex'
+        ]);
+
+        Route::get('add', [
+            'as' => 'admin/category/add',
+            'uses' => 'SanPhamController@getCateAdd'
+        ]);
+
+        Route::post('add', [
+            'as' => 'admin/category/add',
+            'uses' => 'SanPhamController@addCate'
+        ]);
+
+        Route::get('edit/{id}', [
+            'as' => 'admin/category/edit{id}',
+            'uses' => 'SanPhamController@getCateEdit'
+        ]);
+
+        Route::post('edit/{id}', [
+            'as' => 'admin/category/edit/{id}',
+            'uses' => 'SanPhamController@editCate'
+        ]);
+
+        Route::get('delete/{id}', [
+            'as' => 'admin/category/delete/{id}',
+            'uses' => 'SanPhamController@deleteCate'
         ]);
 
     });

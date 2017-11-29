@@ -70,7 +70,7 @@
                         <td style="width:10%;">Mã số</td>
                         <td style="width:10%;">Mã khách hàng</td>
                         <td style="width:20%;">Tên khách hàng</td>
-                        <td style="width:10%;">tổng tiền</td>
+                        <td style="width:10%;">Tổng tiền</td>
                         <td style="width:20%;">Trạng thái</td>
                         <td style="width:20%;">Ngày tạo</td>
                         <td style="width:10%;">Hành động</td>
