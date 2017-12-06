@@ -34,7 +34,6 @@ class HomeController extends Controller
 
         $sp = San_pham::where('loai_spID', $type)->paginate(6);
         $km = San_pham::where('khuyen_mai', '<>', 0)->paginate(6);
-//        $loai
         $loai_sp = Loai_san_pham::where('id', $type)->first();
         return view('frontend.page.loaisanpham', compact('sp', 'km', 'loai_sp'));
     }

@@ -20,7 +20,7 @@
                             <form method="post" action="">
                                 <input name="_token" type="hidden" value="{{csrf_token()}}"/>
 
-                                @foreach($cp as $row )
+                                @foreach($cp as $row)
                                     <?php  $sanpham = $row['item']; ?>
                                     <div class="col-sm-3" style="padding-left: 50px;">
                                         <div class="single-item" style="margin-bottom: 40px;">
