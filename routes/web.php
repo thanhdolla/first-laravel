@@ -1,9 +1,6 @@
 <?php
 
-Route::get('index',[
-    'as'=>'trang_chu',
-    'uses'=>'HomeController@getIndex'
-    ]);
+Route::get('index', 'HomeController@index');
 
 Route::get('loaisanpham/{type}',[
     'as'=>'loai-san-pham',

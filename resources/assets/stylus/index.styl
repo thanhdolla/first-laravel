@@ -1,3 +1,193 @@
-body {
-  background: black;
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+[data-component='app-root'] {
+  display: block;
+
+  margin: 0px;
+  padding: 0px;
+
+  height: 100%;
+  width: 100%;
+
+  header {
+    padding: 0;
+    margin: 0;
+
+    background: #ebebeb;
+
+    height: 624px;
+    width: 100%;
+
+    nav {
+      display: flex;
+
+      width: 100%;
+      height: 100px;
+
+      a {
+        text-decoration: none;
+      }
+
+      .logo {
+        padding-top: 35px;
+        padding-left: 47px;
+
+        h1 {
+          padding: 0px;
+          margin: 0px;
+
+          font-family: Lato Semibold;
+          font-size: 18.75px;
+          color: black;
+        }
+
+        flex: 0 0 auto;
+      }
+
+      .space {
+        flex: 1 1 auto;
+      }
+
+      .nav-bar {
+        display: flex;
+        flex: 0 0 auto;
+
+        .tab {
+          padding-top: 38px;
+
+          font-family: Lato;
+          font-size: 16px;
+          
+          a {
+            color: black;
+          }
+
+          &.tab-home, &.tab-about {
+            padding: 38px 36px;
+          }
+
+          &.tab-signup-login {
+            padding-left: 123px;
+            padding-right: 56px; 
+          }
+        }
+      }
+    }
+  }
+
+  .dashboard {
+    display: flex;
+
+    width: 100%;
+    height: 951px;
+
+    background: #f9f9f9;
+
+    .side-bar {
+      display: flex;
+      justify-content: center;
+
+      width: 240px;
+      height: 100%;
+
+      flex: 1 1 auto;
+
+      ul.categories {
+        padding-top: 80px;
+        padding-left: 0px;
+        padding-right: 0px;
+
+        list-style-type: none;
+
+        li {
+          font-family: Lato;
+          font-size: 16px;
+
+          padding: 15px;
+
+          cursor: pointer;
+        }
+      }
+    }
+
+    .products {
+      display: flex;
+      flex-flow: row wrap;
+      align-content: flex-start;
+      justify-content: flex-start;
+
+      width: 960px;
+      height: 100%;
+
+      padding-top: 84px;
+
+      flex: 1 1 auto;
+
+      .product {
+        display: flex;
+        flex-flow: column nowrap;
+
+        margin: 25px 23px;
+        width: 196px;
+
+        cursor: pointer;
+
+        .image {
+          height: 276px;
+          width: 100%;
+
+          font-family: Lato;
+          color: white;
+
+          border-top-left-radius: 3px;
+          border-top-right-radius: 3px;
+          background: #82ca9c;
+        }
+
+        .price {
+          height: 48px;
+          width: 100%;
+
+          background: #c4df9b;
+
+          font-family: Lato;
+          color: white;
+
+          border-bottom-right-radius: 3px;
+          border-bottom-left-radius: 3px;
+        }
+      }
+    }
+  }
+
+  .news {
+    width: 100%;
+    height: 786px;
+
+    .headline {
+      padding-top: 50px;
+      padding-bottom: 50px;
+      padding-left: 83px;
+
+      font-family: Lato;
+      font-weight: bold;
+      font-size: 22px;
+
+      color: black;
+    }
+  }
+
+  footer {
+    width: 100%;
+    height: 260px;
+
+    background: #c4df9b;
+  }
 }
