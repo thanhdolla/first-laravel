@@ -7,7 +7,8 @@
     <base href="{{asset('')}}">
     <link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    {{--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">--}}
+    <link rel="stylesheet" title="style" href="source/frontend/assets/dest/css/bootstrap.min.css">
     <link rel="stylesheet" href="source/frontend/assets/dest/css/font-awesome.min.css">
     <link rel="stylesheet" href="source/frontend/assets/dest/vendors/colorbox/example3/colorbox.css">
     <link rel="stylesheet" href="source/frontend/assets/dest/rs-plugin/css/settings.css">

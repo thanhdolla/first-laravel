@@ -31,10 +31,10 @@
 
                         <div class="row">
                             @foreach($sp as $row)
-                            <div class="col-sm-3" >
+                            <div class="col-sm-4" >
                                 <div class="single-item" style="padding-left: 20px;margin-bottom: 30px;">
                                     <div class="single-item-header">
-                                        <a href="product.html"><img src="source/frontend/image/product/{{$row->anh_sp}}" alt=""></a>
+                                        <a href="product.html"><img src="source/frontend/image/product/{{$row->anh_sp}}" style="height: 309.78px" alt=""></a>
                                     </div>
                                     <div class="single-item-body">
                                         <p class="single-item-title">{{$row->ten_sp}}</p>
@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="single-item-caption">
                                         <a class="add-to-cart pull-left" href="shopping_cart.html"><i class="fa fa-shopping-cart"></i></a>
-                                        <a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
+                                        <a class="beta-btn primary compare" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@
                         </div>
                         <div class="row">
                             @foreach($km as $item)
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <div class="single-item"  style="padding-left: 20px;margin-bottom: 30px;">
                                     <div class="single-item-header">
                                         <a href="product.html"><img src="source/frontend/image/product/{{$item->anh_sp}}" alt="{{$item->anh_sp}}"></a>
@@ -101,7 +101,7 @@
                                     </div>
                                     <div class="single-item-caption">
                                         <a class="add-to-cart pull-left" href="shopping_cart.html"><i class="fa fa-shopping-cart"></i></a>
-                                        <a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
+                                        <a class="beta-btn primary compare" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
