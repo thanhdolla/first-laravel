@@ -46,14 +46,19 @@
                         <div class="beta-selec">
 
                             <?php $count = Cart::count()?>
-                            <a class="glyphicon glyphicon-shopping-cart" href="{{route('cart')}}"> Giỏ hàng ({{$count}}
+                            <a  href="{{route('cart')}}" title="Giỏ hàng"><i class="glyphicon glyphicon-shopping-cart" style="font-size: 15px;"></i>({{$count}}
                                 )</a>
 
                         </div>
 
                     </div> <!-- .cart -->
                 </div>
-                <div class="beta-comp"> <li><a href="{{route('getcompare')}}">Compare({{Session::get('compare_qty')}})</a></li></div>
+                <div class="beta-comp">
+                    <div class="compare-box">
+                        <a href="{{route('getcompare')}}"><i class="fa fa-plus-circle" style="font-size: 15px;"></i></a>Compare({{Session::get('compare_qty')}})
+
+                    </div>
+                </div>
             </div>
             <div class="clearfix"></div>
         </div> <!-- .container -->

@@ -31,7 +31,7 @@
 
                             <div class="row">
                                 @foreach($newpr as $new)
-                                    <div class="col-sm-3" style="padding-left: 50px;">
+                                    <div class="col-sm-3" style="padding-left: 20px;">
                                         <div class="single-item" style="margin-bottom: 40px;">
                                             <div class="single-item-header" style="height: 230px;">
                                                 <a href="{{route('chitietsanpham',$new->id)}}"><img
@@ -58,15 +58,10 @@
                                                 </a>
                                             </div>
                                             <div class="single-item-caption">
-                                                <a class="add-to-cart pull-left" href="{{route('addcart',$new->id)}}"><i
+                                                <a class="add-to-cart pull-left" href="{{route('addcart',$new->id)}}" title="Add to cart"><i
                                                             class="fa fa-shopping-cart"></i></a>
-                                                <div class="choose">
-                                                    <ul class="nav nav-pills nav-justified">
-                                                        <li><a href="addtocompare/{{$new->id}}"><i
-                                                                        class="fa fa-plus-square"></i>Add to compare</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                <a class="beta-btn primary compare" href="addtocompare/{{$new->id}}" title="Add to compare">Add to Compare <i
+                                                            class="fa fa-plus-circle"></i></a>
                                                 <div class="clearfix"></div>
                                             </div>
                                         </div>
@@ -115,10 +110,10 @@
 
                                         </div>
                                         <div class="single-item-caption">
-                                            <a class="add-to-cart pull-left" href="shopping_cart.html"><i
+                                            <a class="add-to-cart pull-left" href="{{route('addcart',$km->id)}}" title="Add to cart"><i
                                                         class="fa fa-shopping-cart"></i></a>
-                                            <a class="beta-btn primary" href="product.html">Details <i
-                                                        class="fa fa-chevron-right"></i></a>
+                                            <a class="beta-btn primary compare" href="addtocompare/{{$km->id}}" title="Add to compare">Add to compare <i
+                                                        class="fa fa-plus-circle"></i></a>
                                             <div class="clearfix"></div>
                                         </div>
                                     </div>

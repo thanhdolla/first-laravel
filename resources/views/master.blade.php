@@ -15,6 +15,7 @@
     <link rel="stylesheet" title="style" href="source/frontend/assets/dest/css/style.css">
     <link rel="stylesheet" href="source/frontend/assets/dest/css/animate.css">
     <link rel="stylesheet" title="style" href="source/frontend/assets/dest/css/huong-style.css">
+    <link rel="stylesheet" title="style" href="source/frontend/assets/dest/css/custom.css">
 </head>
 <body>
 
