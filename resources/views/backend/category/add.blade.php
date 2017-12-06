@@ -86,16 +86,6 @@
                             </div>
                             <div class="clear"></div>
                         </div>
-                        <div class="formRow">
-                            <label class="formLeft">Hình ảnh minh họa:<span class="req">*</span></label>
-                            <div class="formRight">
-                                <div class="left">
-                                    <input type="file" name="image" id="image" size="25" required>
-                                </div>
-                                <div class="clear error" name="image_error"></div>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
                         <div class="formRow hide"></div>
                     </div>
 

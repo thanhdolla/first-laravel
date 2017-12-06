@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Binh_luan;
+use App\Chi_nhanh;
 use App\Compare;
 use App\Don_hang;
 use App\Don_hang_chi_tiet;
@@ -31,10 +32,8 @@ class HomeController extends Controller
 
     public function getLoaiSanPham($type)
     {
-
         $sp = San_pham::where('loai_spID', $type)->paginate(6);
-        $km = San_pham::where('khuyen_mai', '<>', 0)->paginate(6);
-//        $loai
+        $km = San_pham::where('khuyen_mai', '<>', 0 )->where('Loai_spID',$type)->paginate(6);
         $loai_sp = Loai_san_pham::where('id', $type)->first();
         return view('frontend.page.loaisanpham', compact('sp', 'km', 'loai_sp'));
     }
@@ -43,10 +42,26 @@ class HomeController extends Controller
     {
         $chitiet = San_pham::where('id', $id)->first();
         $id = $chitiet->id;
+        $list_cn = json_decode($chitiet->chi_nhanh);
+        foreach ($list_cn as $row) {
+            $chinhanh = Chi_nhanh::where('id', $row)->get();
+            foreach ($chinhanh as $cn) {
+                $chi_nhanh = array(
+                    'id' => $cn->id,
+                    'ten_chi_nhanh' => $cn->ten_chi_nhanh,
+                    'embed' => $cn->embed
+                );
+                $list[] = $chi_nhanh;
+            }
+        }
         $binhluan = Binh_luan::where('san_phamID', $id)->orderBy('id', 'DESC')->get();
-        return view('frontend.page.chitietsanpham', compact('chitiet', 'binhluan'));
+        return view('frontend.page.chitietsanpham', compact('chitiet', 'binhluan','list'));
     }
 
+    public function chiNhanh(Request$req, $id){
+        $chi_nhanh = Chi_nhanh::find($id);
+        return view("frontend.page.chinhanh",compact('chi_nhanh'));
+    }
     public function getLienHe()
     {
         return view("frontend.page.lienhe");
@@ -88,11 +103,11 @@ class HomeController extends Controller
         $oldCompare = Session('compare') ? Session::get('compare') : null;
         $compare = new Compare($oldCompare);
         $count = $compare->totalQty;
-        if($count >=2 ){
-            return back()->with('loi','Chỉ thêm tối đa được hai sản phẩm vào so sánh');
-        }else{
+        if ($count >= 2) {
+            return back()->with('loi', 'Chỉ thêm tối đa được hai sản phẩm vào so sánh');
+        } else {
             //khi đã có sản phẩm trong danh mục so sánh mơi ktra điều kiện này
-            if($count >0) {
+            if ($count > 0) {
                 $cp = $compare->items;
                 foreach ($cp as $row) {
                     $sp = $row['item'];
@@ -109,22 +124,23 @@ class HomeController extends Controller
         }
     }
 
-    public function deleteCompare(Request $request,$id){
+    public function deleteCompare(Request $request, $id)
+    {
         $oldCompare = Session('compare') ? Session::get('compare') : null;
         $compare = new Compare($oldCompare);
         $compare->reduceByOne($id);
         Session::put('compare_qty', $compare->totalQty);
         $request->session()->put('compare', $compare);
-        return back()->with('thongbao','Xóa thành công');
+        return back()->with('thongbao', 'Xóa thành công');
     }
 
     public function getCompare()
     {
-            $oldCompare = Session('compare') ? Session::get('compare') : null;
-            $compare = new Compare($oldCompare);
-            $list = (Session::get('compare'));
-            $cp = $list->items;
-            return view('frontend.page.compare', compact('cp', 'count'));
+        $oldCompare = Session('compare') ? Session::get('compare') : null;
+        $compare = new Compare($oldCompare);
+        $list = (Session::get('compare'));
+        $cp = $list->items;
+        return view('frontend.page.compare', compact('cp', 'count'));
 
     }
 
@@ -148,12 +164,12 @@ class HomeController extends Controller
     public function updateCart(Request $request)
     {
         $giohang = Cart::content();//lấy nội dung cart
-        foreach ($giohang as $row){
-            $id =$row->rowId;
+        foreach ($giohang as $row) {
+            $id = $row->rowId;
             $qty = $request->$id;
-            Cart::update($id,$qty);
+            Cart::update($id, $qty);
         }
-      
+
         return redirect()->route('cart');
     }
 
@@ -205,17 +221,16 @@ class HomeController extends Controller
         }
         $kh = new Khach_hang;
         $bill = new Don_hang;
-        if (!Session('khach_hang_id')){
-            $bill->khach_hangID  = 0;
-        }
-        else{
+        if (!Session('khach_hang_id')) {
+            $bill->khach_hangID = 0;
+        } else {
             $bill->khach_hangID = Session('khach_hang_id');
         }
         $this->validate($req,
             [
                 'email' => 'required|email',
                 'name' => 'required',
-                'sdt' => 'required|min:6|integer',
+                'sdt' => 'required|min:6',
                 'diachi' => 'required',
                 'note' => 'required'
 
@@ -228,7 +243,6 @@ class HomeController extends Controller
                 'note.required' => "Vui lòng nhập chú thích ngày giờ bạn muốn nhận hàng",
                 'diachi.required' => "Vui lòng nhập địa chỉ",
                 'sdt.min' => 'Số điện thoại phải lớn hơn 5 số',
-                'sdt.integer' => 'Số điện thoại là số từ 1 đến 9',
                 'sdt.required' => 'Vui lòng nhập số điện thoại',
 
             ]
@@ -308,7 +322,7 @@ class HomeController extends Controller
                 'email' => 'required|email',
                 'password' => 'required|min:6',
                 'fullname' => 'required',
-                'phone' => 'required|min:6&&max:11|integer',
+                'phone' => 'required|min:6',
                 're_password' => 'required|same:password'
 
             ],
@@ -318,9 +332,6 @@ class HomeController extends Controller
                 'email.email' => "Email không hợp lệ",
                 'email.umique' => 'Email đã tồn tại',
                 'phone.required' => 'Vui lòng nhập số điện thoại',
-                'phone.max' => 'Số điện thoại phải nhỏ hơn 12 số',
-                'phone.min' => 'Số điện thoại phải lớn hơn 5 số',
-                'phone.integer' => 'Số điện thoại là số từ 1 đến 9',
                 'password.required' => "Vui lòng nhập mật khẩu",
                 'password.min' => 'Mật khẩu ít nhất 6 kí tự',
                 're_password.same' => "Mật khẩu không giống nhau",
@@ -360,53 +371,53 @@ class HomeController extends Controller
         return back()->with('thongbao', 'Lưu thành công');
     }
 
-    public function lichSuGioHang(){
-        if(Session::has('khach_hang_id')) {
+    public function lichSuGioHang()
+    {
+        if (Session::has('khach_hang_id')) {
             $id = Session::get('khach_hang_id');
             $donhang = Don_hang::where('khach_hangID', $id)->get();
             foreach ($donhang as $row) {
                 $dhct = Don_hang_chi_tiet::where('don_hangID', $row->id)->get();
-                foreach ($dhct as $sp ){
+                foreach ($dhct as $sp) {
                     $sp_id = $sp->san_phamID;
-                
-                $sp = San_pham::where('id',$sp_id)->get();
+
+                    $sp = San_pham::where('id', $sp_id)->get();
                 }
             }
 
-            return view('frontend.page.lichsugiohang',compact('donhang','dhct','sp'));
+            return view('frontend.page.lichsugiohang', compact('donhang', 'dhct', 'sp'));
         }
     }
 
-    public function lichSuGioHangChiTiet(){
-        if(Session::has('khach_hang_id')) {
+    public function lichSuGioHangChiTiet()
+    {
+        if (Session::has('khach_hang_id')) {
             $id = Session::get('khach_hang_id');
             $donhang = Don_hang::where('khach_hangID', $id)->get();
             foreach ($donhang as $row) {
                 $dhct = Don_hang_chi_tiet::where('don_hangID', $row->id)->get();
             }
-            return view('frontend.page.lichsugiohang',compact('dhct'));
+            return view('frontend.page.lichsugiohang', compact('dhct'));
         }
     }
 
     public function timKiem(Request $req)
     {
-        if($req->gianho && $req->gialon) {
+        if ($req->gianho && $req->gialon) {
             $product = San_pham::whereBetween('gia_sp', [$req->gianho, $req->gialon])->get();
-        }
-        else if($req->gianho && !$req->gialon){
-            $product = San_pham::where('gia_sp' ,'>=' , $req->gianho)->get();
-        }
-        else if(!$req->gianho && $req->gialon){
-            $product = San_pham::where('gia_sp' ,'<=' , $req->gialon)->get();
-        }
-        else{
+        } else if ($req->gianho && !$req->gialon) {
+            $product = San_pham::where('gia_sp', '>=', $req->gianho)->get();
+        } else if (!$req->gianho && $req->gialon) {
+            $product = San_pham::where('gia_sp', '<=', $req->gialon)->get();
+        } else {
             $product = San_pham::where('ten_sp', 'like', '%' . $req->key . '%')->get();
         }
         return view('frontend.page.timkiem', compact('product'));
     }
 
-    public function tinTuc($id){
+    public function tinTuc($id)
+    {
         $tin = Thong_bao::find($id);
-        return view('frontend.page.tintuc',compact('tin'));
+        return view('frontend.page.tintuc', compact('tin'));
     }
 }

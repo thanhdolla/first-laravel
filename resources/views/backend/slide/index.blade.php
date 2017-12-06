@@ -31,12 +31,6 @@
         <div class="line"></div>
 
         <!-- Message -->
-
-
-
-
-
-
         <!-- Main content wrapper -->
         <div class="wrapper">
             <div class="widget">
@@ -98,7 +92,7 @@
 
                                 <td>
                                     <div class="image_thumb">
-                                        <img style="width: 450px;height: 150px;" src="source/frontend/image/slide/{{$row->anh_slide }}">
+                                        <img style="width: 450px;height: 150px;" src="upload/slide/add/{{$row->anh_slide }}">
                                         <div class="clear"></div>
                                     </div>
 

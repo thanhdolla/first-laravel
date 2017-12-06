@@ -115,6 +115,11 @@ Route::post('phanhoi',[
     'uses'=>'HomeController@phanHoi'
 ]);
 
+Route::get('chinhanh/{id}',[
+    'as'=>'chinhanh/{id}',
+    'uses'=>'HomeController@chiNhanh'
+]);
+
 Route::post('binhluan/{id}',[
     'as'=>'binhluan/{id}',
     'uses'=>'HomeController@binhLuan'

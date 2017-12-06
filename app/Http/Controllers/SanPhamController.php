@@ -146,7 +146,7 @@ class SanPhamController extends Controller
     {
         $cate = Loai_san_pham::find($id);
 
-        return view('backend.category.edit', compact( 'cate'));
+        return view('backend.category.edit', compact('cate'));
     }
 
     public function edit(Request $request, $id)
@@ -208,6 +208,7 @@ class SanPhamController extends Controller
             return redirect('admin/product/edit/' . $id)->with('thongbao', "Sửa sản phẩm thành công");
         }
     }
+
     public function editCate(Request $request, $id)
     {
         $this->validate($request,
@@ -242,9 +243,9 @@ class SanPhamController extends Controller
             }
 
             $cate->anh_loai_sp = $name;
-
-
-            unlink("upload/product/cate/" . $anh_cu);
+            if (file_exists("upload/product/cate/" . $anh_cu)) {
+                unlink("upload/product/cate/" . $anh_cu);
+            }
             $file->move('upload/product/cate', $name);
 
             $cate->save();
@@ -258,6 +259,7 @@ class SanPhamController extends Controller
         $s->delete();
         return back()->with('thongbao', "Xóa thành công");
     }
+
     public function deleteCate($id)
     {
         $cate = Loai_san_pham::find($id);

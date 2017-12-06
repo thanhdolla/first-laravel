@@ -49,79 +49,23 @@
                         </form>
                     </div>
                     <div class="col-sm-4">
-                        <h2>Contact Information</h2>
+                        <h2>Thông tin liên hệ</h2>
                         <div class="space20">&nbsp;</div>
-
-                        <h6 class="contact-title">Address</h6>
+                        <b class="contact-title">Địa chỉ</b>
                         <p>
-                            Suite 127 / 267 – 277 Brussel St,<br>
-                            62 Croydon, NYC <br>
-                            Newyork
+                            1 Trần Đại Nghĩa
+                            163 Tư Đình, p. Long Biên, Long Biên, Hà Nội, Việt Nam<br>
+                            873 Nguyễn Trãi<br>
+                            60 Lê Thanh Nghị
                         </p>
                         <div class="space20">&nbsp;</div>
-                        <h6 class="contact-title">Business Enquiries</h6>
-                        <p>
-                            Doloremque laudantium, totam rem aperiam, <br>
-                            inventore veritatio beatae. <br>
-                            <a href="mailto:biz@betadesign.com">biz@betadesign.com</a>
-                        </p>
-                        <div class="space20">&nbsp;</div>
-                        <h6 class="contact-title">Employment</h6>
-                        <p>
-                            We’re always looking for talented persons to <br>
-                            join our team. <br>
-                            <a href="hr@betadesign.com">hr@betadesign.com</a>
+                        <b class="contact-title">Liên lạc</b>
+                        <p>19000091</p> <br>
+                            <a href="hr@betadesign.com">bksmart@gmail.com</a>
                         </p>
                     </div>
                 </div>
             </div> <!-- #content -->
         </div> <!-- .container -->
     </div>
-        {{--<script type="text/javascript">--}}
-            {{--$(function () {--}}
-                {{--// this will get the full URL at the address bar--}}
-                {{--var url = window.location.href;--}}
-
-                {{--// passes on every "a" tag--}}
-                {{--$(".main-menu a").each(function () {--}}
-                    {{--// checks if its the same on the address bar--}}
-                    {{--if (url == (this.href)) {--}}
-                        {{--$(this).closest("li").addClass("active");--}}
-                        {{--$(this).parents('li').addClass('parent-active');--}}
-                    {{--}--}}
-                {{--});--}}
-            {{--});--}}
-
-
-        {{--</script>--}}
-        {{--<script>--}}
-            {{--jQuery(document).ready(function ($) {--}}
-                {{--'use strict';--}}
-
-{{--// color box--}}
-
-{{--//color--}}
-                {{--jQuery('#style-selector').animate({--}}
-                    {{--left: '-213px'--}}
-                {{--});--}}
-
-                {{--jQuery('#style-selector a.close').click(function (e) {--}}
-                    {{--e.preventDefault();--}}
-                    {{--var div = jQuery('#style-selector');--}}
-                    {{--if (div.css('left') === '-213px') {--}}
-                        {{--jQuery('#style-selector').animate({--}}
-                            {{--left: '0'--}}
-                        {{--});--}}
-                        {{--jQuery(this).removeClass('icon-angle-left');--}}
-                        {{--jQuery(this).addClass('icon-angle-right');--}}
-                    {{--} else {--}}
-                        {{--jQuery('#style-selector').animate({--}}
-                            {{--left: '-213px'--}}
-                        {{--});--}}
-                        {{--jQuery(this).removeClass('icon-angle-right');--}}
-                        {{--jQuery(this).addClass('icon-angle-left');--}}
-                    {{--}--}}
-                {{--});--}}
-            {{--});--}}
-        {{--</script>--}}
-@endsection
+        @endsection

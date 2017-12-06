@@ -55,9 +55,8 @@
                 </div>
                 <div class="beta-comp">
                     <div class="compare-box">
-                        <a href="{{route('getcompare')}}"><i class="fa fa-plus-circle" style="font-size: 15px;"></i></a>Compare({{Session::get('compare_qty')}})
-
-                    </div>
+                        <a href="{{route('getcompare')}}" style="font-size: 15px;">Compare({{Session::get('compare_qty')}})
+                        </a></div>
                 </div>
             </div>
             <div class="clearfix"></div>

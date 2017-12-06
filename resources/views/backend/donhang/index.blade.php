@@ -45,14 +45,14 @@
                     <thead class="filter">
                     <tr>
                         <td colspan="7">
-                            <form class="list_filter form" action="{{route('admin/product/index')}}" method="get">
+                            <form class="list_filter form" action="{{route('admin/donhang/index')}}" method="get">
                                 <table cellpadding="0" cellspacing="0" width="100%"><tbody>
 
                                     <tr>
                                         <td class="label" style="width:40px;"><label for="filter_id">Mã số</label></td>
                                         <td class="item"><input name="searchid" value="" type="text" style="width:55px;" /></td>
 
-                                        <td class="label" style="width:40px;"><label>Tên</label></td>
+                                        <td class="label" style="width:40px;"><label>Tên khách hàng</label></td>
                                         <td class="item" style="width:155px;" ><input name="searchname" value=""  type="text" style="width:155px;" /></td>
 
                                         <td style='width:150px'>

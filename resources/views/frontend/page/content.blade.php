@@ -35,7 +35,7 @@
                                         <div class="single-item" style="margin-bottom: 40px;">
                                             <div class="single-item-header" style="height: 230px;">
                                                 <a href="{{route('chitietsanpham',$new->id)}}"><img
-                                                            src="source/frontend/image/product/{{$new->anh_sp}}"
+                                                            src="upload/product/add/{{$new->anh_sp}}"
                                                             style="text-align:center;height:230px;width: 210px;" alt=""></a>
                                             </div>
                                             <div class="single-item-body">
@@ -58,11 +58,12 @@
                                                 </a>
                                             </div>
                                             <div class="single-item-caption">
+
                                                 <a class="add-to-cart pull-left" href="{{route('addcart',$new->id)}}" title="Add to cart"><i
                                                             class="fa fa-shopping-cart"></i></a>
-                                                <a class="beta-btn primary compare" href="addtocompare/{{$new->id}}" title="Add to compare">Add to Compare <i
-                                                            class="fa fa-plus-circle"></i></a>
+                                                <a class="beta-btn primary compare pull-right" href="addtocompare/{{$new->id}}" title="Add to compare">Add to Compare </a>
                                                 <div class="clearfix"></div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -81,14 +82,15 @@
                                 <p class="pull-left">Tìm thấy <?php echo count($khuyenmai)?> sản phẩm</p>
                                 <div class="clearfix"></div>
                             </div>
+                            <div class="row">
                             @foreach($khuyenmai as $km)
-                                <div class="col-sm-3">
-                                    <div class="single-item" style="margin-bottom: 40px;">
-                                        <div class="single-item-header" style="height:230px">
-                                            <a href="product.html"><img
-                                                        src="source/frontend/image/product/{{$km->anh_sp}}"
-                                                        style="height: 230px;width:210px;text-align: center" alt=""></a>
-                                        </div>
+                                    <div class="col-sm-3" style="padding-left: 20px;">
+                                        <div class="single-item" style="margin-bottom: 40px;">
+                                            <div class="single-item-header" style="height: 230px;">
+                                                <a href="{{route('chitietsanpham',$new->id)}}"><img
+                                                            src="upload/product/add/{{$km->anh_sp}}"
+                                                            style="text-align:center;height:230px;width: 210px;" alt=""></a>
+                                            </div>
                                         <div class="single-item-body">
                                             <p class="single-item-title">{{$km->ten_sp}}</p>
                                             <p class="single-item-price">
@@ -110,15 +112,17 @@
 
                                         </div>
                                         <div class="single-item-caption">
-                                            <a class="add-to-cart pull-left" href="{{route('addcart',$km->id)}}" title="Add to cart"><i
+
+                                            <a class="add-to-cart pull-left" href="{{route('addcart',$new->id)}}" title="Add to cart"><i
                                                         class="fa fa-shopping-cart"></i></a>
-                                            <a class="beta-btn primary compare" href="addtocompare/{{$km->id}}" title="Add to compare">Add to compare <i
-                                                        class="fa fa-plus-circle"></i></a>
+                                            <a class="beta-btn primary compare pull-right" href="addtocompare/{{$new->id}}" title="Add to compare">Add to Compare </a>
                                             <div class="clearfix"></div>
+
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
+                            </div>
                         </div>
                         <div style="text-align: center">{{$khuyenmai->links()}}</div>
                     </div> <!-- .beta-products-list -->

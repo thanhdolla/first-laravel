@@ -70,7 +70,6 @@
                                 <td style="width:60px;">Mã số</td>
                                 <td>Loại sản phẩm</td>
                                 <td style="width:200px;">Mô tả</td>
-                                <td style="width:120px;">Ảnh minh họa</td>
                                 <td style="width:120px;">Hành động</td>
                             </tr>
                             </thead>
@@ -84,17 +83,6 @@
                                 <td class="textC"><?php echo $row->id?></td>
                                 <td class="textC"><?php echo $row->ten_loai_sp?></td>
                                 <td class="textC"><?php echo $row->mo_ta?></td>
-
-
-                                <td>
-                                    <div class="image_thumb">
-                                        <img style="width: 450px;height: 150px;" src="source/frontend/image/slide/{{$row->anh_loai_sp }}">
-                                        <div class="clear"></div>
-                                    </div>
-
-
-
-
                                 <td class="option textC">
                                     <a class="tipS" title="Chỉnh sửa" href="admin/category/edit/{{$row->id}}">
                                         <img src="source/backend/admin/images/icons/color/edit.png">

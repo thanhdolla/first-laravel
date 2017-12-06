@@ -38,6 +38,10 @@
                     <div class="alert alert-success" style="background:#00ced1">
                         {{Session::get('thongbao')}}
                     </div>
+                @endif @if(Session::has('loi'))
+                        <div class="alert alert-danger" style="background:red">
+                            {{Session::get('loi')}}
+                        </div>
                 @endif
                 <div class="title">
                     <img src="source/backend/admin/images/icons/dark/dialog.png" class="titleIcon" />
@@ -72,23 +76,9 @@
                             </tr>
                             </thead>
 
-                            <tfoot class="auto_check_pages">
-                            <tr>
-                                <td colspan="6">
-                                    <div class="list_action itemActions">
-                                        <a url="<?php ?>" class="button blueB" id="submit" href="#submit">
-                                            <span style="color:white;">Xóa hết</span>
-                                        </a>
-                                    </div>
-
-                                </td>
-                            </tr>
-                            </tfoot>
-
                             <tbody class="list_item">
                             <?php foreach ($nhanvien as $row):?>
                             <tr class="row_<?php echo $row->id?>">
-
                                 <td class="textC"><?php echo $row->id?></td>
                                 <td class="textC"><?php echo $row->ten_ad?></td>
                                 <td class="textC"><?php echo $row->email_ad?></td>
