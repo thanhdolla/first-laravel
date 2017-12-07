@@ -4,12 +4,12 @@
         <div class="pull-left" style="padding-left: 100px;font-size:xx-large">Sản phẩm {{$loai_sp->ten_loai_sp}}</div>
         <div class="pull-right" style="font-size:large;">
             <ol class="breadcrumb">
-                <a href="{{route('trang_chu')}}">Home\</a><span style="font-size: medium">{{$loai_sp->ten_loai_sp}}</span>
+                <a href="{{route('trang_chu')}}">Home\</a><span style="font-size: medium;">{{$loai_sp->ten_loai_sp}}</span>
             </ol>
         </div>
     </div>
 
-    <div class="container" style="border: whitesmoke solid 2px;width: 95%">
+    <div class="container" style="border: whitesmoke solid 1px;width: 95%;;margin-top:10px;">
     <div id="content" class="space-top-none">
         <div class="main-content">
             <div class="space60">&nbsp;</div>
@@ -57,13 +57,10 @@
                                                 <?php endif; ?>
                                             </a>
                                         </div>
-                                        <div class="single-item-caption">
-
-                                            <a class="add-to-cart pull-left" href="{{route('addcart',$new->id)}}" title="Add to cart"><i
-                                                        class="fa fa-shopping-cart"></i></a>
+                                        <div class="single-item-caption" style="padding-top: 5px;">
+                                            <a class="add-to-cart pull-left" href="{{route('addcart',$new->id)}}" title="Add to cart"><i class="fa fa-shopping-cart"></i></a>
                                             <a class="beta-btn primary compare pull-right" href="addtocompare/{{$new->id}}" title="Add to compare">Add to Compare </a>
                                             <div class="clearfix"></div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -114,13 +111,10 @@
                                         </p>
 
                                     </div>
-                                    <div class="single-item-caption">
-
-                                        <a class="add-to-cart pull-left" href="{{route('addcart',$new->id)}}" title="Add to cart"><i
-                                                    class="fa fa-shopping-cart"></i></a>
+                                    <div class="single-item-caption" style="padding-top: 5px;">
+                                        <a class="add-to-cart pull-left" href="{{route('addcart',$new->id)}}" title="Add to cart"><i class="fa fa-shopping-cart"></i></a>
                                         <a class="beta-btn primary compare pull-right" href="addtocompare/{{$new->id}}" title="Add to compare">Add to Compare </a>
                                         <div class="clearfix"></div>
-
                                     </div>
                                 </div>
                             </div>

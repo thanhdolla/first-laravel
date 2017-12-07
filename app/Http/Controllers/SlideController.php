@@ -92,10 +92,9 @@ class SlideController extends Controller
                 unlink("upload/slide/add/" . $anh_cu);
             }
             $file->move('upload/slide/add', $name);
-
-            $slide->save();
-            return redirect('admin/slide/edit/' . $id)->with('thongbao', "Sửa slide thành công");
         }
+        $slide->save();
+        return redirect('admin/slide/edit/' . $id)->with('thongbao', "Sửa slide thành công");
     }
 
     public function delete($id)

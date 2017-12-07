@@ -57,13 +57,10 @@
                                                     <?php endif; ?>
                                                 </a>
                                             </div>
-                                            <div class="single-item-caption">
-
-                                                <a class="add-to-cart pull-left" href="{{route('addcart',$new->id)}}" title="Add to cart"><i
-                                                            class="fa fa-shopping-cart"></i></a>
+                                            <div class="single-item-caption" style="padding-top: 5px;">
+                                                <a class="add-to-cart pull-left" href="{{route('addcart',$new->id)}}" title="Add to cart"><i class="fa fa-shopping-cart"></i></a>
                                                 <a class="beta-btn primary compare pull-right" href="addtocompare/{{$new->id}}" title="Add to compare">Add to Compare </a>
                                                 <div class="clearfix"></div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -111,14 +108,11 @@
                                             </p>
 
                                         </div>
-                                        <div class="single-item-caption">
-
-                                            <a class="add-to-cart pull-left" href="{{route('addcart',$new->id)}}" title="Add to cart"><i
-                                                        class="fa fa-shopping-cart"></i></a>
-                                            <a class="beta-btn primary compare pull-right" href="addtocompare/{{$new->id}}" title="Add to compare">Add to Compare </a>
-                                            <div class="clearfix"></div>
-
-                                        </div>
+                                            <div class="single-item-caption" style="padding-top: 5px;">
+                                                <a class="add-to-cart pull-left" href="{{route('addcart',$new->id)}}" title="Add to cart"><i class="fa fa-shopping-cart"></i></a>
+                                                <a class="beta-btn primary compare pull-right" href="addtocompare/{{$new->id}}" title="Add to compare">Add to Compare </a>
+                                                <div class="clearfix"></div>
+                                            </div>
                                     </div>
                                 </div>
                             @endforeach

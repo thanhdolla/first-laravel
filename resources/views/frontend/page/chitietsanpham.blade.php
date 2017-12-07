@@ -45,53 +45,50 @@
                                         </a>
                                     </p>
                                 </div>
+
+                                <div style="background: red;color:black">
+                                </div>
+
+
+                                <div class="clearfix"></div>
+                                <div class="space20">&nbsp;</div>
+
+                                <p class='option'>
+                                    Hãng sản xuất:
+                                    <b><?php ?></b>
+                                </p>
+                                <p class='option'>
+                                    <b> Lượt xem: </b> <?php echo $chitiet->luot_view ?>
+                                </p>
+                                <p class='option'>
+                                    <b> Ngày sản xuất:</b> <?php echo $chitiet->ngay_sx ?>
+                                </p>
+                                <p class='option'>
+                                    <b> Bảo hành:</b> <?php echo $chitiet->bao_hanh ?>
+                                </p>
+                                <p class='option'>
+                                <table style="border:solid thin whitesmoke;width: 600px;">
+                                    <tr>
+                                        <td style="border:solid thin whitesmoke;line-height: 200px;">
+                                            <b>Cấu hình:</b>
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            &nbsp;<?php echo $chitiet->mo_ta_sp ?>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
-                            <div style="background: red;color:black">
-                            </div>
-
-
-                            <div class="clearfix"></div>
-                            <div class="space20">&nbsp;</div>
-
-                            <p class='option'>
-                                Hãng sản xuất:
-
-                                <b><?php ?></b>
-
-                            </p>
-
-                            <p class='option'>
-                                Lượt xem: <b><?php echo $chitiet->luot_view ?></b>
-                            </p>
-                            <p class='option'>
-                                Ngày sản xuất: <b><?php echo $chitiet->ngay_sx ?></b>
-                            </p>
-                            <p class='option'>
-                                Bảo hành: <b><?php echo $chitiet->bao_hanh ?></b>
-                            </p>
-                            <p class='option'>
-                            <table>
-                                <tr>
-                                    <td>
-                                        Cấu hình:
-                                    </td>
-                                    <td>
-                                        &nbsp;<?php echo $chitiet->mo_ta_sp ?>
-                                    </td>
-                                </tr>
-                            </table>
-
                         </div>
 
                         <div class="clearfix"></div>
                         <div class="chinhanh" style="padding-top: 50px;">
                             <h5>Các chi nhánh hiện có sản phẩm</h5>
                             <div style="padding-left: 10px;">
-                            <?php
-                            foreach($list as $row){
+                                <?php
+                                foreach($list as $row){
                                 ?>
-                            <a href="chinhanh/{{$row['id']}}"><?php echo $row['ten_chi_nhanh'] ?> </a><br>
-                            <?php } ?>
+                                <a href="chinhanh/{{$row['id']}}"><?php echo $row['ten_chi_nhanh'] ?> </a><br>
+                                <?php } ?>
                             </div>
                         </div>
 

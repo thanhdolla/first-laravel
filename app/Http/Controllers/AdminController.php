@@ -37,7 +37,6 @@ class AdminController extends Controller
         } else {
             return redirect()->back()->with('loi', 'Email không tồn tại');
         }
-
     }
 
     public function logout(Request $request){

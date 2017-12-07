@@ -37,6 +37,12 @@
             <!-- Amount -->
             <div class="oneTwo">
                 <div class="widget">
+                    @if(Session::has('thongbao'))
+                        <div class="alert alert-success" style="background:#00ced1">
+                            {{Session::get('thongbao')}}
+                        </div>
+                    @endif
+
                     <div class="title">
                         <img src="source/backend/admin/images/icons/dark/money.png" class="titleIcon" />
                         <h6>Doanh số</h6>
@@ -143,11 +149,6 @@
                         <h6>Danh sách Giao dịch</h6>
                         <div class="num f12">Tổng số: <b><?php count($donhang) ?></b></div>
                     </div>
-                    @if(Session::has('thongbao'))
-                        <div class="alert alert-success" style="background:#00ced1">
-                            {{Session::get('thongbao')}}
-                        </div>
-                    @endif
 
                     <table cellpadding="0" cellspacing="0" width="100%" class="sTable mTable myTable" id="checkAll">
 

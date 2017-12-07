@@ -6,6 +6,7 @@ use App\Loai_san_pham;
 use App\Producer;
 use App\San_pham;
 use Illuminate\Http\Request;
+use App\Chi_nhanh;
 
 class SanPhamController extends Controller
 {
@@ -137,15 +138,37 @@ class SanPhamController extends Controller
 
     public function getEdit($id)
     {
+
         $product = San_pham::find($id);
         $cate = Loai_san_pham::all();
-        return view('backend.product.edit', compact('product', 'cate'));
+        $ds_cn = Chi_nhanh::all();
+        $list_cn = json_decode($product->chi_nhanh);
+        foreach ($list_cn as $row) {
+            $chinhanh = Chi_nhanh::where('id', $row)->get();
+            foreach ($chinhanh as $cn) {
+                $chi_nhanh = array(
+                    'id' => $cn->id,
+                    'ten_chi_nhanh' => $cn->ten_chi_nhanh,
+                    'embed' => $cn->embed
+                );
+                $list[] = $chi_nhanh;
+//
+            }
+        }
+        foreach ($ds_cn as $row) {
+                $chi_nhanh = array(
+                    'id' => $row->id,
+                    'ten_chi_nhanh' => $row->ten_chi_nhanh,
+                    'embed' => $row->embed
+                );
+                $ds[] = $chi_nhanh;
+        }
+        return view('backend.product.edit', compact('product', 'cate','list','ds'));
     }
 
     public function getCateEdit($id)
     {
         $cate = Loai_san_pham::find($id);
-
         return view('backend.category.edit', compact('cate'));
     }
 
@@ -157,22 +180,20 @@ class SanPhamController extends Controller
                 'category' => 'required',
                 'description' => 'required',
                 'price' => 'required',
-                'mfg' => 'required',
+                'chinhanh' => 'required',
 //                'discount' => 'required',
                 'warranty' => 'required',
-
-                'image' => 'required',
             ],
             [
                 'name.required' => "Nhập tên sản phẩm",
                 'description.required' => "Nhập mô tả sản phẩm",
                 'price.required' => "Nhập giá sản phẩm",
                 'mfg.required' => "Nhập ngày sản xuất sản phẩm",
-//                'discount.required' => "Nhập tên sản phẩm",
+                'chinhanh.required' => "Nhập chi nhánh",
+//                'mfg.required' => "Nhập tên sản phẩm",
                 'warranty.required' => "Nhập thời gian bảo hành",
                 'name.unique' => "Tên đã tồn tại",
 
-                'image.required' => "Chọn ảnh mới",
             ]
         );
         $product = San_pham::find($id);
@@ -184,6 +205,10 @@ class SanPhamController extends Controller
         $product->khuyen_mai = $request->discount;
         $product->bao_hanh = $request->warranty;
 
+        $a = $request->chinhanh;
+        $b = str_split($a);
+        $c =json_encode($b);
+        $product->chi_nhanh = $c;
         $anh_cu = $product->anh_sp;
 //        print_r($request->name);
         if ($request->hasFile('image')) {
@@ -199,14 +224,13 @@ class SanPhamController extends Controller
             }
 
             $product->anh_sp = $name;
-
-
-            unlink("upload/product/add/" . $anh_cu);
+            if (file_exists("upload/product/add/" . $anh_cu)) {
+                unlink("upload/product/add/" . $anh_cu);
+            }
             $file->move('upload/product/add', $name);
-
-            $product->save();
-            return redirect('admin/product/edit/' . $id)->with('thongbao', "Sửa sản phẩm thành công");
         }
+        $product->save();
+        return redirect('admin/product/edit/' . $id)->with('thongbao', "Sửa sản phẩm thành công");
     }
 
     public function editCate(Request $request, $id)
@@ -227,7 +251,6 @@ class SanPhamController extends Controller
         $cate->ten_loai_sp = $request->name;
         $cate->mo_ta = $request->description;
         $anh_cu = $cate->anh_loai_sp;
-
 
 //        print_r($request->name);
         if ($request->hasFile('image')) {

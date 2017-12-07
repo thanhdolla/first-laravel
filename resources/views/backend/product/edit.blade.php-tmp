@@ -160,28 +160,31 @@
                                     </div>
                                     <div class="clear"></div>
                                 </div>
-
                                 <div class="formRow">
-                                    <label for="param_name" class="formLeft">Chi nhánh:<span
-                                                class="req">*</span></label>
+                                    <label for="param_name" class="formLeft">Chi nhánh:
+                                        <span class="req">*</span></label>
                                     <div class="formRight">
+                                <span class="oneTwo">
+                                    Danh sách chi nhánh
+                                    <ul>
 
-                                <span class="oneTwo" style="width: 100%">
-                                    <h5>Danh sách các chi nhánh hiện có:</h5>
-                                    <?php
-                                    foreach ($ds as $row) {
-                                        echo 'Mã ' . $row['id'] . ' - ' . $row['ten_chi_nhanh'], '<br>';
-                                    }
+<?php foreach ($ds_chi_nhanh as $row) {?>
+	<input type="checkbox" id="{{$row['id']}}"
+	                                               name="checkbox[
+	<?php
+	$i   = $row['id'];
+	$s[] = $i;
+	print_r($s);
 
-                                    ?>
-                                    <h6>Nhập mã chi nhánh có sản phẩm này:</h6>
-                                    <i>(Nhập liền các mã chi nhánh)</i><br>
-                                    <i>Ví dụ: 12</i><br>
-                                    <input style="width: 50%" type="text" id="param_name" name="chinhanh"
-                                           value="<?php foreach ($list as $cn) {
-                                               echo $cn['id'];
-                                           }
-                                           ?>">
+	?>
+	]"
+	<?php foreach ($list_chi_nhanh_trung as $r) {if ($r['id'] == $row['id']) {?> checked <?php }}?> >
+	                                                <li><?php echo $row['ten_chi_nhanh']?></li>
+	<?php }?>
+                                    </ul>
+
+
+
                                 </span>
                                         <span class="autocheck" name="name_autocheck"></span>
                                         <div class="clear error" name="name_error"></div>
@@ -193,8 +196,9 @@
                                     <label class="formLeft">Hình ảnh:<span class="req">*</span></label>
                                     <div class="formRight">
                                         <div class="left" style="float:left">
-                                            <input type="file" name="image" id="image"
+                                            <input type="file" name="image" id="image" onChange="getImage(even);"
                                                    size="25">
+
                                         </div>
                                         <div style="float:left;height:150px;">
                                             <img src="upload/product/add/{{$product->anh_sp}}"

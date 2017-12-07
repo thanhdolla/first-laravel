@@ -46,8 +46,7 @@
                         <div class="beta-selec">
 
                             <?php $count = Cart::count()?>
-                            <a  href="{{route('cart')}}" title="Giỏ hàng"><i class="glyphicon glyphicon-shopping-cart" style="font-size: 15px;"></i>({{$count}}
-                                )</a>
+                            <a  href="{{route('cart')}}" title="Giỏ hàng"><i class="glyphicon glyphicon-shopping-cart" style="font-size: 13px;"></i>({{$count}})</a>
 
                         </div>
 
@@ -55,7 +54,11 @@
                 </div>
                 <div class="beta-comp">
                     <div class="compare-box">
-                        <a href="{{route('getcompare')}}" style="font-size: 15px;">Compare({{Session::get('compare_qty')}})
+                        <a href="{{route('getcompare')}}" style="font-size: 13px;">
+                            Compare(<?php if(Session::has('compare_qty')){
+                                echo Session::get('compare_qty');
+                            } else echo 0;
+                            ?>)
                         </a></div>
                 </div>
             </div>
