@@ -22,7 +22,6 @@ class AdminController extends Controller
             [
                 'email.required' => "Nhập email",
                 'email.email' => "Email không hợp lệ",
-                'email.umique' => 'Email đã tồn tại',
                 'password.required' => "Vui lòng nhập mật khẩu",
                 'password.min' => 'Mật khẩu ít nhất 3 kí tự'
             ]
@@ -34,9 +33,9 @@ class AdminController extends Controller
         if(count($check)>0) {
             Session::put('admin',$kh->ten_ad);
             Session::put('admin_id',$kh->id);
-            return redirect('admin/dashboard')->with(['flag' => 'success', 'message' => 'Đăng nhập thành công']);
+            return redirect('admin/dashboard')->with('thongbao', 'Đăng nhập thành công');
         } else {
-            return redirect()->back()->with(['flag' => 'danger', 'message' => 'Đăng nhập không thành công']);
+            return redirect()->back()->with('loi', 'Email không tồn tại');
         }
 
     }

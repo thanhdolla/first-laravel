@@ -17,12 +17,20 @@
 </head>
 <body class="login">
 
-<div class="content">
+<div class="content" style="margin-top: 50px;">
     <!-- BEGIN LOGIN FORM -->
     <form class="login-form" action="{{route('admin/login')}}" method="post">
         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-        @if(Session::has('flag'))
-            <div style="background: red;" class="alert alert-{{Session::get('flag')}}">{{Session::get('message')}}
+        @if(count($errors)> 0)
+            <div class="alert alert-danger">
+                @foreach($errors->all() as $err)
+                    {{$err}}<br>
+                @endforeach
+            </div>
+        @endif
+        @if(Session::has('loi'))
+            <div class="alert alert-danger">
+                {{Session::get('loi')}}
             </div>
         @endif
         <h3 class="form-title">Đăng nhập tài khoản</h3>
@@ -35,7 +43,7 @@
             <label class="control-label visible-ie8 visible-ie9">Email</label>
             <div class="input-icon">
                 <i class="fa fa-user"></i>
-                <input class="form-control placeholder-no-fix" type="email" autocomplete="off" placeholder="Username" name="email" /> </div>
+                <input class="form-control placeholder-no-fix" type="email"  placeholder="Username" name="email" /> </div>
         </div>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">Password</label>
@@ -43,9 +51,7 @@
                 <i class="fa fa-lock"></i>
                 <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" /> </div>
         </div>
-        <div class="form-actions">
-            <label class="checkbox">
-                <input type="checkbox" name="remember" value="1" /> Remember me </label>
+        <div class="form-actions" style="padding-bottom: 50px;">
             <button type="submit" class="btn green pull-right"> Đăng nhập </button>
         </div>
     </form>
