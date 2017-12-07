@@ -86,12 +86,10 @@ class TinTucController extends Controller
             if ($duoi != 'jpg' && $duoi != 'png') {
                 return redirect('admin/tintuc/edit/' . $id)->with('loi', 'Bạn phải chọn file ảnh');
             }
-
             $name = $file->getClientOriginalName();
             while (file_exists("upload/tintuc/.$name")) {
                 $name = $request->file('image')->getClientOriginalName();
             }
-
             $tintuc->anh_tb = $name;
             if (file_exists("upload/tintuc/add/" . $anh_cu)) {
                 unlink("upload/tintuc/add/" . $anh_cu);
