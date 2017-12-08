@@ -158,6 +158,13 @@ body {
   border-bottom-left-radius: 3px;
 }
 [data-component='app-root'] .news {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
   width: 100%;
   height: 786px;
 }
@@ -169,6 +176,76 @@ body {
   font-weight: bold;
   font-size: 22px;
   color: #000;
+}
+[data-component='app-root'] .news .articles {
+  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  padding: 85px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+}
+[data-component='app-root'] .news .articles .article {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  width: 508px;
+  height: 196px;
+  margin-bottom: 20px;
+}
+[data-component='app-root'] .news .articles .article .left {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  width: 152px;
+  height: 100%;
+  background: #f3f3f3;
+}
+[data-component='app-root'] .news .articles .article .left .image {
+  width: 100%;
+  height: 100%;
+}
+[data-component='app-root'] .news .articles .article .right {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 49px;
+}
+[data-component='app-root'] .news .articles .article .right .title h2 {
+  width: 307px;
+  margin-bottom: 20px;
+  font-family: Lato Medium;
+  font-size: 18.75px;
+}
+[data-component='app-root'] .news .articles .article .right .content {
+  width: 307px;
+  margin-bottom: 20px;
+  font-family: Lato Medium;
+  font-size: 16px;
+}
+[data-component='app-root'] .news .articles .article .right .action button {
+  width: 126px;
+  height: 36px;
+  border: none;
+  outline: none;
+  background: #f26c4f;
+  color: #fff;
+  font-family: Lato Semibold;
+  font-size: 16px;
+  cursor: pointer;
 }
 [data-component='app-root'] footer {
   width: 100%;

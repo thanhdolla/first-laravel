@@ -25,6 +25,10 @@ class HomeController extends Controller
         return view('home-page');
     }
 
+    public function about() {
+        return view('about-page');
+    }
+
     public function getIndex()
     {
         $slide = Slide::all();

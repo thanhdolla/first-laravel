@@ -1,6 +1,10 @@
 <?php
 
-Route::get('index', 'HomeController@index');
+Route::get('index', 'HomeController@index')->name('index');
+Route::get('about', 'HomeController@about')->name('about');
+
+Route::get('signup', 'SignupController@index')->name('signup');
+
 
 Route::get('loaisanpham/{type}',[
     'as'=>'loai-san-pham',
