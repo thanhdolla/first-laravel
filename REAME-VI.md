@@ -22,4 +22,3 @@ Mở trang `http://localhost/phpmyadmin` trong trình duyệt. Tạo một datab
 Mở trang `http://localhost/Project/index` để vào trang bán hàng của hệ thống. 
 
 Mở trang `http://localhost/Project/admin/login` để vào trang đăng nhập dành cho quản trị viên.
-

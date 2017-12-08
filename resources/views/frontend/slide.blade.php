@@ -12,7 +12,7 @@
     <div class="carousel-inner" role="listbox" style="height: 100%">
         @foreach( $slide as $photo )
             <div class="item {{ $loop->first ? ' active' : '' }}" style="height: 100%">
-                <img src="source/frontend/image/slide/{{$photo->anh_slide }}" alt="{{$photo->ten_slide}}">
+                <img style="height:320px" src="upload/slide/add/{{$photo->anh_slide }}" alt="{{$photo->ten_slide}}">
             </div>
         @endforeach
     </div>

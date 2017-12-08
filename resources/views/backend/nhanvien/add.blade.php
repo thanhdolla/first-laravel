@@ -101,7 +101,7 @@
                             <label for="param_name" class="formLeft">Số điện thoại</label>
                             <div class="formRight">
                                 <span class="oneTwo">
-                                    <input type="text"  id="param_name" name="sdt" >
+                                    <input type="number"  id="param_name" name="sdt" required>
                                 </span>
                                 <span class="autocheck" name="name_autocheck"></span>
                                 <div class="clear error" name="name_error"></div>

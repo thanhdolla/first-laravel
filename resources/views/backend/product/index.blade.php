@@ -90,9 +90,6 @@
                                     <td style="width:120px;">Hành động</td>
                                 </tr>
                                 </thead>
-
-
-
                                 <tbody class="list_item">
                                 @foreach($product as $pd)
                                 <tr>
@@ -100,7 +97,7 @@
                                     <td class="textC">{{$pd->id}}</td>
                                     <td>
                                         <div class="image_thumb">
-                                            <img src="source/frontend/image/product/{{$pd->anh_sp }}" height="50">
+                                            <img src="upload/product/add/{{$pd->anh_sp }}" height="50">
                                             <div class="clear"></div>
                                         </div>
 

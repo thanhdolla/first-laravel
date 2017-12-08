@@ -1,8 +1,11 @@
 @extends('masteradmin')
 @section('contentadmin')
 
-    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> <script type="text/javascript">
-        bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+    <script type="text/javascript">
+        bkLib.onDomLoaded(function () {
+            nicEditors.allTextAreas()
+        });
     </script>
 
     <div id="rightSide">
@@ -64,7 +67,8 @@
                         <div class="tab_container">
                             <div class="tab_content pd0" id="tab1" style="display: block;">
                                 <div class="formRow">
-                                    <label for="param_name" class="formLeft">Tên sản phẩm<span class="req">*</span></label>
+                                    <label for="param_name" class="formLeft">Tên sản phẩm<span
+                                                class="req">*</span></label>
                                     <div class="formRight">
                                         <span class="oneTwo"><input type="text" _autocheck="true" id="param_name"
                                                                     value="{{$product->ten_sp}}" name="name"></span>
@@ -99,7 +103,7 @@
                                     <label for="param_name" class="formLeft">Mô tả:<span class="req">*</span></label>
                                     <div class="formRight">
                                 <span class="oneTwo">
-                                    <textarea name="description" id="param_name" >{{$product->mo_ta_sp}}</textarea>
+                                    <textarea name="description" id="param_name">{{$product->mo_ta_sp}}</textarea>
                                 </span>
                                         <span class="autocheck" name="name_autocheck"></span>
                                         <div class="clear error" name="name_error"></div>
@@ -111,7 +115,7 @@
                                     <div class="formRight">
                                 <span class="oneTwo">
                                     <input type="number" min="0" step="1000" id="param_name" name="price"
-                                           value="{{$product->gia_sp}}" > VNĐ
+                                           value="{{$product->gia_sp}}"> VNĐ
 
                                 </span>
                                         <span class="autocheck" name="name_autocheck"></span>
@@ -120,7 +124,8 @@
                                     <div class="clear"></div>
                                 </div>
                                 <div class="formRow">
-                                    <label for="param_name" class="formLeft">Khuyến mãi:<span class="req">*</span></label>
+                                    <label for="param_name" class="formLeft">Khuyến mãi:<span
+                                                class="req">*</span></label>
                                     <div class="formRight">
                                 <span class="oneTwo">
                                     <input type="number" min="0" step="1000" id="param_name" name="discount"
@@ -136,7 +141,7 @@
                                                 class="req">*</span></label>
                                     <div class="formRight">
                                 <span class="oneTwo">
-                                    <input type="text" id="param_name" name="warranty" value="{{$product->bao_hanh}}" >
+                                    <input type="text" id="param_name" name="warranty" value="{{$product->bao_hanh}}">
                                 </span>
                                         <span class="autocheck" name="name_autocheck"></span>
                                         <div class="clear error" name="name_error"></div>
@@ -148,19 +153,48 @@
                                                 class="req">*</span></label>
                                     <div class="formRight">
                                 <span class="oneTwo">
-                                    <input type="text" id="param_name" name="mfg" value="{{$product->ngay_sx}}" >
+                                    <input type="text" id="param_name" name="mfg" value="{{$product->ngay_sx}}">
                                 </span>
                                         <span class="autocheck" name="name_autocheck"></span>
                                         <div class="clear error" name="name_error"></div>
                                     </div>
                                     <div class="clear"></div>
                                 </div>
+
+                                <div class="formRow">
+                                    <label for="param_name" class="formLeft">Chi nhánh:<span
+                                                class="req">*</span></label>
+                                    <div class="formRight">
+
+                                <span class="oneTwo" style="width: 100%">
+                                    <h5>Danh sách các chi nhánh hiện có:</h5>
+                                    <?php
+                                    foreach ($ds as $row) {
+                                        echo 'Mã ' . $row['id'] . ' - ' . $row['ten_chi_nhanh'], '<br>';
+                                    }
+
+                                    ?>
+                                    <h6>Nhập mã chi nhánh có sản phẩm này:</h6>
+                                    <i>(Nhập liền các mã chi nhánh)</i><br>
+                                    <i>Ví dụ: 12</i><br>
+                                    <input style="width: 50%" type="text" id="param_name" name="chinhanh"
+                                           value="<?php foreach ($list as $cn) {
+                                               echo $cn['id'];
+                                           }
+                                           ?>">
+                                </span>
+                                        <span class="autocheck" name="name_autocheck"></span>
+                                        <div class="clear error" name="name_error"></div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+
                                 <div class="formRow">
                                     <label class="formLeft">Hình ảnh:<span class="req">*</span></label>
                                     <div class="formRight">
                                         <div class="left" style="float:left">
-                                            <input type="file" name="image" id="image" onChange="getImage(even);" size="25">
-
+                                            <input type="file" name="image" id="image"
+                                                   size="25">
                                         </div>
                                         <div style="float:left;height:150px;">
                                             <img src="upload/product/add/{{$product->anh_sp}}"

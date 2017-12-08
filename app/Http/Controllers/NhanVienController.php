@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class NhanVienController extends Controller
 {
@@ -14,8 +15,12 @@ class NhanVienController extends Controller
     }
 
     public function getAdd(){
-
-        return view('backend.nhanvien.add');
+        $a = (Session::get('admin_id'));
+        if($a ==1) {
+            return view('backend.nhanvien.add');
+        }else{
+            return back()->with('loi','Bạn không có quyền thêm nhân viên');
+        }
     }
 
     public function add(Request $request)
@@ -25,14 +30,13 @@ class NhanVienController extends Controller
                 'name' => 'required',
                 'mk' => 'required',
                 'email' => 'required',
-                'sdt' => 'required|min:6|integer',
+                'sdt' => 'required|min:6',
             ],
             [
                 'name.required' => "Nhập tên nhân viên",
                 'mk.required' => "Nhập mật khẩu",
                 'email.required' => "Nhập email nhân viên",
                 'sdt.min' => 'Số điện thoại phải lớn hơn 5 số',
-                'sdt.integer' => 'Số điện thoại là số từ 1 đến 9',
                 'sdt.required' => 'Vui lòng nhập số điện thoại',
 
             ]
@@ -50,7 +54,15 @@ class NhanVienController extends Controller
     public function getEdit($id)
     {
         $nhanvien = Admin::find($id);
-        return view('backend.nhanvien.edit', compact('nhanvien'));
+        $a = (Session::get('admin_id'));
+        if($a !=1) {
+            if($a != $nhanvien->id){
+                return back()->with('loi','Bạn không có quyền sửa nhân viên');
+            }
+            return view('backend.nhanvien.edit', compact('nhanvien'));
+        }else{
+            return view('backend.nhanvien.edit', compact('nhanvien'));
+        }
     }
 
     public function edit(Request $request, $id)
@@ -61,14 +73,13 @@ class NhanVienController extends Controller
                 'name' => 'required',
                 'mk' => 'required',
                 'email' => 'required',
-                'sdt' => 'required|min:6|integer',
+                'sdt' => 'required|min:6',
             ],
             [
                 'name.required' => "Nhập tên nhân viên",
                 'mk.required' => "Nhập mật khẩu",
                 'email.required' => "Nhập email nhân viên",
                 'sdt.min' => 'Số điện thoại phải lớn hơn 5 số',
-                'sdt.integer' => 'Số điện thoại là số từ 1 đến 9',
                 'sdt.required' => 'Vui lòng nhập số điện thoại',
 
             ]
@@ -82,8 +93,14 @@ class NhanVienController extends Controller
     }
 
     public function delete($id){
-        $s = Admin::find($id);
-        $s->delete();
+        $nhanvien = Admin::find($id);
+        $a = (Session::get('admin_id'));
+        if($a ==1) {
+            $nhanvien->delete();
+        }else{
+            return back()->with('loi',"Bạn không có quyền xóa");
+        }
+
         return back()->with('thongbao',"Xóa thành công");
     }
 }

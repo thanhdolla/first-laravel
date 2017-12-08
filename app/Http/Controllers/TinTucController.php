@@ -84,22 +84,20 @@ class TinTucController extends Controller
             $file = $request->file('image');
             $duoi = $file->getClientOriginalExtension();
             if ($duoi != 'jpg' && $duoi != 'png') {
-                return redirect('admin/tintuc/edit/'.$id)->with('loi', 'Bạn phải chọn file ảnh');
+                return redirect('admin/tintuc/edit/' . $id)->with('loi', 'Bạn phải chọn file ảnh');
             }
-
             $name = $file->getClientOriginalName();
             while (file_exists("upload/tintuc/.$name")) {
                 $name = $request->file('image')->getClientOriginalName();
             }
-
             $tintuc->anh_tb = $name;
-            if(file_exists("upload/tintuc/add/".$anh_cu)) {
+            if (file_exists("upload/tintuc/add/" . $anh_cu)) {
                 unlink("upload/tintuc/add/" . $anh_cu);
             }
             $file->move('upload/tintuc/add', $name);
-            $tintuc->save();
-            return redirect('admin/tintuc/index')->with('thongbao', "Sửa tin thành công");
         }
+        $tintuc->save();
+        return redirect('admin/tintuc/index')->with('thongbao', "Sửa tin thành công");
     }
 
     public function delete($id){

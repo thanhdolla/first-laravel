@@ -4,12 +4,12 @@
         <div class="pull-left" style="padding-left: 100px;font-size:xx-large">Sản phẩm {{$loai_sp->ten_loai_sp}}</div>
         <div class="pull-right" style="font-size:large;">
             <ol class="breadcrumb">
-                <a href="{{route('trang_chu')}}">Home\</a><span style="font-size: medium">{{$loai_sp->ten_loai_sp}}</span>
+                <a href="{{route('trang_chu')}}">Home\</a><span style="font-size: medium;">{{$loai_sp->ten_loai_sp}}</span>
             </ol>
         </div>
     </div>
 
-    <div class="container" style="border: whitesmoke solid 2px;width: 95%">
+    <div class="container" style="border: whitesmoke solid 1px;width: 95%;;margin-top:10px;">
     <div id="content" class="space-top-none">
         <div class="main-content">
             <div class="space60">&nbsp;</div>
@@ -21,66 +21,75 @@
                         @endforeach
                     </ul>
                 </div>
-                <div class="col-sm-9">
+                <div class="col-sm-9" style="border: whitesmoke solid thin">
                     <div class="beta-products-list">
                         <h4>Sản phẩm mới</h4>
                         <div class="beta-products-details">
-                            <p class="pull-left">Tìm thấy {{count($sp)}} sản phẩm</p>
+                            <p class="pull-left">Tìm thấy {{count($sp)}} kết quả</p>
                             <div class="clearfix"></div>
                         </div>
 
                         <div class="row">
-                            @foreach($sp as $row)
-                            <div class="col-sm-4" >
-                                <div class="single-item" style="padding-left: 20px;margin-bottom: 30px;">
-                                    <div class="single-item-header">
-                                        <a href="product.html"><img src="source/frontend/image/product/{{$row->anh_sp}}" style="height: 309.78px" alt=""></a>
-                                    </div>
-                                    <div class="single-item-body">
-                                        <p class="single-item-title">{{$row->ten_sp}}</p>
-                                        <p class="single-item-price">
-                                            <?php $price_new = $row->gia_sp - $row->khuyen_mai ?>
-                                            <?php if ($row->khuyen_mai > 0): ?>
-                                            <a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
-                                                <?php echo number_format($row->gia_sp); ?>Đ
+                            @foreach($sp as $new)
+                                <div class="col-sm-3" style="padding-left: 20px;">
+                                    <div class="single-item" style="margin-bottom: 40px;">
+                                        <div class="single-item-header" style="height: 230px;">
+                                            <a href="{{route('chitietsanpham',$new->id)}}"><img
+                                                        src="upload/product/add/{{$new->anh_sp}}"
+                                                        style="text-align:center;height:230px;width: 210px;" alt=""></a>
+                                        </div>
+                                        <div class="single-item-body">
+                                            <p class="single-item-title">{{$new->ten_sp}}</p>
+                                            <a class="single-item-price">
+                                                <?php $price_new = $new->gia_sp - $new->khuyen_mai ?>
+                                                <?php if ($new->khuyen_mai > 0): ?>
+                                                <a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
+                                                    <?php echo number_format($new->gia_sp); ?>Đ
+                                                </a>
+                                                <br>
+                                                <a class="ga" style="color:red;padding-top: 10px;font-size: 20px;">
+                                                    <b><?php echo number_format($price_new) ?>Đ</b>
+                                                </a>
+                                                <?php else: ?>
+                                                <i style="font-size: 15px;">chưa có khuyến mại</i>
+                                                <a style="color:red;font-size: 20px;"><b><?php echo number_format($new->gia_sp); ?>
+                                                        Đ</b></a>
+                                                <?php endif; ?>
                                             </a>
-                                            <a class="ga" style="color:red;padding-top: 10px;font-size: 20px;">
-                                                <b><?php echo number_format($price_new) ?>Đ</b>
-                                            </a>
-                                            <?php else: ?>
-                                            <a style="color:red;font-size: 20px;"><b><?php echo number_format($row->gia_sp); ?>
-                                                    Đ</b></a>
-                                            <?php endif; ?>
-                                        </p>
-                                    </div>
-                                    <div class="single-item-caption">
-                                        <a class="add-to-cart pull-left" href="shopping_cart.html"><i class="fa fa-shopping-cart"></i></a>
-                                        <a class="beta-btn primary compare" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
-                                        <div class="clearfix"></div>
+                                        </div>
+                                        <div class="single-item-caption" style="padding-top: 5px;">
+                                            <a class="add-to-cart pull-left" href="{{route('addcart',$new->id)}}" title="Add to cart"><i class="fa fa-shopping-cart"></i></a>
+                                            <a class="beta-btn primary compare pull-right" href="addtocompare/{{$new->id}}" title="Add to compare">Add to Compare </a>
+                                            <div class="clearfix"></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                                @endforeach
+                            @endforeach
                         </div>
-                        @if(count($sp) >0)
-                            <div style="text-align:center">  <?php echo $sp->links()?>  </div>
-                        @endif
                     </div> <!-- .beta-products-list -->
-<hr>
-                    {{--<div class="space50">&nbsp;</div>--}}
+                        @if(count($sp) >0)
+                            <div style="text-align:center">
+                                <?php echo $sp->links()?>
+                            </div>
+                    @endif
+                    <!-- .beta-products-list -->
+
+                    <hr>
 
                     <div class="beta-products-list">
-                        <h4>Sảm phẩm khuyến mại</h4>
+                        <h4>Sản phẩm khuyến mại</h4>
                         <div class="beta-products-details">
-                            <p class="pull-left">Tìm thấy {{count($km)}} sản phẩm</p>
+                            <p class="pull-left">Tìm thấy <?php echo count($km)?> sản phẩm</p>
                             <div class="clearfix"></div>
                         </div>
                         <div class="row">
-                            @foreach($km as $item)
-                            <div class="col-sm-4">
-                                <div class="single-item"  style="padding-left: 20px;margin-bottom: 30px;">
-                                    <div class="single-item-header">
-                                        <a href="product.html"><img src="source/frontend/image/product/{{$item->anh_sp}}" alt="{{$item->anh_sp}}"></a>
+                        @foreach($km as $item)
+                            <div class="col-sm-3">
+                                <div class="single-item" style="margin-bottom: 40px;">
+                                    <div class="single-item-header" style="height:230px">
+                                        <a href="product.html"><img
+                                                    src="upload/product/add/{{$item->anh_sp}}"
+                                                    style="height: 230px;width:210px;text-align: center" alt=""></a>
                                     </div>
                                     <div class="single-item-body">
                                         <p class="single-item-title">{{$item->ten_sp}}</p>
@@ -90,30 +99,30 @@
                                             <a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
                                                 <?php echo number_format($item->gia_sp); ?>Đ
                                             </a>
+                                            <br>
                                             <a class="ga" style="color:red;padding-top: 10px;font-size: 20px;">
                                                 <b><?php echo number_format($price_new) ?>Đ</b>
                                             </a>
                                             <?php else: ?>
+                                            <i style="font-size: 15px;">chưa có khuyến mại</i>
                                             <a style="color:red;font-size: 20px;"><b><?php echo number_format($item->gia_sp); ?>
                                                     Đ</b></a>
                                             <?php endif; ?>
                                         </p>
+
                                     </div>
-                                    <div class="single-item-caption">
-                                        <a class="add-to-cart pull-left" href="shopping_cart.html"><i class="fa fa-shopping-cart"></i></a>
-                                        <a class="beta-btn primary compare" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
+                                    <div class="single-item-caption" style="padding-top: 5px;">
+                                        <a class="add-to-cart pull-left" href="{{route('addcart',$new->id)}}" title="Add to cart"><i class="fa fa-shopping-cart"></i></a>
+                                        <a class="beta-btn primary compare pull-right" href="addtocompare/{{$new->id}}" title="Add to compare">Add to Compare </a>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
                             </div>
-                                @endforeach
+                        @endforeach
                         </div>
-                        @if(count($km) >0)
-                            <div style="text-align:center">  <?php echo $km->links()?>  </div>
-                        @endif
-                        <div class="space40">&nbsp;</div>
-
-                    </div> <!-- .beta-products-list -->
+                    </div>
+                    <div style="text-align: center">{{$km->links()}}</div>
+                </div> <!-- .beta-products-list -->
                 </div>
             </div> <!-- end section with sidebar and main content -->
 

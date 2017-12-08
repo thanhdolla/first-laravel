@@ -31,12 +31,6 @@
         <div class="line"></div>
 
         <!-- Message -->
-
-
-
-
-
-
         <!-- Main content wrapper -->
         <div class="wrapper">
             <div class="widget">
@@ -76,20 +70,6 @@
                                 <td style="width:120px;">Hành động</td>
                             </tr>
                             </thead>
-
-                            <tfoot class="auto_check_pages">
-                            <tr>
-                                <td colspan="6">
-                                    <div class="list_action itemActions">
-                                        <a url="<?php ?>" class="button blueB" id="submit" href="#submit">
-                                            <span style="color:white;">Xóa hết</span>
-                                        </a>
-                                    </div>
-
-                                </td>
-                            </tr>
-                            </tfoot>
-
                             <tbody class="list_item">
                          <?php foreach ($slide as $row):?>
                             <tr class="row_<?php echo $row->id?>">
@@ -98,7 +78,7 @@
 
                                 <td>
                                     <div class="image_thumb">
-                                        <img style="width: 450px;height: 150px;" src="source/frontend/image/slide/{{$row->anh_slide }}">
+                                        <img style="width: 450px;height: 150px;" src="upload/slide/add/{{$row->anh_slide }}">
                                         <div class="clear"></div>
                                     </div>
 

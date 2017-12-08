@@ -59,10 +59,9 @@
                             <input type="text" name="address" id="address" value="Street Address" >
                         </div>
 
-
                         <div class="form-block">
                             <label for="phone">Phone*</label>
-                            <input type="text" name="phone" id="phone" >
+                            <input type="number" name="phone" id="phone" >
                         </div>
                         <div class="form-block">
                             <label for="phone">Password*</label>
@@ -73,7 +72,7 @@
                             <input type="password" name="re_password" id="pho1ne" >
                         </div>
                         <div class="form-block">
-                            <button type="submit" class="btn btn-primary">Register</button>
+                            <button type="submit" class="btn btn-primary">Đăng kí</button>
                         </div>
                     </div>
                     <div class="col-sm-3"></div>

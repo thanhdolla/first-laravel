@@ -80,20 +80,6 @@
                                     </div>
                                     <div class="clear"></div>
                                 </div>
-                                <div class="formRow">
-                                    <label class="formLeft">Hình ảnh:<span class="req">*</span></label>
-                                    <div class="formRight">
-                                        <div class="left" style="float:left">
-                                            <input type="file" name="image" id="image" size="25"/>
-                                        </div>
-                                        <div style="float:left">
-                                            <img src="upload/category/cate/{{$cate->anh_loai_sp}}"
-                                                 style="width:300px;height:70px">
-                                        </div>
-                                        <div class="clear error" name="image_error"></div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
 
                                 <div class="formRow hide"></div>
                             </div>

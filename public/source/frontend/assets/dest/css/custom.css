@@ -1,15 +1,18 @@
 .new-product{
     margin-top: 12px;
 }
-.compare, .curved{
- border-radius: 10px;
+
+.compare{
+ border-radius: 7px;
 }
+
 .add-to-cart:hover{
     background-color: #f90 ;
 }
 .add-to-cart{
-    border-radius: 10px;
+    border-radius: 7px;
 }
+
 .custom-product{
     border: 2px solid gray;
     margin-left: 1px;
@@ -18,14 +21,11 @@
 .search{
 
 }
+
 .compare-box{
     border: 1px solid #e1e1e1;
     height: 37px;
     line-height: 37px;
     padding: 0 10px;
     cursor: pointer;
-}
-.single-item-price{
-    margin-top: 5px;
-    margin-bottom: 5px;
 }
