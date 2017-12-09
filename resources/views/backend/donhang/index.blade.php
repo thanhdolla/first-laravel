@@ -1,5 +1,23 @@
 @extends('masteradmin')
 @section('contentadmin')
+
+    <head>
+        <title>Admin Login</title>
+        <!-- include js files -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <base href="{{asset('')}}">
+        <link rel="stylesheet" href="source/frontend/assets/dest/css/font-awesome.min.css">
+        <link rel="stylesheet" href="source/backend/admin/css/simple-line-icons.css">
+        <link rel="stylesheet" href="source/backend/admin/css/uniform.default.css">
+        <link rel="stylesheet" href="source/backend/admin/css/bootstrap-switch.min.css">
+        <link href="source/backend/admin/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+        <link href="source/backend/admin/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="source/backend/admin/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="source/backend/admin/css/plugins.min.css" rel="stylesheet" type="text/css" />
+        <link href="source/backend/admin/css/login-3.min.css" rel="stylesheet" type="text/css" />
+        <!-- Latest compiled and minified JavaScript -->
+    </head>
     <div id="rightSide">
         <div class="titleArea">
             <div class="wrapper">
@@ -32,7 +50,7 @@
                 <div class="title">
                     <!--<span class="titleIcon"><div class="checker" id="uniform-titleCheck"><span><input type="checkbox" id="titleCheck" name="titleCheck" style="opacity: 0;"></span></div></span>-->
                     <h6>Danh sách Giao dịch</h6>
-                    <div class="num f12">Tổng số: <b><?php count($list) ?></b></div>
+                    <div class="num f12">Tổng số: <b><?php echo count($list) ?></b></div>
                 </div>
                 @if(Session::has('thongbao'))
                     <div class="alert alert-success" style="background:#00ced1">
@@ -67,31 +85,15 @@
 
                     <thead>
                     <tr>
-                        <td style="width:10%;">Mã số</td>
+                        <td style="width:5%;">Mã số</td>
                         <td style="width:10%;">Mã khách hàng</td>
                         <td style="width:20%;">Tên khách hàng</td>
                         <td style="width:10%;">Tổng tiền</td>
                         <td style="width:20%;">Trạng thái</td>
                         <td style="width:20%;">Ngày tạo</td>
-                        <td style="width:10%;">Hành động</td>
+                        <td style="width:15%;">Hành động</td>
                     </tr>
                     </thead>
-
-                    <tfoot class="auto_check_pages">
-                    <tr>
-                        <td colspan="8">
-                            <div class="list_action itemActions">
-                                <a href="<?php ?>" class="button blueB"
-                                   onclick="return confirm('Bạn có chắc chắn xóa hết không?')">
-                                </a>
-
-                            </div>
-                            <div class="pagination">
-
-                            </div>
-                        </td>
-                    </tr>
-                    </tfoot>
 
                     <tbody class="list_item">
                     <?php foreach ($list as $row):?>
@@ -122,6 +124,7 @@
 
                         <td class="textC">{{ date('d-m-Y', strtotime($row->created_at)) }}</td>
                         <td class="textC">
+                            <a href="admin/donhang/chitietdonhang/{{$row->id}}" ><i class="glyphicon glyphicon-eye-open"></i></a> |
                             <a href="admin/donhang/delete/{{$row->id}}"
                                onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
                                 <img src="source/backend/admin/images/icons/color/delete.png">

@@ -36,6 +36,7 @@
                         <td style="width:10%;">Mã khách hàng</td>
                         <td style="width:20%;">Nội dung phản hồi</td>
                         <td style="width:20%;">Ngày tạo</td>
+                        <td style="width:20%;">Tình trạng</td>
                         <td style="width:10%;">Hành động</td>
                     </tr>
                     </thead>
@@ -51,10 +52,23 @@
                             <div style="text-align:center"><?php echo $row->khach_hangID ?></div>
                         </td>
                         <td class="textC"><?php echo $row->noi_dung ?></td>
-
-
-
                         <td class="textC">{{ date('d-m-Y', strtotime($row->created_at)) }}</td>
+                        <td class="option" style="color:#000080;">
+                            <?php
+                            $a = $row->stt_phan_hoi;
+                            if ($a == 0):
+                            ?>
+
+                            <a href="admin/feedback/xuli/{{$row->id}}">
+                                <button class="btn btn-success" type="button">Xử lí ngay</button>
+                            </a>
+                            <?php
+                            elseif ($a == 1) :
+                                echo "<span style='color:#00d6b2;'>Đã xử lí</span>";
+                            endif;
+                            ?>
+
+                        </td>
                         <td class="textC">
                             <a href="admin/feedback/delete/{{$row->id}}"
                                onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">

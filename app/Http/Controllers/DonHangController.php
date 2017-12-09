@@ -33,6 +33,12 @@ class DonHangController extends Controller
         return back()->with('thongbao','Xử lí đơn hàng thành công');
     }
 
+    public function getDonHangChiTiet($id){
+        $donhang = Don_hang::find($id);
+        $donhangchitiet = Don_hang_chi_tiet::where('don_hangID',$donhang->id)->get();
+        return view('backend.donhangchitiet.index', compact('donhangchitiet'));
+    }
+
     public function delete($id){
         $donhang = Don_hang::find($id);
         $dhct = Don_hang_chi_tiet::where('don_hangID',$donhang->id);

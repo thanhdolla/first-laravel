@@ -122,12 +122,10 @@
                     </div> <!-- .beta-products-list -->
                     <div class="col-sm-3" style="border:whitesmoke solid thin;padding-top: 20px;">
                         <div class="side">
-
-
                             <!-- The Support -->
                             <div class="box-right">
                                 <div class="title tittle-box-right">
-                                    <h5><b>Tìm theo giá sản phẩm</b></h5>
+                                    <h5 style="text-align: center"><b>Tìm theo giá</b></h5>
                                 </div>
                                 <div class="content-box" style="padding-top: 15px;">
                                     <!-- goi ra phuong thuc hien thi danh sach ho tro -->

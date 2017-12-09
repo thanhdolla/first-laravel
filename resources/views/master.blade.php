@@ -7,7 +7,7 @@
     <base href="{{asset('')}}">
     <link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="source/frontend/assets/dest/css/bootstrap.min.css">
     <link rel="stylesheet" href="source/frontend/assets/dest/css/font-awesome.min.css">
     <link rel="stylesheet" href="source/frontend/assets/dest/vendors/colorbox/example3/colorbox.css">
     <link rel="stylesheet" href="source/frontend/assets/dest/rs-plugin/css/settings.css">
@@ -27,12 +27,8 @@
 
 <div class="copyright">
     <div class="container">
-        <p class="pull-left">Privacy policy. (&copy;) 2014</p>
+        <p class="pull-left">Privacy policy. (&copy;) 2017</p>
         <p class="pull-right pay-options">
-            <a href="#"><img src="source/frontend/assets/dest/images/pay/master.jpg" alt="" /></a>
-            <a href="#"><img src="source/frontend/assets/dest/images/pay/pay.jpg" alt="" /></a>
-            <a href="#"><img src="source/frontend/assets/dest/images/pay/visa.jpg" alt="" /></a>
-            <a href="#"><img src="source/frontend/assets/dest/images/pay/paypal.jpg" alt="" /></a>
         </p>
         <div class="clearfix"></div>
     </div> <!-- .container -->
@@ -42,7 +38,7 @@
 <!-- include js files -->
 <script src="source/frontend/assets/dest/js/jquery.js"></script>
 <script src="source/frontend/assets/dest/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="source/frontend/assets/dest/css/js/bootstrap.min.js"></script>
 <script src="source/frontend/assets/dest/vendors/bxslider/jquery.bxslider.min.js"></script>
 <script src="source/frontend/assets/dest/vendors/colorbox/jquery.colorbox-min.js"></script>
 <script src="source/frontend/assets/dest/vendors/animo/Animo.js"></script>

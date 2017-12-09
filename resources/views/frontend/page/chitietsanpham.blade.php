@@ -20,7 +20,7 @@
                 <div class="col-sm-12">
                     <div class="row">
                         <div class="col-sm-4">
-                            <img style="height: 350px;width: 350px;" src="upload/product/add/{{$chitiet->anh_sp}}"
+                            <img style="height: 500px;width: 350px;padding-top: 120px;" src="upload/product/add/{{$chitiet->anh_sp}}"
                                  alt="">
                         </div>
                         <div class="col-sm-8">
@@ -35,6 +35,7 @@
                                             <a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
                                                 <?php echo number_format($chitiet->gia_sp); ?>Đ
                                             </a>
+                                                <br>
                                             <a class="ga" style="color:red;padding-top: 10px;font-size: 20px;">
                                                 <b><?php echo number_format($price_new) ?>Đ</b>
                                             </a>
@@ -54,29 +55,121 @@
                                 <div class="space20">&nbsp;</div>
 
                                 <p class='option'>
-                                    Hãng sản xuất:
-                                    <b><?php ?></b>
-                                </p>
-                                <p class='option'>
-                                    <b> Lượt xem: </b> <?php echo $chitiet->luot_view ?>
-                                </p>
-                                <p class='option'>
-                                    <b> Ngày sản xuất:</b> <?php echo $chitiet->ngay_sx ?>
-                                </p>
-                                <p class='option'>
-                                    <b> Bảo hành:</b> <?php echo $chitiet->bao_hanh ?>
-                                </p>
-                                <p class='option'>
-                                <table style="border:solid thin whitesmoke;width: 600px;">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <thead>
+                                    <tr style="text-align:center ">
+                                        <th>Thông tin</th>
+                                        <th>Chi tiết</th>
+                                        </td>
+                                    </tr>
+                                    </thead>
                                     <tr>
-                                        <td style="border:solid thin whitesmoke;line-height: 200px;">
-                                            <b>Cấu hình:</b>
+                                        <td>
+                                            Lượt xem
+                                        </td>
+                                        <td>
+                                            <?php echo $chitiet->luot_view ?>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            Màn hình
                                         </td>
                                         <td style="padding-left: 10px;">
-                                            &nbsp;<?php echo $chitiet->mo_ta_sp ?>
+                                            <?php echo $chitiet->man_hinh ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Hệ điều hành
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <?php echo $chitiet->he_dieu_hanh ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Camera trước
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <?php echo $chitiet->camera_truoc ?> px
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Camera sau
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <?php echo $chitiet->camera_sau ?> px
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            CPU
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <?php echo $chitiet->cpu ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Bộ nhớ trong
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <?php echo $chitiet->bo_nho_trong ?> Gb
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Thẻ nhớ
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <?php echo $chitiet->the_nho ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Thẻ sim
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <?php echo $chitiet->sim ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    <tr>
+                                        <td>
+                                            Dung lượng pin
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <?php echo $chitiet->pin ?> mah
+                                        </td>
+                                    </tr>
+                                        <td>
+                                            Ngày sản xuất
+                                        </td>
+                                        <td>
+                                            <?php echo $chitiet->ngay_sx ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Bảo hành
+                                        </td>
+                                        <td>
+                                            <?php echo $chitiet->bao_hanh ?>
                                         </td>
                                     </tr>
                                 </table>
+                                <div class="single-item-caption" style="padding-top: 5px;">
+                                    <a class="add-to-cart pull-left" href="{{route('addcart',$chitiet->id)}}"
+                                       title="Add to cart"><i class="fa fa-shopping-cart"></i></a>
+                                    <a class="beta-btn primary compare"
+                                       href="addtocompare/{{$chitiet->id}}" title="Add to compare">Add to
+                                        Compare </a>
+                                    <div class="clearfix"></div>
+                                </div>
                             </div>
                         </div>
 
@@ -87,7 +180,9 @@
                                 <?php
                                 foreach($list as $row){
                                 ?>
-                                <a href="chinhanh/{{$row['id']}}"><?php echo $row['ten_chi_nhanh'] ?> </a><br>
+                                <a href="chinhanh/{{$row['id']}}"><?php echo $row['ten_chi_nhanh'] ?> - Liên
+                                    hệ: <?php echo $row['sdt']?></a>
+                                <br>
                                 <?php } ?>
                             </div>
                         </div>
@@ -104,6 +199,7 @@
                                     {{Session::get('loi')}}
                                 </div>
                             @endif
+                            <?php if(Session::has('khach_hang')){ ?>
                             <ul class="tabs">
                                 <li><a href="#tab-reviews">Bình Luận</a></li>
                                 <div class="panel" id="tab-reviews">
@@ -138,7 +234,27 @@
                                 </div>
 
                             </ul>
+                            <?php } else { ?>
+                            <h5>Bình luận</h5>
+                            <i>(Bạn phải đăng nhập mới có thể giử bình luận)</i>
+                            <table class="table table-striped" style="width: 100%;margin-top: 30px;">
+                                <thead>
 
+                                </thead>
+                                <tbody>
+                                @foreach($binhluan as $row)
+                                    <tr>
+
+                                        <td style="width:25%;">{{ $row->ten_kh }}<br><span
+                                                    style="color: #9BA2AB">{{ date('d-m-Y', strtotime($row->created_at)) }}</span>
+                                        </td>
+                                        <td>{{ $row->noi_dung }}</td>
+
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            <?php } ?>
                         </div>
 
                     </div>

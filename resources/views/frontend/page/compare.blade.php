@@ -13,9 +13,9 @@
                 <div class="space60">&nbsp;</div>
                 <div class="row">
                     <div class="box-center" style="width:90%;margin:auto;margin-bottom: 200px;">
-                        <h2>So sánh sản phẩm</h2>
+                        <h2 style="text-align: center">So sánh sản phẩm</h2>
                         <!-- The box-center product-->
-                        <div class="box-content-center product" style="padding-top: 30px;"><!-- The box-content-center -->
+                        <div class="box-content-center product" style="padding-top: 40px;"><!-- The box-content-center -->
 
                             <?php if(Session::get('compare_qty') > 0) : ?>
 
@@ -53,6 +53,7 @@
                                                             <a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
                                                                 <?php echo number_format($sanpham->gia_sp); ?>Đ
                                                             </a>
+
                                                             <a class="ga"
                                                                style="color:red;padding-top: 10px;font-size: 20px;">
                                                                 <b><?php echo number_format($price_new) ?>Đ</b>

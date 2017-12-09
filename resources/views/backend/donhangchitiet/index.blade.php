@@ -35,7 +35,7 @@
             <div class="widget">
                 <div class="title">
                     <h6>Danh sách Giao dịch</h6>
-                    <div class="num f12">Tổng số: <b><?php count($list)?></b></div>
+                    <div class="num f12">Tổng số: <b><?php echo count($donhangchitiet)?></b></div>
                 </div>
                 @if(Session::has('thongbao'))
                     <div class="alert alert-success" style="background:#00ced1">
@@ -75,7 +75,7 @@
                     </tr>
                     </thead>
                     <tbody class="list_item">
-                    @foreach ($list as $row)
+                    @foreach ($donhangchitiet as $row)
                     <tr class="row">
 
                         <td class="textC">{{$row->id}}</td>

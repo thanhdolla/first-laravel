@@ -14,8 +14,8 @@
     </div>
 </div>
 
-<div class="container">
-    <div id="content">
+<div class="container" style="width:95%;border:1px solid whitesmoke">
+    <div id="content" style="padding-left: 100px;">
         @if(count($errors)> 0)
             <div class="alert alert-danger">
                 @foreach($errors->all() as $err)
@@ -34,11 +34,9 @@
                 <div><h3>Form nhập thông tin mua hàng</h3>
                 </div><hr></hr>
                 <h5>Tông tiền cần thanh toán: <b style="color: red"><?php  $tong_tien = Cart::subtotal();
-
                         echo $tong_tien ?></b></h5>
                 <div class="col-sm-6">
                     <div class="space20">&nbsp;</div>
-
                     <div class="form-block">
                         <label for="name">Họ tên*</label>
                         <input type="text"  id="name" name="name" placeholder="Họ tên"  value="<?php echo isset($kh->ten_kh) ? $kh->ten_kh :'' ?>">
@@ -52,8 +50,6 @@
                         <label for="diachi">Địa chỉ*</label>
                         <input type="text" name="diachi" id="diachi" placeholder="Street Address"   value="<?php echo isset($kh->dia_chi_kh) ? $kh->dia_chi_kh :'' ?>">
                     </div>
-
-
                     <div class="form-block">
                         <label for="sdt">Điện thoại*</label>
                         <input type="number" name="sdt" id="sdt"  value="<?php echo isset($kh->sdt_kh) ? $kh->sdt_kh :'' ?>">
@@ -63,8 +59,10 @@
                         <label for="note">Ghi chú</label>
                         <textarea name="note" id="note"></textarea>
                     </div>
+                    <div class="form-block">
+                        <button type="submit" class="btn btn-primary">Đặt hàng</button>
+                    </div>
                 </div>
-
             </div>
         </form>
     </div> <!-- #content -->

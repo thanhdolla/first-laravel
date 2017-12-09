@@ -70,20 +70,6 @@
                                 <td style="width:120px;">Hành động</td>
                             </tr>
                             </thead>
-
-                            <tfoot class="auto_check_pages">
-                            <tr>
-                                <td colspan="6">
-                                    <div class="list_action itemActions">
-                                        <a url="<?php ?>" class="button blueB" id="submit" href="#submit">
-                                            <span style="color:white;">Xóa hết</span>
-                                        </a>
-                                    </div>
-
-                                </td>
-                            </tr>
-                            </tfoot>
-
                             <tbody class="list_item">
                          <?php foreach ($slide as $row):?>
                             <tr class="row_<?php echo $row->id?>">

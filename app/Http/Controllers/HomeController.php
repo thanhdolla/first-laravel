@@ -25,15 +25,15 @@ class HomeController extends Controller
     public function getIndex()
     {
         $slide = Slide::all();
-        $newpr = San_pham::orderBy('id', 'DESC')->paginate(4);
+        $newpr = San_pham::orderBy('id', 'DESC')->paginate(8);
         $khuyenmai = San_pham::where('khuyen_mai', '<>', 0)->paginate(8);
         return view('frontend.page.content', compact('newpr', 'slide', 'khuyenmai'));
     }
 
     public function getLoaiSanPham($type)
     {
-        $sp = San_pham::where('loai_spID', $type)->paginate(6);
-        $km = San_pham::where('khuyen_mai', '<>', 0 )->where('Loai_spID',$type)->paginate(6);
+        $sp = San_pham::where('loai_spID', $type)->paginate(4);
+        $km = San_pham::where('khuyen_mai', '<>', 0 )->where('Loai_spID',$type)->paginate(4);
         $loai_sp = Loai_san_pham::where('id', $type)->first();
         return view('frontend.page.loaisanpham', compact('sp', 'km', 'loai_sp'));
     }
@@ -49,7 +49,8 @@ class HomeController extends Controller
                 $chi_nhanh = array(
                     'id' => $cn->id,
                     'ten_chi_nhanh' => $cn->ten_chi_nhanh,
-                    'embed' => $cn->embed
+                    'embed' => $cn->embed,
+                    'sdt' => $cn->sdt
                 );
                 $list[] = $chi_nhanh;
             }
@@ -76,6 +77,8 @@ class HomeController extends Controller
         $phanhoi = new Phan_hoi;
         $phanhoi->khach_hangID = Session::get('khach_hang_id');
         $phanhoi->noi_dung = $request->message;
+        $phanhoi->ten_kh = Session::get('khach_hang');
+        $phanhoi->stt_phan_hoi =0;
         $phanhoi->save();
         return back()->with('thongbao', 'gửi phản hồi thành công');
     }
@@ -294,7 +297,7 @@ class HomeController extends Controller
         if (count($check) > 0) {
             Session::put('khach_hang', $kh->ten_kh);
             Session::put('khach_hang_id', $kh->id);
-            return redirect('index')->with(['thongbao', 'Đăng nhập thành công']);
+            return redirect('index')->with('thongbao', 'Đăng nhập thành công');
         } else {
             return redirect()->back()->with(['loi' => 'Email hoặc mật khẩu không đúng']);
         }
@@ -371,33 +374,23 @@ class HomeController extends Controller
         return back()->with('thongbao', 'Lưu thành công');
     }
 
-    public function lichSuGioHang()
+    public function lichSuTuongTac()
     {
         if (Session::has('khach_hang_id')) {
             $id = Session::get('khach_hang_id');
             $donhang = Don_hang::where('khach_hangID', $id)->get();
+            if(count($donhang) == 0){
+                return back()->with('thongbao','Bạn chưa có đơn hàng nào');
+            }
             foreach ($donhang as $row) {
                 $dhct = Don_hang_chi_tiet::where('don_hangID', $row->id)->get();
                 foreach ($dhct as $sp) {
                     $sp_id = $sp->san_phamID;
-
                     $sp = San_pham::where('id', $sp_id)->get();
                 }
             }
 
-            return view('frontend.page.lichsugiohang', compact('donhang', 'dhct', 'sp'));
-        }
-    }
-
-    public function lichSuGioHangChiTiet()
-    {
-        if (Session::has('khach_hang_id')) {
-            $id = Session::get('khach_hang_id');
-            $donhang = Don_hang::where('khach_hangID', $id)->get();
-            foreach ($donhang as $row) {
-                $dhct = Don_hang_chi_tiet::where('don_hangID', $row->id)->get();
-            }
-            return view('frontend.page.lichsugiohang', compact('dhct'));
+            return view('frontend.page.lichsutuongtac', compact('donhang', 'dhct','sp','ph'));
         }
     }
 

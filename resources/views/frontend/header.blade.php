@@ -15,7 +15,7 @@
                         <li><a href="{{route('sigin')}}">Đăng kí</a></li>
                         <li><a href="{{route('login')}}">Đăng nhập</a></li>
                     @else
-                        <li><a href="{{route('lichsugiohang')}}"><i class="fa fa-user"></i>Lịch sử giỏ hàng</a></li>
+                        <li><a href="{{route('lichsutuongtac')}}"><i class="fa fa-user"></i>Lịch sử tương tác</a></li>
                         <li><a href="{{route('quanlitaikhoan')}}">{{Session::get('khach_hang')}}</a></li>
                         <li><a href="{{route('logout')}}">Logout</a></li>
                     @endif

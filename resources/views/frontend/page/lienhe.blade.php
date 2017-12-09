@@ -15,15 +15,15 @@
         </div>
     </div>
     <div class="beta-map" style="width:90%;margin:auto;">
-        <div class="abs-fullwidth beta-map wow flipInX" >
+        <div class="abs-fullwidth beta-map wow flipInX">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.637751514068!2d105.84212491431308!3d21.00715318601015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac763e5cefbf%3A0x16e1dd841f58fb22!2zMSBUcuG6p24gxJDhuqFpIE5naMSpYSwgQsOhY2ggS2hvYSwgSGFpIELDoCBUcsawbmcsIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1506481850405"></iframe>
         </div>
         <div class="container" style="width:100%;">
             <div id="content" class="space-top-none">
 
                 <div class="space50">&nbsp;</div>
-                <div class="row"  style="border: whitesmoke solid thin">
-                    <div class="col-sm-8">
+                <div class="row" style="border: whitesmoke solid thin">
+                    <div class="col-sm-7">
                         <h2>Gửi phẩn hồi</h2>
                         <div class="space20">&nbsp;</div>
                         <p>Hãy đưa ra phản hồi về sản phẩm, phục vụ... để chúng tôi có thể hoàn thiện hơn!</p>
@@ -48,24 +48,27 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-5">
                         <h2>Thông tin liên hệ</h2>
                         <div class="space20">&nbsp;</div>
-                        <b class="contact-title">Địa chỉ</b>
-                        <p>
-                            1 Trần Đại Nghĩa
-                            163 Tư Đình, p. Long Biên, Long Biên, Hà Nội, Việt Nam<br>
-                            873 Nguyễn Trãi<br>
-                            60 Lê Thanh Nghị
-                        </p>
-                        <div class="space20">&nbsp;</div>
-                        <b class="contact-title">Liên lạc</b>
-                        <p>19000091</p> <br>
-                            <a href="hr@betadesign.com">bksmart@gmail.com</a>
-                        </p>
+                        <div style="padding-left: 5px;">
+                            <b class="contact-title">Địa chỉ</b>
+                            <p>
+                                Số 1 Trần Đại Nghĩa<br>
+                                Số 163 Tư Đình, p. Long Biên, Long Biên, Hà Nội, Việt Nam<br>
+                                Số 873 Nguyễn Trãi<br>
+                                Số 60 Lê Thanh Nghị
+                            </p>
+                            <div class="space20">&nbsp;</div>
+                            <b class="contact-title">Liên lạc</b>
+                            <p>19001009</p> <br>
+                            <b class="contact-title">Email</b>
+                            <p>bksmart@gmail.com</p> <br>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div> <!-- #content -->
         </div> <!-- .container -->
     </div>
-        @endsection
+@endsection

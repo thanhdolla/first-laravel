@@ -100,9 +100,9 @@ Route::post('luuthongtinkhachhang',[
     'uses'=>'HomeController@luuTaiKhoan'
 ]);
 
-Route::get('lichsugiohang',[
-    'as'=>'lichsugiohang',
-    'uses'=>'HomeController@lichSuGioHang'
+Route::get('lichsutuongtac',[
+    'as'=>'lichsutuongtac',
+    'uses'=>'HomeController@lichSuTuongTac'
 ]);
 
 Route::get('timkiem',[
@@ -231,6 +231,11 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
             'uses'=>'DonHangController@XuLi'
         ]);
 
+        Route::get('chitietdonhang/{id}',[
+            'as'=>'admin/donhang/chitietdonhang/{id}',
+            'uses'=>'DonHangController@getDonHangChiTiet'
+        ]);
+
         Route::get('delete/{id}',[
             'as'=>'admin/donhang/delete/{id}',
             'uses'=>'DonHangController@delete'
@@ -246,6 +251,25 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
             'as' => 'admin/feedback/delete/{id}',
             'uses' => 'PhanHoiController@delete'
         ]);
+        Route::get('xuli/{id}', [
+            'as' => 'admin/feedback/xuli/{id}',
+            'uses' => 'PhanHoiController@xuLi'
+        ]);
+
+
+    });
+
+    Route::group(['prefix' => 'binhluan'], function () {
+        Route::get('index', [
+            'as' => 'admin/binhluan/index',
+            'uses' => 'BinhLuanController@index'
+        ]);
+
+        Route::get('delete/{id}', [
+            'as' => 'admin/feedback/delete/{id}',
+            'uses' => 'PhanHoiController@delete'
+        ]);
+
 
 
     });

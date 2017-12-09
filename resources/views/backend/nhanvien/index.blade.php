@@ -79,19 +79,37 @@
                             <tbody class="list_item">
                             <?php foreach ($nhanvien as $row):?>
                             <tr class="row_<?php echo $row->id?>">
-                                <td class="textC"><?php echo $row->id?></td>
-                                <td class="textC"><?php echo $row->ten_ad?></td>
-                                <td class="textC"><?php echo $row->email_ad?></td>
-                                <td class="textC"><?php echo $row->sdt_ad?></td>
+                                <td class ="text">
+                                    <?php if($row->id==1):?>
+                                    <span style="color:red"><?php echo $row->id; ?></span>
+                                    <?php  else :{echo $row->id;}endif; ?>
+                                </td>
+                                <td class ="text">
+                                    <?php if($row->id==1):?>
+                                    <span style="color:red"><?php echo $row->ten_ad; ?></span>
+                                <?php  else :{echo $row->ten_ad;}endif; ?>
+
+                                <td class ="text">
+                                    <?php if($row->id==1):?>
+                                    <span style="color:red"><?php echo $row->email_ad; ?></span>
+                                    <?php  else :{echo $row->email_ad;}endif; ?>
+                                </td>
+                                <td class ="text">
+                                    <?php if($row->id==1):?>
+                                    <span style="color:red"> <?php echo $row->sdt_ad; ?></span>
+                                    <?php  else :{echo $row->sdt_ad;}endif; ?>
+                                </td>
 
                                 <td class="option textC">
                                     <a class="tipS" title="Chỉnh sửa" href="admin/nhanvien/edit/{{$row->id}}">
                                         <img src="source/backend/admin/images/icons/color/edit.png">
                                     </a>
-
+                                    <?php if($row->id !=1): ?>
                                     <a class="tipS verify_action" title="Xóa" href="admin/nhanvien/delete/{{$row->id}}" >
                                         <img src="source/backend/admin/images/icons/color/delete.png">
                                     </a>
+                                    <?php else:?>
+                                <?php echo " "; endif;?>
                                 </td>
                             </tr>
                             <?php endforeach;?>

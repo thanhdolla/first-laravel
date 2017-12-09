@@ -14,7 +14,12 @@ class PhanHoiController extends Controller
         return view('backend.phanhoi.index', compact('list'));
     }
 
-
+    public function xuLi($id){
+        $ph = Phan_hoi::find($id);
+        $ph->stt_phan_hoi = 1;
+        $ph->save();
+        return back()->with('thongbao','Xử lí phản hồi thành công');
+    }
 
     public function delete($id){
         $feedback = Phan_hoi::find($id);

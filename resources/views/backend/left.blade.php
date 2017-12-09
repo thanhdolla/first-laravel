@@ -37,10 +37,6 @@
                         <a href="{{route('admin/donhang/index')}}">
                             Danh sách đơn hàng							</a>
                     </li>
-                    <li >
-                        <a href="{{route('admin/donhangchitiet/index')}}">
-                            Đơn hàng chi tiết							</a>
-                    </li>
                 </ul>
 
             </li>
@@ -59,10 +55,6 @@
                     <li >
                         <a href="{{route('admin/category/index')}}">
                             Danh mục							</a>
-                    </li>
-                    <li >
-                        <a href="{{route('admin/feedback/index')}}">
-                            Phản hồi							</a>
                     </li>
                 </ul>
 
@@ -101,6 +93,26 @@
                     <li >
                         <a href="{{route('admin/tintuc/index')}}">
                             Tin tức							</a>
+                    </li>
+                </ul>
+
+            </li>
+
+            <li class="content">
+
+                <a href="admin/content.html" class=" exp" >
+                    <span>Tương tác khách hàng</span>
+                    <strong>2</strong>
+                </a>
+
+                <ul class="sub">
+                    <li >
+                        <a href="{{route('admin/feedback/index')}}">
+                            Phản hồi							</a>
+                    </li>
+                    <li >
+                        <a href="{{route('admin/binhluan/index')}}">
+                            Bình luận							</a>
                     </li>
                 </ul>
 

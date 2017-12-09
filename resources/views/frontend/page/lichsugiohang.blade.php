@@ -8,6 +8,7 @@
         <hr>
 
         <div class="box-content-center product"><!-- The box-content-center -->
+        </div>
             <?php if (count($dhct) > 0): ?>
 
             @if(Session::has('thongbao'))
