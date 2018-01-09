@@ -16,152 +16,82 @@
     <div class="container" style="width:90%;border:whitesmoke solid thin;margin:auto;border-top: transparent">
         <div id="content">
             <div class="row">
+  @if(Session::has('flag'))
+                        <div class="alert alert-{{Session::get('flag')}}">{{Session::get('message')}}
 
+                        </div>
+                    @endif
+                    @if(Session::has('thongbao'))
+                        <div class="alert alert-success" style="background:#00ced1;font-size:16px;color:black">
+                            {{Session::get('thongbao')}}
+                        </div>
+                    @endif
+                    @if(Session::has('loi'))
+                        <div class="alert alert-danger" style="background:Red; color:black;font-size:16px;">
+                            {{Session::get('loi')}}
+                        </div>
+                    @endif
                 <div class="col-sm-12">
                     <div class="row">
                         <div class="col-sm-4">
-                            <img style="height: 500px;width: 350px;padding-top: 120px;" src="upload/product/add/{{$chitiet->anh_sp}}"
+                            <img style="height: 500px;width: 350px;margin-top:80px;" src="upload/product/add/{{$chitiet->anh_sp}}"
                                  alt="">
                         </div>
                         <div class="col-sm-8">
                             <div class="col-sm-1"></div>
                             <div class="col-sm-7">
                                 <div class="single-item-body">
-                                    <p class="single-item-title"><b>{{$chitiet->ten_sp}}</b></p>
-                                    <p class="single-item-price">
-                                        <a class="single-item-price">
-                                            <?php $price_new = $chitiet->gia_sp - $chitiet->khuyen_mai ?>
-                                            <?php if ($chitiet->khuyen_mai > 0): ?>
-                                            <a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
-                                                <?php echo number_format($chitiet->gia_sp); ?>Đ
-                                            </a>
-                                                <br>
-                                            <a class="ga" style="color:red;padding-top: 10px;font-size: 20px;">
-                                                <b><?php echo number_format($price_new) ?>Đ</b>
-                                            </a>
-                                            <?php else: ?>
-                                            <a style="color:red;font-size: 20px;"><b><?php echo number_format($chitiet->gia_sp); ?>
-                                                    Đ</b></a>
-                                            <?php endif; ?>
-                                        </a>
-                                    </p>
+                                    <p class="single-item-title"><b><h4>{{$chitiet->ten_sp}}</h4></b></p>
+                                    <div style="padding-top:10px;"></div>
                                 </div>
+
+                                <table class="table table-light">
+                                    <tbody>
+                                    <tr>
+                                        <td>Giá </td>
+                                        <td> <a class="single-item-price">
+                                                <?php $price_new = $chitiet->gia_sp - $chitiet->khuyen_mai ?>
+                                                <?php if ($chitiet->khuyen_mai > 0): ?>
+                                                <a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
+                                                    <?php echo number_format($chitiet->gia_sp); ?>Đ
+                                                </a>
+                                                <br>
+                                                <a class="ga" style="color:red;padding-top: 10px;font-size: 20px;">
+                                                    <b><?php echo number_format($price_new) ?>Đ</b>
+                                                </a>
+                                                <?php else: ?>
+                                                <a style="color:red;font-size: 20px;"><b><?php echo number_format($chitiet->gia_sp); ?>
+                                                        Đ</b></a>
+                                                <?php endif; ?>
+                                            </a></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Hãng sản xuất</td>
+                                        <td>{{$chitiet->hang_sx}}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Ngày sản xuất</td>
+                                        <td>{{$chitiet->ngay_sx}}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Bảo hành</td>
+                                        <td> {{$chitiet->bao_hanh}}</td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <b><h4>Cấu hình chi tiết:</h4></b>
+                                    <p>
+                                        <?php echo $chitiet->mo_ta_sp?>
+                                    </p>
+
 
                                 <div style="background: red;color:black">
                                 </div>
 
-
-                                <div class="clearfix"></div>
-                                <div class="space20">&nbsp;</div>
-
-                                <p class='option'>
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <thead>
-                                    <tr style="text-align:center ">
-                                        <th>Thông tin</th>
-                                        <th>Chi tiết</th>
-                                        </td>
-                                    </tr>
-                                    </thead>
-                                    <tr>
-                                        <td>
-                                            Lượt xem
-                                        </td>
-                                        <td>
-                                            <?php echo $chitiet->luot_view ?>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            Màn hình
-                                        </td>
-                                        <td style="padding-left: 10px;">
-                                            <?php echo $chitiet->man_hinh ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Hệ điều hành
-                                        </td>
-                                        <td style="padding-left: 10px;">
-                                            <?php echo $chitiet->he_dieu_hanh ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Camera trước
-                                        </td>
-                                        <td style="padding-left: 10px;">
-                                            <?php echo $chitiet->camera_truoc ?> px
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Camera sau
-                                        </td>
-                                        <td style="padding-left: 10px;">
-                                            <?php echo $chitiet->camera_sau ?> px
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            CPU
-                                        </td>
-                                        <td style="padding-left: 10px;">
-                                            <?php echo $chitiet->cpu ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Bộ nhớ trong
-                                        </td>
-                                        <td style="padding-left: 10px;">
-                                            <?php echo $chitiet->bo_nho_trong ?> Gb
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Thẻ nhớ
-                                        </td>
-                                        <td style="padding-left: 10px;">
-                                            <?php echo $chitiet->the_nho ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Thẻ sim
-                                        </td>
-                                        <td style="padding-left: 10px;">
-                                            <?php echo $chitiet->sim ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                    <tr>
-                                        <td>
-                                            Dung lượng pin
-                                        </td>
-                                        <td style="padding-left: 10px;">
-                                            <?php echo $chitiet->pin ?> mah
-                                        </td>
-                                    </tr>
-                                        <td>
-                                            Ngày sản xuất
-                                        </td>
-                                        <td>
-                                            <?php echo $chitiet->ngay_sx ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Bảo hành
-                                        </td>
-                                        <td>
-                                            <?php echo $chitiet->bao_hanh ?>
-                                        </td>
-                                    </tr>
-                                </table>
                                 <div class="single-item-caption" style="padding-top: 5px;">
                                     <a class="add-to-cart pull-left" href="{{route('addcart',$chitiet->id)}}"
                                        title="Add to cart"><i class="fa fa-shopping-cart"></i></a>

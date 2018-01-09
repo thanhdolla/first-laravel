@@ -1,9 +1,10 @@
 <head>
     <title>Admin Login</title>
     <!-- include js files -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+    {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">--}}
     <base href="{{asset('')}}">
+    <link rel="stylesheet" href="source/frontend/assets/dest/css/bootstrap.css">
     <link rel="stylesheet" href="source/frontend/assets/dest/css/font-awesome.min.css">
     <link rel="stylesheet" href="source/backend/admin/css/simple-line-icons.css">
     <link rel="stylesheet" href="source/backend/admin/css/uniform.default.css">

@@ -40,23 +40,33 @@ class HomeController extends Controller
 
     public function getChiTietSanPham($id)
     {
-        $chitiet = San_pham::where('id', $id)->first();
-        $id = $chitiet->id;
-        $list_cn = json_decode($chitiet->chi_nhanh);
-        foreach ($list_cn as $row) {
-            $chinhanh = Chi_nhanh::where('id', $row)->get();
-            foreach ($chinhanh as $cn) {
-                $chi_nhanh = array(
-                    'id' => $cn->id,
-                    'ten_chi_nhanh' => $cn->ten_chi_nhanh,
-                    'embed' => $cn->embed,
-                    'sdt' => $cn->sdt
-                );
-                $list[] = $chi_nhanh;
+$ids = San_pham::find($id);
+        if ($ids) {
+            $chitiet = San_pham::where('id', $id)->first();
+            $id = $chitiet->id;
+
+            $list_cn = json_decode($chitiet->chi_nhanh);
+            foreach ($list_cn as $row) {
+                $chinhanh = Chi_nhanh::where('id', $row)->get();
+                foreach ($chinhanh as $cn) {
+                    $chi_nhanh = array(
+                        'id' => $cn->id,
+                        'ten_chi_nhanh' => $cn->ten_chi_nhanh,
+                        'embed' => $cn->embed,
+                        'sdt' => $cn->sdt
+                    );
+                    $list[] = $chi_nhanh;
+                }
             }
+            $binhluan = Binh_luan::where('san_phamID', $id)->orderBy('id', 'DESC')->get();
+            return view('frontend.page.chitietsanpham', compact('chitiet', 'binhluan', 'list'));
         }
-        $binhluan = Binh_luan::where('san_phamID', $id)->orderBy('id', 'DESC')->get();
-        return view('frontend.page.chitietsanpham', compact('chitiet', 'binhluan','list'));
+        else{
+            $slide = Slide::all();
+            $newpr = San_pham::orderBy('id', 'DESC')->paginate(8);
+            $khuyenmai = San_pham::where('khuyen_mai', '<>', 0)->paginate(8);
+            return view('frontend.page.content', compact('newpr', 'slide', 'khuyenmai'));
+        }
     }
 
     public function chiNhanh(Request$req, $id){
@@ -73,11 +83,21 @@ class HomeController extends Controller
         if (!Session::has('khach_hang')) {
             return back()->with('loi', 'Bạn phải đăng nhập mới có thể giử phản hồi');
         }
-
+        $this->validate($request,
+            [
+                'tieu_de' => 'required',
+                'noidung' => 'required',
+            ],
+            [
+                'tieu_de.required' => "Vui lòng nhập tiêu đề",
+                'noidung.requered' => "Vui lòng nhập nội dung phản hồi",
+            ]
+        );
         $phanhoi = new Phan_hoi;
         $phanhoi->khach_hangID = Session::get('khach_hang_id');
         $phanhoi->noi_dung = $request->message;
         $phanhoi->ten_kh = Session::get('khach_hang');
+        $phanhoi->tieu_de = $request->tieu_de;
         $phanhoi->stt_phan_hoi =0;
         $phanhoi->save();
         return back()->with('thongbao', 'gửi phản hồi thành công');
@@ -103,6 +123,7 @@ class HomeController extends Controller
     public function addToCompare(Request $request, $id)
     {
         $sanpham = San_pham::find($id);
+        $loaisp = $sanpham->loai_spID;
         $oldCompare = Session('compare') ? Session::get('compare') : null;
         $compare = new Compare($oldCompare);
         $count = $compare->totalQty;
@@ -116,6 +137,9 @@ class HomeController extends Controller
                     $sp = $row['item'];
                     if ($id == $sp->id) {
                         return back()->with('loi', 'Sản phẩm đã tồn tại trong danh mục so sánh');
+                    }
+                    if($loaisp != $sp->loai_spID){
+                        return back()->with('loi', 'Hai sản phẩm không cùng loại');
                     }
                 }
             }
@@ -134,6 +158,11 @@ class HomeController extends Controller
         $compare->reduceByOne($id);
         Session::put('compare_qty', $compare->totalQty);
         $request->session()->put('compare', $compare);
+        if($compare->totalQty < 1){
+            $compare->totalQty == 0;
+            Session::put('compare_qty', $compare->totalQty);
+            return view('frontend.page.compare');
+        }
         return back()->with('thongbao', 'Xóa thành công');
     }
 
@@ -141,7 +170,11 @@ class HomeController extends Controller
     {
         $oldCompare = Session('compare') ? Session::get('compare') : null;
         $compare = new Compare($oldCompare);
+        if($compare->totalQty == 0){
+            return back()->with('loi','Chưa có sản phẩm so sánh');
+        }
         $list = (Session::get('compare'));
+
         $cp = $list->items;
         return view('frontend.page.compare', compact('cp', 'count'));
 
@@ -297,6 +330,13 @@ class HomeController extends Controller
         if (count($check) > 0) {
             Session::put('khach_hang', $kh->ten_kh);
             Session::put('khach_hang_id', $kh->id);
+            Cart::destroy();
+             $oldCompare = Session('compare') ? Session::get('compare') : null;
+             $compare = new Compare($oldCompare);
+            $compare->totalQty == 0;
+            Session::put('compare_qty', $compare->totalQty);
+            $req->session()->forget('compare');
+
             return redirect('index')->with('thongbao', 'Đăng nhập thành công');
         } else {
             return redirect()->back()->with(['loi' => 'Email hoặc mật khẩu không đúng']);
@@ -307,6 +347,13 @@ class HomeController extends Controller
     public function logout(Request $request)
     {
         if (Session::has('khach_hang')) {
+            Cart::destroy();
+            $oldCompare = Session('compare') ? Session::get('compare') : null;
+            $compare = new Compare($oldCompare);
+            $compare->totalQty == 0;
+            Session::put('compare_qty', $compare->totalQty);
+            $request->session()->forget('compare');
+
             $request->session()->forget('khach_hang');
         }
 
@@ -379,18 +426,24 @@ class HomeController extends Controller
         if (Session::has('khach_hang_id')) {
             $id = Session::get('khach_hang_id');
             $donhang = Don_hang::where('khach_hangID', $id)->get();
-            if(count($donhang) == 0){
-                return back()->with('thongbao','Bạn chưa có đơn hàng nào');
+            $phanhoi = Phan_hoi::where('khach_hangID', $id)->get();
+            if (count($donhang) == 0 && count($phanhoi) == 0) {
+                return back()->with('thongbao', 'Bạn chưa có đơn hàng hoặc phản hồi nào');
             }
-            foreach ($donhang as $row) {
-                $dhct = Don_hang_chi_tiet::where('don_hangID', $row->id)->get();
-                foreach ($dhct as $sp) {
-                    $sp_id = $sp->san_phamID;
-                    $sp = San_pham::where('id', $sp_id)->get();
+            if (count($donhang) > 0) {
+                foreach ($donhang as $row) {
+                    $dhct = Don_hang_chi_tiet::where('don_hangID', $row->id)->get();
+                    foreach ($dhct as $sp) {
+                        $sp_id = $sp->san_phamID;
+                        $sp = San_pham::where('id', $sp_id)->get();
+                    }
                 }
-            }
 
-            return view('frontend.page.lichsutuongtac', compact('donhang', 'dhct','sp','ph'));
+                return view('frontend.page.lichsutuongtac', compact('donhang', 'dhct', 'sp', 'ph'));
+            } else {
+                $dhct = array();
+                return view('frontend.page.lichsutuongtac', compact('dhct'));
+            }
         }
     }
 

@@ -34,8 +34,18 @@ class SanPhamController extends Controller
 
     public function getAdd()
     {
+        $ds_cn = Chi_nhanh::all();
+        foreach ($ds_cn as $row) {
+            $chi_nhanh = array(
+                'id' => $row->id,
+                'ten_chi_nhanh' => $row->ten_chi_nhanh,
+                'embed' => $row->embed
+            );
+            $ds[] = $chi_nhanh;
+        }
+
         $cate = Loai_san_pham::all();
-        return view('backend.product.add', compact('cate'));
+        return view('backend.product.add', compact('cate','ds'));
     }
 
     public function getCateAdd()
@@ -53,7 +63,7 @@ class SanPhamController extends Controller
                 'description' => 'required',
                 'price' => 'required',
                 'mfg' => 'required',
-//                'discount' => 'required',
+                'chinhanh' => 'required',
                 'warranty' => 'required',
 
                 'image' => 'required',
@@ -63,7 +73,7 @@ class SanPhamController extends Controller
                 'description.required' => "Nhập mô tả sản phẩm",
                 'price.required' => "Nhập giá sản phẩm",
                 'mfg.required' => "Nhập ngày sản xuất sản phẩm",
-//                'discount.required' => "Nhập tên sản phẩm",
+                'chinhanh.required' => "Nhập chi nhánh có sản phẩm",
                 'warranty.required' => "Nhập thời gian bảo hành",
                 'name.unique' => "Tên đã tồn tại",
 
@@ -77,7 +87,15 @@ class SanPhamController extends Controller
         $product->gia_sp = $request->price;
         $product->ngay_sx = $request->mfg;
         $product->khuyen_mai = $request->discount;
+        $product->luot_view = 0;
         $product->bao_hanh = $request->warranty;
+
+        $a = $request->chinhanh;
+        $b = str_split($a);
+        $c =json_encode($b);
+        $product->chi_nhanh = $c;
+        $anh_cu = $product->anh_sp;
+
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $duoi = $file->getClientOriginalExtension();

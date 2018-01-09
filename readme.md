@@ -21,4 +21,4 @@ Open `http://localhost/phpmyadmin/` in your browser. Create new database named '
 
 Goto `http://localhost/Project/index` to open customer website.
 
-Goto `http://localhost/Project/admin/login` to open admin login page.
+Goto `http://localhost/Project/admin/login` to open admin login page.# bk_smart

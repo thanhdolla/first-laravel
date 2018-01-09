@@ -50,21 +50,22 @@
                                             <div class="single-item-body">
                                                 <p class="single-item-title">{{$new->ten_sp}}</p>
                                                 <a class="single-item-price">
-                                                    <?php $price_new = $new->gia_sp - $new->khuyen_mai ?>
-                                                    <?php if ($new->khuyen_mai > 0): ?>
-                                                    <a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
-                                                        <?php echo number_format($new->gia_sp); ?>Đ
+<?php $price_new = $new->gia_sp-$new->khuyen_mai?>
+                                                    <?php if ($new->khuyen_mai > 0):?>
+<a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
+<?php echo number_format($new->gia_sp);?>Đ
                                                     </a>
                                                     <br>
                                                     <a class="ga" style="color:red;padding-top: 10px;font-size: 20px;">
-                                                        <b><?php echo number_format($price_new) ?>Đ</b>
+                                                        <b><?php echo number_format($price_new)?>Đ</b>
                                                     </a>
-                                                    <?php else: ?>
+<?php  else :?>
                                                     <i style="font-size: 15px;">chưa có khuyến mại</i>
-                                                    <a style="color:red;font-size: 20px;"><b><?php echo number_format($new->gia_sp); ?>
-                                                            Đ</b></a>
-                                                    <?php endif; ?>
-                                                </a>
+                                                    <a style="color:red;font-size: 20px;"><b><?php echo number_format($new->gia_sp);
+?>
+Đ</b></a>
+<?php endif;?>
+</a>
                                             </div>
                                             <div class="single-item-caption" style="padding-top: 5px;">
                                                 <a class="add-to-cart pull-left" href="{{route('addcart',$new->id)}}"
@@ -81,7 +82,7 @@
                         </div> <!-- .beta-products-list -->
                         @if(count($sp) >0)
                             <div style="text-align:center">
-                                <?php echo $sp->links()?>
+<?php echo $sp->links()?>
                             </div>
                     @endif
                     <!-- .beta-products-list -->
@@ -91,7 +92,7 @@
                         <div class="beta-products-list">
                             <h4>Sản phẩm khuyến mại</h4>
                             <div class="beta-products-details">
-                                <p class="pull-left">Tìm thấy <?php echo count($km)?> sản phẩm</p>
+                                <p class="pull-left">Tìm thấy <?php echo count($km)?>sản phẩm</p>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="row">
@@ -106,20 +107,21 @@
                                             <div class="single-item-body">
                                                 <p class="single-item-title">{{$item->ten_sp}}</p>
                                                 <p class="single-item-price">
-                                                    <?php $price_new = $item->gia_sp - $item->khuyen_mai ?>
-                                                    <?php if ($item->khuyen_mai > 0): ?>
-                                                    <a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
-                                                        <?php echo number_format($item->gia_sp); ?>Đ
+<?php $price_new = $item->gia_sp-$item->khuyen_mai?>
+                                                    <?php if ($item->khuyen_mai > 0):?>
+<a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
+<?php echo number_format($item->gia_sp);?>Đ
                                                     </a>
                                                     <br>
                                                     <a class="ga" style="color:red;padding-top: 10px;font-size: 20px;">
-                                                        <b><?php echo number_format($price_new) ?>Đ</b>
+                                                        <b><?php echo number_format($price_new)?>Đ</b>
                                                     </a>
-                                                    <?php else: ?>
+<?php  else :?>
                                                     <i style="font-size: 15px;">chưa có khuyến mại</i>
-                                                    <a style="color:red;font-size: 20px;"><b><?php echo number_format($item->gia_sp); ?>
-                                                            Đ</b></a>
-                                                    <?php endif; ?>
+                                                    <a style="color:red;font-size: 20px;"><b><?php echo number_format($item->gia_sp);
+?>
+Đ</b></a>
+<?php endif;?>
                                                 </p>
 
                                             </div>

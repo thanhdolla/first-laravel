@@ -44,39 +44,32 @@
                         <div class="space20">&nbsp;</div>
                         <p>Hãy đưa ra phản hồi về sản phẩm, phục vụ... để chúng tôi có thể hoàn thiện hơn!</p>
                         <div class="space20">&nbsp;</div>
-                        @if(count($errors)> 0)
-                            <div class="alert alert-danger">
-                                @foreach($errors->all() as $err)
-                                    {{$err}}<br>
-                                @endforeach
-                            </div>
-                        @endif
-                        @if(Session::has('loi'))
-                            <div class="alert alert-danger">
-                                {{Session::get('loi')}}
-                            </div>
-                        @endif
                         @if(Session::has('thongbao'))
-                            <div class="alert alert-success">
+                            <div class="alert alert-success" style="background:#00ced1;width:80%">
                                 {{Session::get('thongbao')}}
                             </div>
                         @endif
-                        <?php if(Session::has('khach_hang_id')) { ?>
-                        <form action="{{route('phanhoi')}}" method="post" class="contact-form">
-                            <input name="_token" type="hidden" value="{{csrf_token()}}"/>
-                            <div class="tieu_de">
-                                <textarea style="height:70px;" name="tieu_de" placeholder="Title"></textarea>
+                        @if(Session::has('loi'))
+                            <div class="alert alert-danger" style="width:80%">
+                                {{Session::get('loi')}}
                             </div>
-                            <div class="form-block">
-                                <textarea name="noidung" placeholder="Your Message"></textarea>
-                            </div>
-                            <div class="form-block">
-                                <button type="submit" class="btn btn-success">Gửi phản hồi</button>
-                            </div>
-                        </form>
-                        <?php } else {?>
-                        <i>Bạn phải đăng nhập mới có thể gửi phản hồi</i>
-                        <?php } ?>
+                        @endif
+<?php if (Session::has('khach_hang_id')) {?>
+	<form action="{{route('phanhoi')}}" method="post" class="contact-form">
+	                            <input name="_token" type="hidden" value="{{csrf_token()}}"/>
+	                            <div class="tieu_de">
+	                                <textarea style="height:70px;" name="tieu_de" placeholder="Title"></textarea>
+	                            </div>
+	                            <div class="form-block">
+	                                <textarea name="message" placeholder="Your Message"></textarea>
+	                            </div>
+	                            <div class="form-block">
+	                                <button type="submit" class="btn btn-success">Gửi phản hồi</button>
+	                            </div>
+	                        </form>
+	<?php } else {?>
+	<i>Bạn phải đăng nhập mới có thể gửi phản hồi</i>
+	<?php }?>
 
                     </div>
                     <div class="col-sm-5">

@@ -1,7 +1,10 @@
 @extends('masteradmin')
 @section('contentadmin')
-    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> <script type="text/javascript">
-        bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+    <script type="text/javascript">
+        bkLib.onDomLoaded(function () {
+            nicEditors.allTextAreas()
+        });
     </script>
     <!-- Right side -->
     <div id="rightSide">
@@ -97,7 +100,7 @@
                                     <label for="param_name" class="formLeft">Mô tả:<span class="req">*</span></label>
                                     <div class="formRight">
                                 <span class="oneTwo">
-                                    <textarea name="description" id="param_name" ></textarea>
+                                    <textarea name="description" id="param_name"></textarea>
 
                                 </span>
                                         <span class="autocheck" name="name_autocheck"></span>
@@ -109,8 +112,8 @@
                                     <label for="param_name" class="formLeft">Giá bán:<span class="req">*</span></label>
                                     <div class="formRight">
                                 <span class="oneTwo">
-                                    <input type="number" min="0" step="1000" id="param_name" name="price"
-                                            required> VNĐ
+                                    <input type="number" id="param_name" name="price"
+                                           > VNĐ
 
                                 </span>
                                         <span class="autocheck" name="name_autocheck"></span>
@@ -123,8 +126,8 @@
                                                 class="req">*</span></label>
                                     <div class="formRight">
                                 <span class="oneTwo">
-                                    <input type="number" min="0" step="1000" id="param_name" name="discount"
-                                            required> VNĐ
+                                    <input type="number" id="param_name" name="discount"
+                                           > VNĐ
 
                                 </span>
                                         <span class="autocheck" name="name_autocheck"></span>
@@ -145,11 +148,35 @@
                                     <div class="clear"></div>
                                 </div>
                                 <div class="formRow">
+                                    <div class="formRow">
+                                        <label for="param_name" class="formLeft">Chi nhánh:<span
+                                                    class="req">*</span></label>
+                                        <div class="formRight">
+
+                                <span class="oneTwo" style="width: 100%">
+                                    <h5>Danh sách các chi nhánh hiện có:</h5>
+                                    <?php
+                                    foreach ($ds as $row) {
+                                        echo 'Mã ' . $row['id'] . ' - ' . $row['ten_chi_nhanh'], '<br>';
+                                    }
+
+                                    ?>
+                                    <h6>Nhập mã chi nhánh có sản phẩm này:</h6>
+                                    <i>(Nhập liền các mã chi nhánh)</i><br>
+                                    <i>Ví dụ: 12</i><br>
+                                    <input style="width: 50%" type="text" id="param_name" name="chinhanh"
+                                           value="">
+                                </span>
+                                            <span class="autocheck" name="name_autocheck"></span>
+                                            <div class="clear error" name="name_error"></div>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
                                     <label for="param_name" class="formLeft">Ngày sản xuất:<span
                                                 class="req">*</span></label>
                                     <div class="formRight">
                                 <span class="oneTwo">
-                                    <input type="text" id="param_name" name="mfg" required>
+                                    <input type="text" id="param_name" name="mfg" >
                                 </span>
                                         <span class="autocheck" name="name_autocheck"></span>
                                         <div class="clear error" name="name_error"></div>

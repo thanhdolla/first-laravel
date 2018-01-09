@@ -15,7 +15,23 @@
         {{--});--}}
     {{--});--}}
 {{--</script>--}}
+
     <div class="box-center" style="width:90%;margin:auto;margin-bottom: 200px;"><!-- The box-center product-->
+      @if(Session::has('flag'))
+                        <div class="alert alert-{{Session::get('flag')}}">{{Session::get('message')}}
+
+                        </div>
+                    @endif
+                    @if(Session::has('thongbao'))
+                        <div class="alert alert-success" style="background:#00ced1;font-size:16px;color:black">
+                            {{Session::get('thongbao')}}
+                        </div>
+                    @endif
+                    @if(Session::has('loi'))
+                        <div class="alert alert-danger" style="background:Red; color:black;font-size:16px;">
+                            {{Session::get('loi')}}
+                        </div>
+                    @endif
         <div class="tittle-box-center" style="margin-top:50px;">
             <h2>Thông tin giỏ hàng ({{$count}} sản phẩm)</h2>
         </div>
@@ -48,7 +64,7 @@
                             </div>
 
                         <td>
-                            <a><input name="<?php echo $row->rowId?>" value="<?php echo $row->qty;?>" size="2"/></a>
+                            <a><input name="<?php echo $row->rowId?>" type="number" value="<?php echo $row->qty;?>" size="2"/></a>
                         </td>
                         </td>
                         <td>

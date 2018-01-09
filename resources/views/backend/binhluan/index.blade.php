@@ -4,7 +4,7 @@
         <div class="titleArea">
             <div class="wrapper">
                 <div class="pageTitle">
-                    <h5>Phản hồi</h5>
+                    <h5>Bình Luận</h5>
                     <span>Quản lý bình luận</span>
                 </div>
 
@@ -58,7 +58,7 @@
                         <td class="textC">
                             <a href="admin/binhluan/delete/{{$row->id}}"
                                onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
-                                <img src="source/backend/admin/images/icons/color/delete.png">
+                                <i style="font-size: 20px;color:red" class="fa fa-trash" aria-hidden="true"></i>
                             </a>
                         </td>
 
