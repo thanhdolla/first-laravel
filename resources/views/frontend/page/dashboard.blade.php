@@ -176,13 +176,12 @@
                 <div class="card">
                     <a href="{{route('chitietsanpham',$new->id)}}">
                         <img src="upload/product/add/{{$new->anh_sp}}" width="100%" height="200px">
-                    </a>
-
-                    <div class="overlay">
-                        <?php $price_new = $new-> gia_sp - $new->khuyen_mai?>
+                        
+                        <div class="overlay">
+                            <?php $price_new = $new-> gia_sp - $new->khuyen_mai?>
                             <h3>{{$new->ten_sp}}</h3>
-
-                        <?php if ($new->khuyen_mai > 0): ?>
+                            
+                            <?php if ($new->khuyen_mai > 0): ?>
                             <p class="price-before">
                                 <?php echo number_format($new->gia_sp); ?>đ
                             </p>
@@ -190,17 +189,18 @@
                             <p class="price">
                                 <?php echo number_format($price_new) ?>đ
                             </p>
-                        <?php else: ?>
+                            <?php else: ?>
                             <p class="no-discount">
                                 Chưa có khuyến mãi
                             </p>
-
+                            
                             <p class="price">
                                 <?php echo number_format($new->gia_sp); ?>đ
                             </p>
-                        <?php endif; ?>
-                    </div>
-    
+                            <?php endif; ?>
+                        </div>
+                    </a>
+                        
                     <a href="{{route('addcart',$new->id)}}">
                         <button class="cart-icon">
                             shopping_cart
