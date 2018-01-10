@@ -17,6 +17,8 @@
         [view=login] .main h1 {
             font-size: 22px !important;
             margin-bottom: 15px;
+
+            color: black;
         }
 
         [view=login] input {
@@ -89,12 +91,12 @@
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
 
             <div class="input">
-                <input type="text" placeholder="Email Address">
+                <input type="text" name="email" placeholder="Email Address">
                 <div class="bottom-line"></div>
             </div>
 
             <div class="input">
-                <input type="password" placeholder="Password">
+                <input type="password" name="password" placeholder="Password">
                 <div class="bottom-line"></div>
             </div>
             

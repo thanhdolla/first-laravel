@@ -1,83 +1,181 @@
 @extends('master')
 @section("content")
-    <div class="inner-header">
-        <div class="container">
-            <div class="pull-left">
-                <h6 class="inner-title">Đăng kí</h6>
+
+    <style>
+        [view=signin] {
+            display: flex;
+            justify-content: center;
+
+            margin-top: 20px;
+            margin-bottom: 200px;
+        }
+
+        [view=signin] .main {
+            width: 800px;
+            font-family: Arial !important;
+        }
+
+        [view=signin] .main h1 {
+            font-size: 22px !important;
+            margin-bottom: 15px;
+        }
+
+        [view=signin] input {
+            padding: 5px;
+            border: none;
+            outline: none;
+        }
+
+        [view=signin] .input .bottom-line {
+            display: flex;
+            justify-content: center;
+
+            width: 100%;
+            height: 2px;
+            background: #eee;
+        }
+
+        [view=signin] .line {
+            display: flex;
+        }
+
+        [view=signin] .line > * {
+            flex: 0 0 auto;
+            width: 50%;
+        }
+
+        [view=signin] .line > :not(:first-child) {
+            margin-left: 10px;
+        }
+
+        [view=signin] .input .label {
+            font-size: 12px !important;
+            color: black;
+            font-weight: normal;
+        }
+        
+        [view=signin] .input .bottom-line::after {
+            content: '';
+            height: 100%;
+            width: 0px;
+            background: black;
+        }
+
+        [view=signin] .input.focus .bottom-line::after {
+            width: 100%;
+        }
+
+        [view=signin] .input .bottom-line::after {
+            transition: 0.5s;
+        }
+
+        [view=signin] .input input {
+            width: 100%;
+            font-size: 14px !important;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        [view=signin] input {
+            padding: 8px !important;
+        }
+
+        [view=signin] .input {
+            margin-bottom: 8px;
+        }
+
+        [view=signin] button {
+            padding: 5px 20px;
+            font-size: 14px !important;
+            background: black;
+            color: white;
+            border: none;
+            outline: none;
+
+            margin-top: 20px;
+        }
+
+        [view=signin] .error {
+            color: red;
+            font-size: 14px !important;
+        }
+    </style>
+
+    <div view="signin">
+        <form class="main" action="{{route('sigin')}}" method="post">
+            <h1>Đăng nhập</h1>
+
+            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+
+            <div class="input">
+                <p class="label">Email Address</p>
+                <input type="text" name="email" placeholder="e.g. abc@example.com">
+                <div class="bottom-line"></div>
             </div>
-            <div class="pull-right">
-                <div class="beta-breadcrumb">
-                    <a href="index.html">Home</a> / <span>Đăng kí</span>
+            
+            <div class="input">
+                <p class="label">Name</p>
+                <input type="text" name="fullname">
+                <div class="bottom-line"></div>
+            </div>
+
+            <div class="line">
+                <div class="input">
+                    <p class="label">Address</p>
+                    <input type="text" name="address" placeholder="e.g. London">
+                    <div class="bottom-line"></div>
+                </div>
+
+                <div class="input">
+                    <p class="label">Phone</p>
+                    <input type="text" name="phone" placeholder="e.g. 09xxxxxxxx">
+                    <div class="bottom-line"></div>
                 </div>
             </div>
-            <div class="clearfix"></div>
-        </div>
+
+            <br/>
+
+            <div class="input">
+                <input type="password" name="password" placeholder="Password">
+                <div class="bottom-line"></div>
+            </div>
+
+            <div class="input">
+                <input type="password" name="re_password" placeholder="Repassword">
+                <div class="bottom-line"></div>
+            </div>
+            
+            @if(count($errors)> 0)
+                <div class="error">
+                    @foreach($errors->all() as $err)
+                        {{$err}}<br>
+                    @endforeach
+                </div>
+            @endif
+            @if(Session::has('loi'))
+                <div class="error">
+                    {{Session::get('loi')}}
+                </div>
+            @endif
+            @if(Session::has('thanhcong'))
+                <div class="error">
+                    {{Session::get('thanhcong')}}
+                </div>
+            @endif
+
+            <button type="submit">Hoàn tất</button>
+        </form>
     </div>
 
-    <div class="container">
-        <div id="content">
+    <script>
+        document.querySelectorAll('[view=signin] input').forEach(function (el) {
+            el.addEventListener('focus', function () {
+                el.parentElement.classList.add('focus')
+            })
 
-            <form action="{{route('sigin')}}" method="post" class="beta-form-checkout">
-                <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                <div class="row">
-                    <div class="col-sm-3"></div>
-
-                    <div class="col-sm-6">
-                        @if(count($errors)> 0)
-                            <div class="alert alert-danger">
-                                @foreach($errors->all() as $err)
-                                    {{$err}}<br>
-                                @endforeach
-                            </div>
-                        @endif
-                            @if(Session::has('loi'))
-                                <div class="alert alert-danger">
-                                    {{Session::get('loi')}}
-                                </div>
-                            @endif
-                        @if(Session::has('thanhcong'))
-                            <div class="alert alert-success">
-                                {{Session::get('thanhcong')}}
-                            </div>
-                        @endif
-                        <h4>Đăng kí</h4>
-                        <div class="space20">&nbsp;</div>
-
-
-                        <div class="form-block">
-                            <label for="email">Email address*</label>
-                            <input type="email" name="email" id="email" >
-                        </div>
-
-                        <div class="form-block">
-                            <label for="your_last_name">Fullname*</label>
-                            <input type="text" name ="fullname" id="your_last_name" >
-                        </div>
-
-                        <div class="form-block">
-                            <label for="adress">Address*</label>
-                            <input type="text" name="address" id="address" value="Street Address" >
-                        </div>
-
-                        <div class="form-block">
-                            <label for="phone">Phone*</label>
-                            <input type="number" name="phone" id="phone" >
-                        </div>
-                        <div class="form-block">
-                            <label for="phone">Password*</label>
-                            <input type="password" name="password" id="password" >
-                        </div>
-                        <div class="form-block">
-                            <label for="phone">Re password*</label>
-                            <input type="password" name="re_password" id="pho1ne" >
-                        </div>
-                        <div class="form-block">
-                            <button type="submit" class="btn btn-primary">Đăng kí</button>
-                        </div>
-                    </div>
-                    <div class="col-sm-3"></div>
-                </div>
-            </form>
-        </div> <!-- #content -->
-    </div> <!-- .container -->
+            el.addEventListener('blur', function () {
+                el.parentElement.classList.remove('focus')
+            })
+        })
+    </script>
 @endsection
