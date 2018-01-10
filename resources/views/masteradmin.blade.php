@@ -8,28 +8,22 @@
     <link rel="shortcut icon" href="source/backend/admin/images/icon.png" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" href="source/backend/admin/crown/css/main.css" />
     <link rel="stylesheet" type="text/css" href="source/backend/admin/css/css.css" media="screen" />
-
-
+    {{--<link rel="stylesheet" href="source/frontend/assets/dest/css/bootstrap.css">--}}
+    <link rel="stylesheet" href="source/frontend/assets/dest/css/font-awesome.min.css">
     <script type="text/javascript">
 
     </script>
-
-
     <script type="text/javascript" src="source/backend/js/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="source/backend/js/jquery/jquery-ui.min.js"></script>
-
     <script type="text/javascript" src="source/backend/admin/crown/js/plugins/spinner/jquery.mousewheel.js"></script>
-
     <script type="text/javascript" src="source/backend/admin/crown/js/plugins/forms/uniform.js"></script>
     <script type="text/javascript" src="source/backend/admin/crown/js/plugins/forms/jquery.tagsinput.min.js"></script>
     <script type="text/javascript" src="source/backend/admin/crown/js/plugins/forms/autogrowtextarea.js"></script>
     <script type="text/javascript" src="source/backend/admin/crown/js/plugins/forms/jquery.maskedinput.min.js"></script>
     <script type="text/javascript" src="source/backend/admin/crown/js/plugins/forms/jquery.inputlimiter.min.js"></script>
-
     <script type="text/javascript" src="source/backend/admin/crown/js/plugins/tables/datatable.js"></script>
     <script type="text/javascript" src="source/backend/admin/crown/js/plugins/tables/tablesort.min.js"></script>
     <script type="text/javascript" src="source/backend/admin/crown/js/plugins/tables/resizable.min.js"></script>
-
     <script type="text/javascript" src="source/backend/admin/crown/js/plugins/ui/jquery.tipsy.js"></script>
     <script type="text/javascript" src="source/backend/admin/crown/js/plugins/ui/jquery.collapsible.min.js"></script>
     <script type="text/javascript" src="source/backend/admin/crown/js/plugins/ui/jquery.progress.js"></script>

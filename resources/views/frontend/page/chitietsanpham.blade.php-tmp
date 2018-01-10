@@ -12,132 +12,270 @@
             </ol>
         </div>
     </div>
-    {{--<div class="inner-header">--}}
-    {{--<div class="container">--}}
-    {{--<div class="pull-left">--}}
-    {{--<h6 class="inner-title">Thông tin chi tiết {{$chitiet->ten_sp}}</div>--}}
-    {{--</div>--}}
-    {{--<div class="pull-right">--}}
-    {{--<div class="beta-breadcrumb font-large">--}}
-    {{--<a href="{{route('trang_chu')}}">Home\</a> <a href="{{route('loai-san-pham',$loai_sp2->id)}}" style="font-size: medium;">{{$loai_sp2->ten_loai_sp}}\</a><span style="font-size: medium">{{$chitiet->ten_sp}}</span>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--<div class="clearfix"></div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
 
     <div class="container" style="width:90%;border:whitesmoke solid thin;margin:auto;border-top: transparent">
         <div id="content">
             <div class="row">
+  @if(Session::has('flag'))
+                        <div class="alert alert-{{Session::get('flag')}}">{{Session::get('message')}}
 
+                        </div>
+                    @endif
+                    @if(Session::has('thongbao'))
+                        <div class="alert alert-success" style="background:#00ced1;font-size:16px;color:black">
+                            {{Session::get('thongbao')}}
+                        </div>
+                    @endif
+                    @if(Session::has('loi'))
+                        <div class="alert alert-danger" style="background:Red; color:black;font-size:16px;">
+                            {{Session::get('loi')}}
+                        </div>
+                    @endif
                 <div class="col-sm-12">
                     <div class="row">
                         <div class="col-sm-4">
-                            <img src="source/frontend/image/product/{{$chitiet->anh_sp}}" alt="">
+                            <img style="height: 500px;width: 350px;padding-top: 120px;" src="upload/product/add/{{$chitiet->anh_sp}}"
+                                 alt="">
                         </div>
                         <div class="col-sm-8">
-                            <div class="single-item-body">
-                                <p class="single-item-title"><b>{{$chitiet->ten_sp}}</b></p>
-                                <p class="single-item-price">
-                                    <a class="single-item-price">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-7">
+                                <div class="single-item-body">
+                                    <p class="single-item-title"><b>{{$chitiet->ten_sp}}</b></p>
+                                    <p class="single-item-price">
+                                        <a class="single-item-price">
 <?php $price_new = $chitiet->gia_sp-$chitiet->khuyen_mai?>
-                                        <?php if ($chitiet->khuyen_mai > 0):?>
+                                            <?php if ($chitiet->khuyen_mai > 0):?>
 <a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
 <?php echo number_format($chitiet->gia_sp);?>Đ
-                                        </a>
-                                        <a class="ga" style="color:red;padding-top: 10px;font-size: 20px;">
-                                            <b><?php echo number_format($price_new)?>Đ</b>
-                                        </a>
+                                            </a>
+                                                <br>
+                                            <a class="ga" style="color:red;padding-top: 10px;font-size: 20px;">
+                                                <b><?php echo number_format($price_new)?>Đ</b>
+                                            </a>
 <?php  else :?>
-                                        <a style="color:red;font-size: 20px;"><b><?php echo number_format($chitiet->gia_sp);
+                                            <a style="color:red;font-size: 20px;"><b><?php echo number_format($chitiet->gia_sp);
 ?>
 Đ</b></a>
 <?php endif;?>
-                                    </a>
-                                </p>
-                            </div>
-                            <div style="background: red;color:black">
+</a>
+                                    </p>
+                                </div>
 
-                            </div>
+                                <div style="background: red;color:black">
+                                </div>
 
 
-                            <div class="clearfix"></div>
-                            <div class="space20">&nbsp;</div>
-
-                            <div class="single-item-desc">
-                                <p>{{$chitiet->mo_ta_sp}}
-                                </p>
-                            </div>
-                            <div class="space20">&nbsp;</div>
-
-                            <p>Số lượng:</p>
-                            <div class="single-item-options">
-                                <select class="wc-select" name="size">
-
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                                <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i></a>
                                 <div class="clearfix"></div>
+                                <div class="space20">&nbsp;</div>
+
+                                <p class='option'>
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <thead>
+                                    <tr style="text-align:center ">
+                                        <th>Thông tin</th>
+                                        <th>Chi tiết</th>
+                                        </td>
+                                    </tr>
+                                    </thead>
+                                    <tr>
+                                        <td>
+                                            Lượt xem
+                                        </td>
+                                        <td>
+<?php echo $chitiet->luot_view?>
+</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            Màn hình
+                                        </td>
+                                        <td style="padding-left: 10px;">
+<?php echo $chitiet->man_hinh?>
+</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Hệ điều hành
+                                        </td>
+                                        <td style="padding-left: 10px;">
+<?php echo $chitiet->he_dieu_hanh?>
+</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Camera trước
+                                        </td>
+                                        <td style="padding-left: 10px;">
+<?php echo $chitiet->camera_truoc?>px
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Camera sau
+                                        </td>
+                                        <td style="padding-left: 10px;">
+<?php echo $chitiet->camera_sau?>px
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            CPU
+                                        </td>
+                                        <td style="padding-left: 10px;">
+<?php echo $chitiet->cpu?>
+</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Bộ nhớ trong
+                                        </td>
+                                        <td style="padding-left: 10px;">
+<?php echo $chitiet->bo_nho_trong?>Gb
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Thẻ nhớ
+                                        </td>
+                                        <td style="padding-left: 10px;">
+<?php echo $chitiet->the_nho?>
+</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Thẻ sim
+                                        </td>
+                                        <td style="padding-left: 10px;">
+<?php echo $chitiet->sim?>
+</td>
+                                    </tr>
+                                    <tr>
+                                    <tr>
+                                        <td>
+                                            Dung lượng pin
+                                        </td>
+                                        <td style="padding-left: 10px;">
+<?php echo $chitiet->pin?>mah
+                                        </td>
+                                    </tr>
+                                        <td>
+                                            Ngày sản xuất
+                                        </td>
+                                        <td>
+<?php echo $chitiet->ngay_sx?>
+</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Bảo hành
+                                        </td>
+                                        <td>
+<?php echo $chitiet->bao_hanh?>
+</td>
+                                    </tr>
+                                </table>
+                                <div class="single-item-caption" style="padding-top: 5px;">
+                                    <a class="add-to-cart pull-left" href="{{route('addcart',$chitiet->id)}}"
+                                       title="Add to cart"><i class="fa fa-shopping-cart"></i></a>
+                                    <a class="beta-btn primary compare"
+                                       href="addtocompare/{{$chitiet->id}}" title="Add to compare">Add to
+                                        Compare </a>
+                                    <div class="clearfix"></div>
+                                </div>
                             </div>
                         </div>
 
-                    </div>
+                        <div class="clearfix"></div>
+                        <div class="chinhanh" style="padding-top: 50px;">
+                            <h5>Các chi nhánh hiện có sản phẩm</h5>
+                            <div style="padding-left: 10px;">
+<?php
+foreach ($list as $row) {
+	?>
+	                                <a href="chinhanh/{{$row['id']}}"><?php echo $row['ten_chi_nhanh']?> - Liên
+	                                    hệ: <?php echo $row['sdt']?></a>
+	                                <br>
+	<?php }?>
+</div>
+                        </div>
 
+                        <div class="space40">&nbsp;</div>
+                        <div class="woocommerce-tabs">
+                            @if(Session::has('thongbao'))
+                                <div class="alert alert-success" style="background:#00ced1;width:80%">
+                                    {{Session::get('thongbao')}}
+                                </div>
+                            @endif
+                            @if(Session::has('loi'))
+                                <div class="alert alert-danger" style="width:80%">
+                                    {{Session::get('loi')}}
+                                </div>
+                            @endif
+<?php if (Session::has('khach_hang')) {?>
+	<ul class="tabs">
+	                                <li><a href="#tab-reviews">Bình Luận</a></li>
+	                                <div class="panel" id="tab-reviews">
+	                                    <form action="binhluan/{{$chitiet->id}}" method="post" class="contact-form">
+	                                        <input name="_token" type="hidden" value="{{csrf_token()}}"/>
+	                                        <div class="form-block">
+	                                            <textarea name="message" style="height:100px;"
+	                                                      placeholder="Your Message"></textarea>
+	                                        </div>
+	                                        <div class="form-block">
+	                                            <button type="submit" class="btn btn-success">Gửi bình luận</button>
+	                                        </div>
+	                                    </form>
 
-                    <div class="space40">&nbsp;</div>
-                    <div class="woocommerce-tabs">
-                        @if(Session::has('thongbao'))
-                            <div class="alert alert-success" style="background:#00ced1;width:80%">
-                                {{Session::get('thongbao')}}
-                            </div>
-                        @endif
-                        @if(Session::has('loi'))
-                            <div class="alert alert-danger" style="width:80%">
-                                {{Session::get('loi')}}
-                            </div>
-                        @endif
-                        <ul class="tabs">
-                            <li><a href="#tab-reviews">Bình Luận</a></li>
-                            <div class="panel" id="tab-reviews">
-                                <form action="binhluan/{{$chitiet->id}}" method="post" class="contact-form">
-                                    <input name="_token" type="hidden" value="{{csrf_token()}}"/>
-                                    <div class="form-block">
-                                        <textarea name="message" style="height:100px;" placeholder="Your Message"></textarea>
-                                    </div>
-                                    <div class="form-block">
-                                        <button type="submit" class="btn btn-success">Gửi bình luận</button>
-                                    </div>
-                                </form>
+	                                    <table class="table table-striped" style="width: 100%">
+	                                        <thead>
 
-                                <table class="table table-striped" style="width: 100%">
-                                    <thead>
+	                                        </thead>
+	                                        <tbody>
+	                                        @foreach($binhluan as $row)
+	                                            <tr>
 
-                                    </thead>
-                                    <tbody>
-                                    @foreach($binhluan as $row)
-                                        <tr>
+	                                                <td style="width:25%;">{{ $row->ten_kh }}<br><span
+	                                                            style="color: #9BA2AB">{{ date('d-m-Y', strtotime($row->created_at)) }}</span>
+	                                                </td>
+	                                                <td>{{ $row->noi_dung }}</td>
 
-                                            <td style="width:25%;">{{ $row->ten_kh }}<br><span style="color: #9BA2AB">{{ date('d-m-Y', strtotime($row->created_at)) }}</span></td>
-                                            <td>{{ $row->noi_dung }}</td>
+	                                            </tr>
+	                                        @endforeach
+	                                        </tbody>
+	                                    </table>
+	                                </div>
 
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+	                            </ul>
+	<?php } else {?>
+	<h5>Bình luận</h5>
+	                            <i>(Bạn phải đăng nhập mới có thể giử bình luận)</i>
+	                            <table class="table table-striped" style="width: 100%;margin-top: 30px;">
+	                                <thead>
 
-                        </ul>
+	                                </thead>
+	                                <tbody>
+	                                @foreach($binhluan as $row)
+	                                    <tr>
+
+	                                        <td style="width:25%;">{{ $row->ten_kh }}<br><span
+	                                                    style="color: #9BA2AB">{{ date('d-m-Y', strtotime($row->created_at)) }}</span>
+	                                        </td>
+	                                        <td>{{ $row->noi_dung }}</td>
+
+	                                    </tr>
+	                                @endforeach
+	                                </tbody>
+	                            </table>
+	<?php }?>
+                        </div>
 
                     </div>
 
                 </div>
-
             </div>
-        </div>
-    </div> <!-- #content -->
+        </div> <!-- #content -->
     </div> <!-- .container -->
 @endsection

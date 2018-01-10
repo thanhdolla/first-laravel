@@ -18,12 +18,12 @@
 
                 <div class="horControlB menu_action">
                     <ul>
-                        <li><a href="{{route('admin/slide/add')}}">
+                        <li><a href="{{route('admin/product/add')}}">
                                 <img src="source/backend/admin/images/icons/control/16/add.png"/>
                                 <span>Thêm mới</span>
                             </a></li>
 
-                        <li><a href="{{route('admin/slide/index')}}">
+                        <li><a href="{{route('admin/product/index')}}">
                                 <img src="source/backend/admin/images/icons/control/16/list.png"/>
                                 <span>Danh sách</span>
                             </a></li>
@@ -114,7 +114,7 @@
                                     <label for="param_name" class="formLeft">Giá bán:<span class="req">*</span></label>
                                     <div class="formRight">
                                 <span class="oneTwo">
-                                    <input type="number" min="0" step="1000" id="param_name" name="price"
+                                    <input type="number" id="param_name" name="price"
                                            value="{{$product->gia_sp}}"> VNĐ
 
                                 </span>
@@ -128,7 +128,7 @@
                                                 class="req">*</span></label>
                                     <div class="formRight">
                                 <span class="oneTwo">
-                                    <input type="number" min="0" step="1000" id="param_name" name="discount"
+                                    <input type="number" id="param_name" name="discount"
                                            value="{{$product->khuyen_mai}}"> VNĐ
                                 </span>
                                         <span class="autocheck" name="name_autocheck"></span>

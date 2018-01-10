@@ -22,7 +22,7 @@
                     @endif
                     <div class="box-center">
                         <div class="tittle-box-center">
-                            <h1><?php echo $tin->tieu_de_tb ?></h1>
+                            <h1><?php echo $tin->tieu_de_tb?></h1>
                         </div>
                         <hr>
 
@@ -40,7 +40,16 @@
                                     <div class="nd"
                                          style="padding-left: 20px;padding-top:20px;text-align:center;width:850px;margin:auto;font-size: 16px;">
                                         <p style="line-height: 200%;">
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $tin->noi_dung_tb ?> </p>
+                                            &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<?php echo $tin->noi_dung_tb?></p>
                                     </div>
                                 </td>
                             </tr>
@@ -57,8 +66,8 @@
                         <div>
                             <ul>
                                 <!--bien list1 này lấy từ core- MY_controller-->
-                                <?php foreach ($tintuc as $row): ?>
-                                <li style="list-style-type: none;padding-top: 10px;background: window;">
+<?php foreach ($tintuc as $row):?>
+<li style="list-style-type: none;padding-top: 10px;background: window;">
                                     <a href='tintuc/{{$row->id }}'>
                                         <table>
                                             <tr>
@@ -68,15 +77,15 @@
                                                 </td>
                                                 <td>
                                                             <span style="font-size:14px;color:#003399;">
-                                                                <?php echo $row->tieu_de_tb ?>
-                                                            </span>
+<?php echo $row->tieu_de_tb?>
+</span>
                                                 </td>
                                             </tr>
                                         </table>
                                     </a>
                                 </li>
-                                <?php endforeach; ?>
-                            </ul>
+<?php endforeach;?>
+</ul>
                         </div>
 
                     </div>

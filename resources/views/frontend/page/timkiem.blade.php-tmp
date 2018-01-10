@@ -41,21 +41,22 @@
                                             <div class="single-item-body">
                                                 <p class="single-item-title">{{$new->ten_sp}}</p>
                                                 <a class="single-item-price">
-                                                    <?php $price_new = $new->gia_sp - $new->khuyen_mai ?>
-                                                    <?php if ($new->khuyen_mai > 0): ?>
-                                                    <a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
-                                                        <?php echo number_format($new->gia_sp); ?>Đ
+<?php $price_new = $new->gia_sp-$new->khuyen_mai?>
+                                                    <?php if ($new->khuyen_mai > 0):?>
+<a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
+<?php echo number_format($new->gia_sp);?>Đ
                                                     </a>
                                                     <br>
                                                     <a class="ga" style="color:red;padding-top: 10px;font-size: 20px;">
-                                                        <b><?php echo number_format($price_new) ?>Đ</b>
+                                                        <b><?php echo number_format($price_new)?>Đ</b>
                                                     </a>
-                                                    <?php else: ?>
+<?php  else :?>
                                                     <i style="font-size: 15px;">chưa có khuyến mại</i>
-                                                    <a style="color:red;font-size: 20px;"><b><?php echo number_format($new->gia_sp); ?>
-                                                            Đ</b></a>
-                                                    <?php endif; ?>
-                                                </a>
+                                                    <a style="color:red;font-size: 20px;"><b><?php echo number_format($new->gia_sp);
+?>
+Đ</b></a>
+<?php endif;?>
+</a>
                                             </div>
                                             <div class="single-item-caption" style="padding-top: 5px;">
                                                 <a class="add-to-cart pull-left" href="{{route('addcart',$new->id)}}" title="Add to cart"><i class="fa fa-shopping-cart"></i></a>
@@ -82,7 +83,7 @@
                                             <li style="list-style-type: none;padding-top: 3px;background: window;">
                                                 <a href="{{route('loai-san-pham',$loai->id)}}"
                                                    style="padding-left: 20px;font-size: 15px;">
-                                                    <?php echo $loai->ten_loai_sp ?>
+<?php echo $loai->ten_loai_sp?>
 
                                                 </a>
                                                 <hr>

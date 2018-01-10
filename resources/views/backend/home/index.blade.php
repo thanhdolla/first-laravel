@@ -99,6 +99,15 @@
                             <td class="textC webStatsLink">
                                 {{count($loaisp)}}				</td>
                         </tr>
+                        <tr>
+                            <td>
+                                <div class="left">Tổng số phản hồi khách hàng</div>
+                                <div class="right f11"><a href="admin/feedback/index">Chi tiết</a></div>
+                            </td>
+
+                            <td class="textC webStatsLink">
+                                {{count($phanhoi)}}				</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -177,7 +186,7 @@
                             <td class="textC">
                                 <a href="admin/donhang/delete/{{$row->id}}"
                                    onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
-                                    <img src="source/backend/admin/images/icons/color/delete.png">
+                                    <i style="font-size: 20px;color:red" class="fa fa-trash" aria-hidden="true"></i>
                                 </a>
                             </td>
 

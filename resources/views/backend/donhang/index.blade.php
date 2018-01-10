@@ -1,23 +1,6 @@
 @extends('masteradmin')
 @section('contentadmin')
 
-    <head>
-        <title>Admin Login</title>
-        <!-- include js files -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <base href="{{asset('')}}">
-        <link rel="stylesheet" href="source/frontend/assets/dest/css/font-awesome.min.css">
-        <link rel="stylesheet" href="source/backend/admin/css/simple-line-icons.css">
-        <link rel="stylesheet" href="source/backend/admin/css/uniform.default.css">
-        <link rel="stylesheet" href="source/backend/admin/css/bootstrap-switch.min.css">
-        <link href="source/backend/admin/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-        <link href="source/backend/admin/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="source/backend/admin/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
-        <link href="source/backend/admin/css/plugins.min.css" rel="stylesheet" type="text/css" />
-        <link href="source/backend/admin/css/login-3.min.css" rel="stylesheet" type="text/css" />
-        <!-- Latest compiled and minified JavaScript -->
-    </head>
     <div id="rightSide">
         <div class="titleArea">
             <div class="wrapper">
@@ -124,10 +107,10 @@
 
                         <td class="textC">{{ date('d-m-Y', strtotime($row->created_at)) }}</td>
                         <td class="textC">
-                            <a href="admin/donhang/chitietdonhang/{{$row->id}}" ><i class="glyphicon glyphicon-eye-open"></i></a> |
+                            <a href="admin/donhang/chitietdonhang/{{$row->id}}" ><i class="fa fa-eye" aria-hidden="true" style="font-size: 20px;"></i></a> |
                             <a href="admin/donhang/delete/{{$row->id}}"
                                onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
-                                <img src="source/backend/admin/images/icons/color/delete.png">
+                                <i style="font-size: 20px;color:red" class="fa fa-trash" aria-hidden="true"></i>
                             </a>
                         </td>
 

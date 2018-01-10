@@ -32,9 +32,9 @@
                         </div>
                     @endif
                 <h5>Chi nhánh tại: <?php echo $chi_nhanh->ten_chi_nhanh?></h5>
-                <h6>Liên hệ: 0<?php echo $chi_nhanh->sdt?></h6>
+                <h6>Liên hệ: <?php echo $chi_nhanh->sdt?></h6>
                 <div class="abs-fullwidth beta-map wow flipInX">
-                    <iframe src="<?php echo $chi_nhanh->embed ?>  "></iframe>
+                    <iframe src="<?php echo $chi_nhanh->embed?>"></iframe>
                 </div>
 
             </div>

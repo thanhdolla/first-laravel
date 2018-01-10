@@ -48,7 +48,7 @@
                     <?php
                     $a = $row->stt_don_hang;
                     if ($a == 0):
-                        echo "<span style='color:#00d6b2;'>Chưa xử lí</span>";
+                        echo "<span style='color:red;'>Chưa xử lí</span>";
 
                     elseif ($a == 1) :
                         echo "<span style='color:#00d6b2;'>Đã xử lí</span>";
@@ -59,42 +59,44 @@
             </tr>
             <?php endforeach;?>
             </tbody>
-
         </table>
-
         <?php else: ?>
         <h4>Hiện chưa có đơn hàng nào</h4>
         {{--</form>--}}
         <?php endif; ?>
         <div class="space60">&nbsp;</div>
-        <h5>Lịch sử phản hồi</h5>
 
+        <hr><hr>
+
+        <div class="tittle-box-center" style="margin-top:50px;">
+            <h2>Lịch sử phản hồi </h2>
+        </div>
+       <hr>
         <?php if (count($ph) > 0): ?>
-
         <table class="table table-striped">
             <thead>
             <tr>
                 <td style="width:20%;">Tên khách hàng</td>
-                <td style="width:15%;">Nội dung phản hồi</td>
-                <td style="width:12%;">Tình trạng</td>
+                <td style="width:20%;">Tiêu đề</td>
+                <td style="width:20%;">Nội dung phản hồi</td>
+                <td style="width:20%;">Tình trạng</td>
                 <td style="width:20%;">Ngày gửi</td>
             </tr>
             </thead>
 
             <tbody class="list_item">
             <?php foreach ($ph as $row):?>
-
             <tr class="row_<?php echo $row->id?>">
-
                 <td>
                     <div> {{Session::get('khach_hang')}}</div>
                 </td>
+                <td class="textC"><?php echo $row->tieu_de ?></td>
                 <td class="textC"><?php echo $row->noi_dung ?></td>
                 <td class="option" style="color:#000080;">
                     <?php
                     $a = $row->stt_phan_hoi;
                     if ($a == 0):
-                        echo "<span style='color:#00d6b2;'>Chưa xử lí</span>";
+                        echo "<span style='color:red;'>Chưa xử lí</span>";
                     elseif ($a == 1) :
                         echo "<span style='color:#00d6b2;'>Đã xử lí</span>";
                     endif;
@@ -108,11 +110,9 @@
         </table>
 
         <?php else: ?>
-        <h4>Hiện chưa có đơn hàng nào</h4>
+        <h4>Hiện chưa có phản hồi nào</h4>
         {{--</form>--}}
         <?php endif; ?>
     </div>
-
-
 @endsection
 

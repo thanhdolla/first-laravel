@@ -97,7 +97,7 @@
                                     </a>
 
                                     <a class="tipS verify_action" title="Xóa" href="admin/slide/delete/{{$row->id}}" >
-                                        <img src="source/backend/admin/images/icons/color/delete.png">
+                                        <i style="font-size: 20px;color:red" class="fa fa-trash" aria-hidden="true"></i>
                                     </a>
                                 </td>
                             </tr>

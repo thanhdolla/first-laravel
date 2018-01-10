@@ -86,7 +86,6 @@
                                     <td style="width:60px;">Mã số</td>
                                     <td>Tên</td>
                                     <td>Giá</td>
-                                    <td style="width:75px;">Ngày sản xuất</td>
                                     <td style="width:120px;">Hành động</td>
                                 </tr>
                                 </thead>
@@ -114,7 +113,6 @@
                                         {{$pd->gia_sp}} đ
 
                                     </td>
-                                    <td class="textC">{{$pd->ngay_sx}}</td>
 
                                     <td class="option textC">
                                         <a class="tipS" title="Chỉnh sửa" href="admin/product/edit/{{$pd->id}}">
@@ -122,7 +120,7 @@
                                         </a>
 
                                         <a class="tipS verify_action" title="Xóa" href="admin/product/delete/{{$pd->id}}" >
-                                            <img src="source/backend/admin/images/icons/color/delete.png">
+                                            <i style="font-size: 20px;color:red" class="fa fa-trash" aria-hidden="true"></i>
                                         </a>
                                     </td>
 
