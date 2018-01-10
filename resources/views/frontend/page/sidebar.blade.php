@@ -57,12 +57,22 @@
   [view=sidebar] button {
       padding: 5px 20px;
       font-size: 14px !important;
-      background: black;
+      background: orange;
       color: white;
       border: none;
       outline: none;
 
       margin-top: 20px;
+  }
+
+  [view=sidebar] ul li {
+    font-family: Lato;
+    font-size: 14px;
+  }
+
+  [view=sidebar] .news .info p {
+    font-family: Lato;
+    font-size: 14px;
   }
 </style>
 
@@ -87,9 +97,13 @@
 <div view="sidebar">
   <h2>Loại sản phẩm</h2>
 
+  <br/>
+
   <ul>
       @foreach($loai_sp3 as $loai)
+        <a href="{{route('loai-san-pham',$loai->id)}}">
           <li><?php echo $loai->ten_loai_sp ?></li>
+        </a>
       @endforeach
   </ul>
 </div>
@@ -118,6 +132,8 @@
 <div view="sidebar">
   <h2>Thông báo mới</h2>
 
+  <br/>
+
   <?php foreach ($tintuc as $row): ?>
       <div class="news">
         <div class="image">
@@ -125,7 +141,9 @@
         </div>
 
         <div class="info">
-          <?php echo $row->tieu_de_tb ?>
+          <p>
+            <?php echo $row->tieu_de_tb ?>
+          </p>
 
           <div>
             <a href='tintuc/{{$row->id }}'>

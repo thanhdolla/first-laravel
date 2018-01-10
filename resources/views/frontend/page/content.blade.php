@@ -11,7 +11,7 @@
             margin-left: 40px;
         }
     </style>
-
+    
     <div class="outer-wrapper">
         <div class="left">
             @include('frontend.page.dashboard')

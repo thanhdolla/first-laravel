@@ -1,94 +1,134 @@
 @extends('master')
 @section('content')
-    <div class="container" style="border: whitesmoke solid 2px;width: 95%">
-        <div id="content" class="space-top-none">
-            <div class="main-content">
-                <div class="space60">&nbsp;</div>
-                <div class="col-sm-9" style="boder:whitesmoke solid thin">
-                  @if(Session::has('flag'))
-                        <div class="alert alert-{{Session::get('flag')}}">{{Session::get('message')}}
+    <style>
+        .outer-wrapper {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+        }
 
-                        </div>
-                    @endif
-                    @if(Session::has('thongbao'))
-                        <div class="alert alert-success" style="background:#00ced1;font-size:16px;color:black">
-                            {{Session::get('thongbao')}}
-                        </div>
-                    @endif
-                    @if(Session::has('loi'))
-                        <div class="alert alert-danger" style="background:Red; color:black;font-size:16px;">
-                            {{Session::get('loi')}}
-                        </div>
-                    @endif
-                    <div class="box-center">
-                        <div class="tittle-box-center">
-                            <h1><?php echo $tin->tieu_de_tb ?></h1>
-                        </div>
-                        <hr>
+        .outer-wrapper > .right {
+            margin-left: 40px;
+        }
+    </style>
+    
+    <div class="outer-wrapper">
+        <div class="left">
+            <style>
+                [view=main-content] {
+                    width: 800px;
+                }
 
-                        <table>
-                            <tr>
-                                <td style="margin-left: 50px;">
+                [view=main-content] h1 {
+                    font-family: Lato;
+                    font-size: 28px;
 
-                                    <img  src="upload/tintuc/add/{{$tin->anh_tb}}"
-                                         style="text-align: center;width:850px;height: 400px;">
-                                </td>
+                    margin-bottom: 40px;
+                }
 
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="nd"
-                                         style="padding-left: 20px;padding-top:20px;text-align:center;width:850px;margin:auto;font-size: 16px;">
-                                        <p style="line-height: 200%;">
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $tin->noi_dung_tb ?> </p>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
+                [view=main-content] p {
+                    margin-top: 20px;
+                    margin-bottom: 80px;
+                    font-family: Lato;
+                    font-size: 14px;
+                }
+            </style>
+
+            <div view="main-content">
+                @if(Session::has('flag'))
+                    <div class="alert alert-{{Session::get('flag')}}">{{Session::get('message')}}
 
                     </div>
-                </div>
+                @endif
+                @if(Session::has('thongbao'))
+                    <div class="alert alert-success" style="background:#00ced1;font-size:16px;color:black">
+                        {{Session::get('thongbao')}}
+                    </div>
+                @endif
+                @if(Session::has('loi'))
+                    <div class="alert alert-danger" style="background:Red; color:black;font-size:16px;">
+                        {{Session::get('loi')}}
+                    </div>
+                @endif
 
-                <div class="col-sm-3" style="border:whitesmoke solid thin;">
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <h3 class="panel-title" style="text-align:center;">Thông báo mới </h3>
+                <h1>
+                    <?php echo $tin->tieu_de_tb ?>
+                </h1>
+
+                <img src="upload/tintuc/add/{{$tin->anh_tb}}" width="100%">
+
+                <p><?php echo $tin->noi_dung_tb ?></p>
+            </div>
+        </div>
+
+        <div class="right">
+            <style>
+                [view=sidebar] {
+                    margin-bottom: 20px;
+                }
+
+                [view=sidebar] h2 {
+                    font-family: Lato;
+                    font-size: 24px;
+                }
+
+                [view=sidebar] button {
+                    padding: 5px 20px;
+                    font-size: 14px !important;
+                    background: orange;
+                    color: white;
+                    border: none;
+                    outline: none;
+
+                    margin-top: 20px;
+                }
+                
+                [view=sidebar] .news {
+                    display: flex;
+                    width: 400px;
+                    margin-bottom: 20px;
+                }
+
+                [view=sidebar] .news .image {
+                    flex: 0 0 auto;
+                    width: 100px;
+                }
+
+                [view=sidebar] .news .image img {
+                    object-fit: cover;
+                }
+
+                [view=sidebar] .news .info {
+                    margin-left: 10px;
+                }
+            </style>
+
+            <div view="sidebar">
+                <h2>Thông báo mới</h2>
+
+                <br/>
+
+                <?php foreach ($tintuc as $row): ?>
+                    <div class="news">
+                        <div class="image">
+                        <img src="upload/tintuc/add/{{$row->anh_tb}}" width="100px" height="80px">
                         </div>
+
+                        <div class="info">
+                        <p>
+                            <?php echo $row->tieu_de_tb ?>
+                        </p>
+
                         <div>
-                            <ul>
-                                <!--bien list1 này lấy từ core- MY_controller-->
-                                <?php foreach ($tintuc as $row): ?>
-                                <li style="list-style-type: none;padding-top: 10px;background: window;">
-                                    <a href='tintuc/{{$row->id }}'>
-                                        <table>
-                                            <tr>
-                                                <td style="height:70px;width:120px;">
-                                                    <img style="padding-right: 15px;height:70px;width:120px;"
-                                                         src="upload/tintuc/add/{{$row->anh_tb}}">
-                                                </td>
-                                                <td>
-                                                            <span style="font-size:14px;color:#003399;">
-                                                                <?php echo $row->tieu_de_tb ?>
-                                                            </span>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </a>
-                                </li>
-                                <?php endforeach; ?>
-                            </ul>
+                            <a href='tintuc/{{$row->id }}'>
+                            <button>Xem thêm</button>
+                            </a>
                         </div>
-
+                        </div>
                     </div>
-                </div>
-
+                <?php endforeach; ?>
             </div>
 
         </div>
-    </div> <!-- end section with sidebar and main content -->
-
-    </div> <!-- .main-content -->
-    </div> <!-- #content -->
-    </div> <!-- .container -->
-
+    </div>
 @endsection
