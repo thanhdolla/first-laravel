@@ -1,71 +1,266 @@
+<style>
+    [view=header] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        display: flex;
+        align-items: center;
+        height: 48px;
+
+        box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
+
+        background: orange;
+    }
+
+    [view=header] .app-name {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 105px;
+        height: 100%;
+        background: white;
+    }
+
+    [view=header] .app-name h1 {
+        font-family: Lato Medium;
+        font-size: 18.75px;
+
+        color: orange;
+    }
+
+    [view=header] .main {
+        display: flex;
+        align-items: center;
+
+        height: 100%;
+        flex: 1 1 auto;
+
+        padding-right: 35px;
+        padding-left: 35px;
+    }
+
+    [view=header] .main .search-bar {
+        display: flex;
+
+        height: 30px;
+        max-width: 800px;
+        flex: 1 1 auto;
+
+        border-radius: 3px;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.08);
+
+        background: white;
+    }
+
+    [view=header] .main .search-bar input {
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        height: 100%;
+        flex: 1 1 auto;
+
+        font-family: Lato;
+        font-size: 14px;
+
+        background: none;
+        border: none;
+        outline: none;
+    }
+
+    [view=header] .main form {
+        flex: 1 1 auto;
+        max-width: 800px;
+    }
+
+    [view=header] .main .search-bar .search-icon {
+        display: flex;
+
+        height: 100%;
+        flex: 0 0 auto;
+
+        align-items: center;
+
+        padding-left: 20px;
+        padding-right: 20px;
+
+        border: none;
+        outline: none;
+        background: none;
+    }
+
+    [view=header] .icon {
+        font-family: Material Icons;
+        font-size: 18px;
+    }
+
+    [view=header] .actions {
+        display: flex;
+        flex: 0 0 auto;
+
+        height: 100%;
+        color: white;
+    }
+
+    [view=header] .text {
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        height: 100%;
+
+        color: white !important;
+        font-family: Lato;
+        font-size: 14px;
+    }
+
+    [view=header] .actions .cart-icon {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 100%;
+        width: 60px;
+
+        border: none;
+        outline: none;
+
+        background: white; 
+        
+        cursor: pointer;
+    }
+
+    [view=header] .actions .cart-icon::after {
+        content: attr(data-count);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        position: absolute;
+        right: 8px;
+        top: 5px;
+
+        width: 20px;
+        height: 20px;
+
+        background: orange;
+        color: white;
+
+        border-radius: 50%;
+        font-size: 8px;
+        font-family: Lato;
+    }
+    
+    [view=header] .actions .compare-icon {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 100%;
+        width: 60px;
+
+        border: none;
+        outline: none;
+
+        background: dodgerblue; 
+        color: white;
+        
+        cursor: pointer;
+    }
+
+    [view=header] .actions .compare-icon::after {
+        content: attr(data-count);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        position: absolute;
+        right: 8px;
+        top: 5px;
+
+        width: 20px;
+        height: 20px;
+
+        background: white;
+        color: black;
+
+        border-radius: 50%;
+        font-size: 8px;
+        font-family: Lato;
+    }
+</style>
+
+<div id="header" view="header">
+    <div class="app-name">
+        <a href="{{route('trang_chu')}}">
+            <h1>BKSmart</h1>
+        </a>
+    </div>
+
+    <div class="main">
+        <form role="search" method="get" id="searchform" action="{{route('timkiem')}}" >
+            <div class="search-bar">
+                <input type="text" name="key" placeholder="Tìm kiếm">
+                <button class="search-icon icon">
+                    search
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="actions">
+        <div class="text">
+            @if(!Session::has('khach_hang'))
+                <a href="{{route('sigin')}}" class="text">Đăng kí</a>
+                /
+                <a href="{{route('login')}}" class="text">Đăng nhập</a>
+            @else
+                <a href="{{route('lichsutuongtac')}}" class="text"><i class="fa fa-user"></i>Lịch sử tương tác</a>
+                /
+                <a href="{{route('quanlitaikhoan')}}" class="text">{{Session::get('khach_hang')}}</a>
+                /
+                <a href="{{route('logout')}}" class="text">Đăng xuất</a>
+            @endif
+        </div>
+
+        <a href="{{route('getcompare')}}">
+            <button
+                class="compare-icon icon"
+                data-count="<?php
+                    if(Session::has('compare_qty')) {
+                        echo Session::get('compare_qty');
+                    } else echo 0;?>"
+            >
+                compare
+            </button>
+        </a>
+
+        <a href="{{route('cart')}}" title="Giỏ hàng">
+            <?php $count=Cart::count()?>
+            <button class="cart-icon icon" data-count="{{$count}}">
+                shopping_cart
+            </button>
+        </a>
+    </div>
+</div>
+
+<div view="sub-header">
+    
+</div>
+
+
+
 <div id="header">
     <div class="header-top">
-        <div class="container">
-            <div class="pull-left auto-width-left">
-                <ul class="top-menu menu-beta l-inline">
-                    <li><a href=""><i class="fa fa-email"></i>bksmart@gmail.com</a></li>
-                    <li><a href=""><i class="fa fa-home"></i>Số 1 Trần Đại Nghĩa </a></li>
-                    <li><a href=""><i class="fa fa-phone"></i> 19001009</a></li>
-                </ul>
-            </div>
-            <div class="pull-right auto-width-right">
-                <ul class="top-details menu-beta l-inline">
-
-                    @if(!Session::has('khach_hang'))
-                        <li><a href="{{route('sigin')}}">Đăng kí</a></li>
-                        <li><a href="{{route('login')}}">Đăng nhập</a></li>
-                    @else
-                        <li><a href="{{route('lichsutuongtac')}}"><i class="fa fa-user"></i>Lịch sử tương tác</a></li>
-                        <li><a href="{{route('quanlitaikhoan')}}">{{Session::get('khach_hang')}}</a></li>
-                        <li><a href="{{route('logout')}}">Logout</a></li>
-                    @endif
-
-                </ul>
-            </div>
-            <div class="clearfix"></div>
-        </div> <!-- .container -->
-
-    </div> <!-- .header-top -->
-    <div class="header-body">
-        <div class="container beta-relative">
-            <div class="pull-left">
-                <a href="index.html" id="logo"><img src="source/frontend/assets/dest/images/logo/a.jpg" width="200px"
-                                                    alt=""></a>
-            </div>
-            <div class="pull-right beta-components space-left ov">
-                <div class="space10">&nbsp;</div>
-                <div class="beta-comp">
-                    <form role="search" method="get" id="searchform" action="{{route('timkiem')}}">
-                        <input type="text" value="" name="key" id="keysp" placeholder="Nhập từ khóa..."/>
-                        <button class="fa fa-search" type="submit" id="searchsubmit"></button>
-                    </form>
-                </div>
-
-                <div class="beta-comp">
-                    <div class="cart">
-                        <div class="beta-selec">
-
-                            <?php $count = Cart::count()?>
-                            <a  href="{{route('cart')}}" title="Giỏ hàng"><i class="glyphicon glyphicon-shopping-cart" style="font-size: 13px;"></i>({{$count}})</a>
-
-                        </div>
-
-                    </div> <!-- .cart -->
-                </div>
-                <div class="beta-comp">
-                    <div class="compare-box">
-                        <a href="{{route('getcompare')}}" style="font-size: 13px;">
-                            Compare(<?php if(Session::has('compare_qty')){
-                                echo Session::get('compare_qty');
-                            } else echo 0;
-                            ?>)
-                        </a></div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-        </div> <!-- .container -->
-    </div> <!-- .header-body -->
-
     <div class="header-bottom" style="background-color:#90908e;">
         <div class="container">
             <a class="visible-xs beta-menu-toggle pull-right" href="#"><span class='beta-menu-toggle-text'>Menu</span>
