@@ -21,8 +21,19 @@
     </head>
     <body>
 
+        <style>
+            html, body {
+                border: 0px;
+                padding: 0px;
+                margin: 0px;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+        </style>
+
         @include('frontend.header')
-        @include('frontend.slide')
         @yield('content')
         @include('frontend.footer')
 
@@ -54,15 +65,21 @@
         <!--customjs-->
         <script src="source/frontend/assets/dest/js/custom2.js"></script>
         <script>
-            $(document).ready(function($) {
-                $(window).scroll(function(){
-                    if($(this).scrollTop()>150){
-                        $(".header-bottom").addClass('fixNav')
-                    }else{
-                        $(".header-bottom").removeClass('fixNav')
-                    }}
-                )
-            })
+            (function () {
+                var header = document.getElementById('header')
+                var fixed = false
+                document.addEventListener('scroll', function (event) {
+                    if (document.scrollingElement.scrollTop > 600 && fixed === false) {
+                        header.classList.add('fixed')
+                        fixed = true
+                    } else if (document.scrollingElement.scrollTop <= 600 && fixed === true) {
+                        header.classList.remove('fixed')
+                        fixed = false
+                    } else {
+                        // Do nothing!
+                    }
+                })
+            })()
         </script>
     </body>
 </html>

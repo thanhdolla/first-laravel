@@ -1,5 +1,10 @@
 <style>
     [view=header] {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+
         display: flex;
         align-items: center;
         height: 48px;
@@ -7,6 +12,19 @@
         box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
 
         background: orange;
+    }
+
+    body {
+        padding-top: 48px;
+    }
+
+    [view=header].fixed {
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        left: 0px;
+
+        z-index: 1000;
     }
 
     [view=header] .app-name {
