@@ -3,17 +3,9 @@
     [view=dashboard] {
         display: flex;
         flex-flow: column nowrap;
-        align-items: center;
+        align-items: stretch;
 
-        padding-left: 80px;
-        padding-right: 80px;
-        padding-top: 20px;
-        
-        background: #eeeeee;
-    }
-
-    [view=dashboard] .line {
-        width: 1000px;
+        width: 800px;
     }
 
     [view=dashboard] .line h2 {
@@ -30,8 +22,6 @@
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
-
-        width: 1000px;
 
         margin-top: 20px;
         margin-bottom: 20px;
@@ -52,11 +42,7 @@
 
     [view=dashboard] .products .product .card {
         border-radius: 3px;
-        background: white;
-    }
-
-    [view=dashboard] .products .product:not(:nth-child(4n+1)) {
-        margin-left: 20px;
+        border: 1px solid #eee;
     }
 
     [view=dashboard] .products .product img {
