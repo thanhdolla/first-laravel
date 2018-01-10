@@ -1,10 +1,5 @@
 <style>
     [view=header] {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-
         display: flex;
         align-items: center;
         height: 48px;
@@ -253,34 +248,85 @@
     </div>
 </div>
 
+<style>
+    [view=sub-header] {
+        height: 80px;
+
+        display: flex;
+        justify-content: center;
+    }
+
+    [view=sub-header] .menu {
+        display: flex;
+
+        height: 60%;
+        width: 800px;
+    }
+
+    [view=sub-header] .menu .tab {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        padding-left: 20px;
+        padding-right: 20px;
+        height: 100%;
+
+        font-family: Lato;
+        font-size: 16px;
+
+        cursor: pointer;
+    }
+
+    [view=sub-header] .menu .tab:hover {
+        background: orange;
+        color: white;
+    }
+
+    [view=sub-header] .tab:hover .sub-menu {
+        position: absolute;
+        top: 100%;
+        display: block;
+
+        width: 100%;
+    }
+
+    [view=sub-header] .tab:hover .sub-menu .item {
+        display: flex;
+        align-items: center;
+
+        height: 48px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    [view=sub-header] .tab:hover .sub-menu .item:hover {
+        background: orange;
+    }
+</style>
+
 <div view="sub-header">
-    
+    <nav class="menu">
+        <a href="{{route('trang_chu')}}">
+            <div class="tab">Trang chủ</div>
+        </a>
+        <div class="tab">
+            <div class="tab-content">
+                Danh mục sản phẩm
+            </div>
+            <div class="sub-menu">
+                @foreach($loai_sp as $loai)
+                    <a href="{{route('loai-san-pham',$loai->id)}}">
+                        <div class="item">{{$loai->ten_loai_sp}}</div>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+        <a href="{{route('gioithieu')}}">
+            <div class="tab">Giới thiệu</div>
+        </a>
+        <a href="{{route('lienhe')}}">
+            <div class="tab">Liên hệ</div>
+        </a>
+    </nav>
 </div>
-
-
-
-<div id="header">
-    <div class="header-top">
-    <div class="header-bottom" style="background-color:#90908e;">
-        <div class="container">
-            <a class="visible-xs beta-menu-toggle pull-right" href="#"><span class='beta-menu-toggle-text'>Menu</span>
-                <i class="fa fa-bars"></i></a>
-            <div class="visible-xs clearfix"></div>
-            <nav class="main-menu">
-                <ul class="l-inline ov">
-                    <li><a href="{{route('trang_chu')}}">Trang chủ</a></li>
-                    <li><a>Danh mục sản phẩm</a>
-                        <ul class="sub-menu">
-                            @foreach($loai_sp as $loai)
-                                <li><a href="{{route('loai-san-pham',$loai->id)}}">{{$loai->ten_loai_sp}}</a></li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    <li><a href="{{route('gioithieu')}}">Giới thiệu</a></li>
-                    <li><a href="{{route('lienhe')}}">Liên hệ</a></li>
-                </ul>
-                <div class="clearfix"></div>
-            </nav>
-        </div> <!-- .container -->
-    </div> <!-- .header-bottom -->
-</div> <!-- #header -->
