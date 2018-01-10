@@ -6,7 +6,7 @@
             justify-content: center;
 
             margin-top: 20px;
-            margin-bottom: 200px;
+            margin-bottom: 350px;
         }
 
         [view=login] .main {

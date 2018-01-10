@@ -41,8 +41,16 @@
     }
 
     [view=dashboard] .products .product .card {
+        position: relative;
+
+        width: 100%;
+        height: 300px;
+        margin-bottom: 10px;
+
         border-radius: 3px;
         border: 1px solid #eee;
+
+        overflow: hidden;
     }
 
     [view=dashboard] .products .product img {
@@ -51,9 +59,27 @@
     }
 
     [view=dashboard] .products .product .overlay {
-        position: relative;
+        position: absolute;
+
+        top: 200px;
+        left: 0px;
+        right: 0px;
+
+        height: 89px;
 
         padding: 5px 10px;
+        transition: 1s;
+        background: white;
+    }
+
+    [view=dashboard] .products .product:hover .overlay {
+        position: absolute;
+        top: 0px;
+        height: 100%;
+
+        padding: 5px 10px;
+
+        cursor: pointer;
     }
         
     [view=dashboard] .products .product .cart-icon {
