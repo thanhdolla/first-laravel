@@ -69,10 +69,10 @@
                 var header = document.getElementById('header')
                 var fixed = false
                 document.addEventListener('scroll', function (event) {
-                    if (document.scrollingElement.scrollTop > 600 && fixed === false) {
+                    if (document.scrollingElement.scrollTop > 300 && fixed === false) {
                         header.classList.add('fixed')
                         fixed = true
-                    } else if (document.scrollingElement.scrollTop <= 600 && fixed === true) {
+                    } else if (document.scrollingElement.scrollTop <= 300 && fixed === true) {
                         header.classList.remove('fixed')
                         fixed = false
                     } else {
