@@ -178,6 +178,10 @@
                 </div>
             @endforeach
         </div>
+
+        @if(count($newpr) >0)
+            <div style="text-align:center">  <?php echo $newpr->links()?>  </div>
+        @endif
     </div>
 
     <div view="dashboard">
@@ -228,6 +232,8 @@
                 </div>
             @endforeach
         </div>
+
+        <div style="text-align: center">{{$khuyenmai->links()}}</div>
     </div>
 
     <div class="container" style="border: whitesmoke solid 2px;width: 95%">
@@ -235,16 +241,6 @@
             <div class="main-content">
                 <div class="space60">&nbsp;</div>
                 <div class="row">
-                    <div class="col-sm-9" style="border: whitesmoke solid thin">
-                        <div class="beta-products-list">
-                            @if(count($newpr) >0)
-                                <div style="text-align:center">  <?php echo $newpr->links()?>  </div>
-                            @endif
-                        <!-- .beta-products-list -->
-                        </div> <!-- .beta-products-list -->
-                        <hr>
-                        <div style="text-align: center">{{$khuyenmai->links()}}</div>
-                    </div> <!-- .beta-products-list -->
                     <div class="col-sm-3" style="border:whitesmoke solid thin;padding-top: 20px;">
                         <div class="side">
                             <!-- The Support -->
