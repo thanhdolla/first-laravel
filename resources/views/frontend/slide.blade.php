@@ -1,58 +1,111 @@
 
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="height:320px;width:95%;margin:auto">
+<style>
+    [view=carousel] {
+        position: relative;
+        width: 100%;
+        height: 200px;
 
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        @foreach( $slide as $photo )
-            <li data-target="#carousel-example-generic" data-slide-to="{{ $loop->index }}"
-                class="{{ $loop->first ? 'active' : '' }}"></li>
-        @endforeach
-    </ol>
+        overflow: hidden;
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox" style="height: 100%">
-        @foreach( $slide as $photo )
-            <div class="item {{ $loop->first ? ' active' : '' }}" style="height: 100%">
-                <img style="height:320px" src="upload/slide/add/{{$photo->anh_slide }}" alt="{{$photo->ten_slide}}">
-            </div>
+        margin-bottom: 20px;
+    }
+
+    [view=carousel] img {
+        object-fit: cover;
+    }
+
+    [view=carousel] img.hidden {
+        display: none;
+    }
+
+    [view=carousel] .images {
+        display: flex;
+        justify-content: center;
+        height: 100%;
+
+        background: #333;
+    }
+
+    [view=carousel] .action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 60px;
+
+        font-family: "Material Icons";
+        font-size: 40px;
+        color: black;
+
+        z-index: 1000;
+
+        cursor: pointer;
+
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    [view=carousel] .action-prev {
+        position: absolute;
+
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+    }
+    
+    [view=carousel] .action-next {
+        position: absolute;
+
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+    }
+</style>
+
+<div view="carousel" id="carousel">
+    <div class="action action-prev">navigate_before</div>
+
+    <div class="images">
+        @foreach($slide as $photo)
+        <img class="hidden"
+            src="upload/slide/add/{{$photo->anh_slide }}"
+            alt="{{$photo->ten_slide}}"
+            height="100%" width="100%" align="center">
         @endforeach
     </div>
 
-    <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
+    <div class="action action-next">navigate_next</div>
 </div>
-<!-- slide -->
-<!-- slider -->
-{{--<div class="row carousel-holder">--}}
-    {{--<div class="col-md-12">--}}
-        {{--<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">--}}
-            {{--<ol class="carousel-indicators">--}}
-                {{--@foreach( $slide as $photo )--}}
-                {{--<li data-target="#carousel-example-generic" data-slide-to="{{ $loop->index }}"--}}
-                {{--class="{{ $loop->first ? 'active' : '' }}"></li>--}}
-                {{--@endforeach--}}
-            {{--</ol>--}}
-            {{--<div class="carousel-inner">--}}
-                {{--@foreach( $slide as $photo )--}}
-                {{--<div class="item active">--}}
-                    {{--<img class="slide-image" src="upload/slide/add/{{$photo->anh_slide }}"  alt="">--}}
-                {{--</div>--}}
-                {{--@endforeach--}}
-            {{--</div>--}}
-            {{--<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">--}}
-                {{--<span class="glyphicon glyphicon-chevron-left"></span>--}}
-            {{--</a>--}}
-            {{--<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">--}}
-                {{--<span class="glyphicon glyphicon-chevron-right"></span>--}}
-            {{--</a>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-{{--</div>--}}
-<!-- end slide -->
+
+<script>
+    (function () {
+        var carousel = document.getElementById('carousel')
+        var images = carousel.querySelectorAll('img')
+        var index = 0
+
+        function next() {
+            images[index].classList.add('hidden')
+            
+            index = (index + 1) % {{count($slide)}}
+
+            images[index].classList.remove('hidden')
+        }
+
+        function prev() {
+            images[index].classList.add('hidden')
+            
+            index = (index + {{count($slide)}} - 1) % {{count($slide)}}
+
+            images[index].classList.remove('hidden')
+        }
+
+        var prevButton = carousel.querySelector('.action-prev')
+        var nextButton = carousel.querySelector('.action-next')
+        
+        prevButton.addEventListener('click', prev)
+        nextButton.addEventListener('click', next)
+
+        var interval = setInterval(next, 10000)
+
+        next()
+    })()
+</script>

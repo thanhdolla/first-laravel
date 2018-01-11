@@ -155,6 +155,10 @@
   <?php endforeach; ?>
 </div>
 
+<div view="sidebar">
+  @include('frontend.slide')
+</div>
+
 <script>
   document.querySelectorAll('[view=sidebar] input').forEach(function (el) {
       el.addEventListener('focus', function () {
