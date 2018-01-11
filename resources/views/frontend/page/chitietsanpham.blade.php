@@ -43,9 +43,20 @@
             width: 1000px;
         }
 
+        [view=detail] .line {
+            display: flex;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        [view=detail] .line > :not(:first-child) {
+            margin-left: 15px;
+        }
+
         [view=detail] a,
         [view=detail] p,
-        [view=detail] b {
+        [view=detail] b,
+        [view=detail] i {
             font-family: Lato !important;
             font-size: 14px !important;
         }
@@ -110,17 +121,59 @@
         }
 
         [view=detail] button {
-            padding: 5px 20px;
-            font-size: 14px !important;
-            background: black;
-            color: white;
-            border: none;
+            display: flex;
+
             outline: none;
+            border: none;
 
-            margin-top: 20px;
+            margin: 0px;
 
-            font-family: Arial;
+            color: white;
+        }
+
+        [view=detail] button.cart-button .icon,
+        [view=detail] button.cart-button .text {
+            background: orange;
+        }
+
+        [view=detail] button.compare-button .icon,
+        [view=detail] button.compare-button .text {
+            background: dodgerblue;
+        }
+
+        [view=detail] .icon {
+            display: flex;
+            width: 45px;
+            height: 45px;
+
+            justify-content: center;
+            align-items: center;
+
+            font-family: Material Icons;
+            font-size: 20px;
+        }
+
+        [view=detail] .text {
+            font-family: Lato;
             font-size: 14px;
+
+            display: flex;
+            height: 45px;
+            justify-content: center;
+            align-items: center;
+
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        [view=detail] .cart-button .text:hover {
+            background: white;
+            color: orange;
+        }
+
+        [view=detail] .compare-button .text:hover {
+            background: white;
+            color: dodgerblue;
         }
 
         [view=detail] .comment {
@@ -143,12 +196,36 @@
             font-family: Arial;
             font-size: 14px;
         }
+
+        [view=detail] .price {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: center;
+            height: 48px;
+
+            background: white;
+            color: black;
+
+            font-family: Arial;
+            font-size: 24px;
+            text-align: center;
+        }
     </style>
 
     <div view=detail>
         <div class="main">
             <div class="left">
                 <img src="upload/product/add/{{$chitiet->anh_sp}}" alt="{{$chitiet->ten_sp}}" height="400" width="300px">
+                
+                <?php $price_new = $chitiet->gia_sp - $chitiet->khuyen_mai ?>
+                <div class="price">
+                    <?php if ($chitiet->khuyen_mai > 0): ?>
+                        Giá: <?php echo number_format($price_new) ?>đ
+                    <?php else: ?>
+                        Giá: <?php echo number_format($chitiet->gia_sp); ?>đ
+                    <?php endif; ?>
+                </div>
             </div>
 
             <div class="right">
@@ -171,23 +248,6 @@
                     @endif
 
                     <br>
-
-                    <p class="price-before">
-                        <b>Giá:</b>
-
-                        <?php $price_new = $chitiet->gia_sp - $chitiet->khuyen_mai ?>
-                        <?php if ($chitiet->khuyen_mai > 0): ?>
-                            <?php echo number_format($chitiet->gia_sp); ?>đ
-                            <br>
-                            <b class="price">
-                                <?php echo number_format($price_new) ?>đ
-                            </b>
-                        <?php else: ?>
-                            <b class="price">
-                                <?php echo number_format($chitiet->gia_sp); ?>đ
-                            </b>
-                        <?php endif; ?>
-                    </p>
 
                     <p>
                         <b>Hãng sản xuất:</b>
@@ -213,10 +273,20 @@
                     </p>
 
                     <div class="line">
-                        <a href="{{route('addcart',$chitiet->id)}}"></a>
-                        <button>Chọn so sánh</button>
-                        <a href="addtocompare/{{$chitiet->id}}"></a>
-                        <button>Cho vào giỏ hàng</button>
+                        <a href="{{route('addcart',$chitiet->id)}}">
+                            <button class="compare-button">
+                                <div class="icon">compare</div>
+                                <div class="text">Chọn so sánh</div>
+                            </button>
+                        </a>
+                        <a href="addtocompare/{{$chitiet->id}}">
+                            <button class="cart-button">
+                                <div class="icon">shopping_cart</div>
+                                <div class="text">
+                                    Cho vào giỏ hàng
+                                </div>
+                            </button>
+                        </a>
                     </div>
             </div>
         </div>
@@ -269,7 +339,11 @@
                     @endforeach
                 </div>
             <?php } else { ?>
-                <i>Bạn phải đăng nhập mới có thể giử bình luận</i>
+                <p>
+                    <i>Bạn phải đăng nhập mới có thể gửi bình luận!</i>
+                </p>
+
+                <br/>
 
                 <h2>Danh sách bình luận</h2>
 

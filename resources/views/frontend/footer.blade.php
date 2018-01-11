@@ -32,7 +32,6 @@
         font-family: Lato !important;
         font-size: 24px;
         
-        height: 80px;
         margin-bottom: 10px;
     }
 
