@@ -48,7 +48,7 @@
         margin-bottom: 10px;
 
         border-radius: 3px;
-        border: 1px solid #eee;
+        /* border: 1px solid #eee; */
 
         overflow: hidden;
     }
@@ -136,18 +136,17 @@
 
         padding: 5px 20px;
 
-        background: black;
         border-radius: 0px;
-        color: white;
 
         font-family: Lato;
         font-size: 14px;
+        background: none;
     }
 </style>
 
 @if(Session::has('flag'))
-    <div class="alert alert-{{Session::get('flag')}}">{{Session::get('message')}}
-
+    <div class="alert alert-{{Session::get('flag')}}">
+        {{Session::get('message')}}
     </div>
 @endif
 @if(Session::has('thongbao'))
@@ -218,7 +217,7 @@
     </div>
 
     @if(count($newpr) >0)
-        <div style="text-align:center">  <?php echo $newpr->links()?>  </div>
+        <div style="text-align:center"><?php echo $newpr->links()?></div>
     @endif
 </div>
 
@@ -233,18 +232,17 @@
     </div>
 
     <div class="products">
-            @foreach($khuyenmai as $km)
+        @foreach($khuyenmai as $km)
             <div class="product">
                 <div class="card">
                     <a href="{{route('chitietsanpham',$km->id)}}">
                         <img src="upload/product/add/{{$km->anh_sp}}" width="100%" height="200px">
-                    </a>
-
-                    <div class="overlay">
-                        <?php $price_new = $km-> gia_sp - $km->khuyen_mai?>
+                        
+                        <div class="overlay">
+                            <?php $price_new = $km-> gia_sp - $km->khuyen_mai?>
                             <h3>{{$km->ten_sp}}</h3>
-
-                        <?php if ($km->khuyen_mai > 0): ?>
+                            
+                            <?php if ($km->khuyen_mai > 0): ?>
                             <p class="price-before">
                                 <?php echo number_format($km->gia_sp); ?>đ
                             </p>
@@ -252,16 +250,17 @@
                             <p class="price">
                                 <?php echo number_format($price_new) ?>đ
                             </p>
-                        <?php else: ?>
+                            <?php else: ?>
                             <p class="no-discount">
                                 Chưa có khuyến mãi
                             </p>
-
+                            
                             <p class="price">
                                 <?php echo number_format($km->gia_sp); ?>đ
                             </p>
-                        <?php endif; ?>
-                    </div>
+                            <?php endif; ?>
+                        </div>
+                    </a>
     
                     <a href="{{route('addcart',$km->id)}}">
                         <button class="cart-icon">
