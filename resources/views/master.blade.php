@@ -34,6 +34,7 @@
         </style>
 
         @include('frontend.header')
+        @include('frontend.slide')
         @yield('content')
         @include('frontend.footer')
 
@@ -61,7 +62,6 @@
         <script src="source/frontend/assets/dest/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
         <script src="source/frontend/assets/dest/js/waypoints.min.js"></script>
         <script src="source/frontend/assets/dest/js/wow.min.js"></script>
-        <script src="source/frontend/assets/dest/js/updatecart.js"></script>
         <!--customjs-->
         <script src="source/frontend/assets/dest/js/custom2.js"></script>
         <script>

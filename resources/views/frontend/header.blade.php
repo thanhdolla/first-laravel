@@ -269,7 +269,7 @@
 <style>
     [view=sub-header] {
         height: 48px;
-
+margin-top:30px;
         display: flex;
         justify-content: center;
 
@@ -278,7 +278,7 @@
 
     [view=sub-header] .menu {
         display: flex;
-
+text-align: center;
         height: 100%;
         width: 800px;
     }
