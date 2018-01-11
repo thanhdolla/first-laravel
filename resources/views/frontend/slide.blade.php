@@ -37,7 +37,7 @@
         font-size: 40px;
         color: black;
 
-        z-index: 1000;
+        z-index: 900;
 
         cursor: pointer;
 
