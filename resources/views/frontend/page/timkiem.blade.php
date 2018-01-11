@@ -1,6 +1,22 @@
 @extends('master')
 @section('content')
 
+    <style>
+    
+    </style>
+
+    <div view="search">
+        <div class="main">
+            <div class="left">
+
+            </div>
+
+            <div class="right">
+
+            </div>
+        </div>
+    </div>
+
     <div class="container"style="border: whitesmoke solid 1px;width: 95%">
         <div id="content" class="space-top-none">
             <div class="main-content">
