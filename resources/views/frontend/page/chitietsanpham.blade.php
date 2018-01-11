@@ -242,7 +242,7 @@
 
                     <div class="input">
                         <div class="label">Bình luận</div>
-                        <input type="text">
+                        <input type="text" name="message">
                         <div class="bottom-line"></div>
                     </div>
 
