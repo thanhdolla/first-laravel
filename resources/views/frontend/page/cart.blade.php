@@ -126,7 +126,7 @@
                                 </div>
                             </td>
                             <td>
-                                <input name="<?php echo $row->rowId ?>" class="product-quantity" type="number" value="<?php echo $row->qty; ?>" size="2" onchange="update_cart(event)"/>
+                                <input name="<?php echo $row->rowId ?>" class="product-quantity" type="number" value="<?php echo $row->qty; ?>" size="2" oninput="update_cart(event)"/>
                             </td>
                             <td>
                                 <div style="text-align:center ">
