@@ -30,7 +30,98 @@
         [view=compare] .products {
             display: flex;
             justify-content: center;
+
+            margin-bottom: 80px;
         }
+
+        [view=compare] .product {
+            flex: 1 1 auto;
+            width: 50%;
+        }
+
+        [view=compare] .product:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        [view=compare] .product:not(:first-child) {
+            margin-left: 10px;
+        }
+
+        [view=compare] .price-before {
+            font-family: Arial;
+
+            text-decoration: line-through;
+        }
+
+        [view=compare] .price {
+            font-family: Arial;
+
+            color: red;
+            font-size: 24px;
+        }
+
+        [view=compare] h2 {
+            font-family: Lato;
+            font-size: 18.75px;
+        }
+
+        [view=compare] image {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        [view=compare] .line {
+            display: flex;
+        }
+
+        [view=compare] button {
+            display: flex;
+            align-items: center;
+
+            border: none;
+            outline: none;
+        }
+
+        [view=compare] button.delete-button {
+            display: flex;
+            height: 45px;
+
+            align-items: center;
+            padding-left: 20px;
+            padding-right: 20px;
+
+            font-family: Lato;
+            font-size: 14px;
+
+            margin-left: 10px;
+        }
+
+        [view=compare] p {
+            font-family: Lato;
+            font-size: 14px;
+        }
+
+        [view=compare] button.cart-button {
+            font-family: Material Icons;
+            font-size: 24px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 45px;
+            height: 45px;
+
+            background: orange;
+            color: white;
+        }
+
+        [view=compare] button.cart-button:hover {
+            background: white;
+            color: orange;
+        }
+
     </style>
 
     <div view="compare">
@@ -56,85 +147,59 @@
         
             <div class="products">
                 <?php if(Session::get('compare_qty') > 0) : ?>
-        
-                    <form method="post" action="">
-                        <input name="_token" type="hidden" value="{{csrf_token()}}"/>
+                    @foreach($cp as $row )
+                        <?php $sanpham = $row['item']; ?>
 
-                        @foreach($cp as $row )
-
-                            <?php  $sanpham = $row['item']; ?>
-                            <div class="col-sm-6" style="padding-left: 50px;">
-                                <div class="single-item" style="margin-bottom: 40px;">
-                                    <table class="table table-striped" style="width: 100%">
-                                        <tr>
-                                            <td>
-                                                <p class="single-item-title">{{$sanpham->ten_sp}}</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                            <div class="single-item-header" style="height: 230px;">
-                                                <a href="{{route('chitietsanpham',$sanpham->id)}}"><img
-                                                            src="upload/product/add/{{$sanpham->anh_sp}}"
-                                                            style="text-align:center;height:230px;width: 210px;"
-                                                            alt=""></a>
-
-                                            </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                            <div class="single-item-body">
-                                                <a class="single-item-price">
-                                                    <?php $price_new = $sanpham->gia_sp - $sanpham->khuyen_mai ?>
-                                                    <?php if ($sanpham->khuyen_mai > 0): ?>
-                                                    <a style="text-decoration:line-through;padding-top: 5px;font-size:15px;">
-                                                        <?php echo number_format($sanpham->gia_sp); ?>Đ
-                                                    </a>
-
-                                                    <a class="ga"
-                                                        style="color:red;padding-top: 10px;font-size: 20px;">
-                                                        <b><?php echo number_format($price_new) ?>Đ</b>
-                                                    </a>
-                                                    <?php else: ?>
-                                                    <a style="color:red;font-size: 20px;"><b><?php echo number_format($sanpham->gia_sp); ?>
-                                                            Đ</b></a>
-                                                    <?php endif; ?>
-                                                </a>
-                                            </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <?php echo $sanpham->mo_ta_sp?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                            <div class="single-item-caption">
-                                                <a class="add-to-cart pull-left"
-                                                    href="{{route('addcart',$sanpham->id)}}"><i
-                                                            class="fa fa-shopping-cart"></i></a>
-                                            </div>
-                                            </td>
-
-                                            <td>
-                                            <a style="width:30px;color: black;"
-                                                href="xoasanphamsosanh/{{$sanpham->id}}">
-                                                <input class="btn btn-success" type="button" value="Xóa">
-                                            </a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
+                        <div class="product">
+                            <h2>{{$sanpham->ten_sp}}</h2>
+                            
+                            <div class="image">
+                                <a href="{{route('chitietsanpham',$sanpham->id)}}">
+                                    <img
+                                        src="upload/product/add/{{$sanpham->anh_sp}}"
+                                        style="text-align:center;height:230px;width: 210px;"
+                                        alt="{{$sanpham->ten_sp}}"
+                                        width="100%"/>
+                                </a>
                             </div>
 
-                        @endforeach
+                            <br>
+                        
+                            <?php $price_new = $sanpham->gia_sp - $sanpham->khuyen_mai ?>
+                            <?php if ($sanpham->khuyen_mai > 0): ?>
+                                <div class="price-before">
+                                    <?php echo number_format($sanpham->gia_sp); ?>đ
+                                </div>
 
-                    </form>
+                                <div class="price">
+                                    <?php echo number_format($price_new) ?>đ
+                                </div>
+                            <?php else: ?>
+                                <div class="price">
+                                    <?php echo number_format($sanpham->gia_sp); ?>đ
+                                </div>
+                            <?php endif; ?>
 
+                            <br><br>
+
+                            <p>
+                                <?php echo $sanpham->mo_ta_sp?>
+                            </p>
+
+                            <br>
+
+                            <div class="line">
+                                <a href="{{route('addcart',$sanpham->id)}}">
+                                    <button class="cart-button">shopping_cart</button>
+                                </a>
+                                <a href="xoasanphamsosanh/{{$sanpham->id}}">
+                                    <button class="delete-button">Xóa</button>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
                 <?php else: ?>
-                <h4>Hiện chưa có sản phẩm nào để so sánh</h4>
+                    <h4>Hiện chưa có sản phẩm nào để so sánh</h4>
                 <?php endif; ?>
             </div>
         </div>
