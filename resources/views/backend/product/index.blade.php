@@ -105,7 +105,7 @@
                                         </a>
 
                                         <div class="f11" >
-                                            Đã bán: 0					  | Xem: {{$pd->luot_view}}					</div>
+                                            lượt view: {{$pd->luot_view}}					</div>
 
                                     </td>
 
