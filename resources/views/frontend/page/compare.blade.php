@@ -56,7 +56,7 @@
         [view=compare] .price {
             font-family: Arial;
 
-            color: red;
+            color: orange;
             font-size: 24px;
         }
 
