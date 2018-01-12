@@ -75,12 +75,12 @@ Route::post('login',[
     'uses'=>'HomeController@login'
 ]);
 
-Route::get('sigin',[
+Route::get('signup',[
     'as'=>'sigin',
     'uses'=>'HomeController@getSigin'
 ]);
 
-Route::post('sigin',[
+Route::post('signup',[
     'as'=>'sigin',
     'uses'=>'HomeController@sigin'
 ]);

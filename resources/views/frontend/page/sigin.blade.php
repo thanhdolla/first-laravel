@@ -103,7 +103,7 @@
 
     <div view="signin">
         <form class="main" action="{{route('sigin')}}" method="post">
-            <h1>Đăng nhập</h1>
+            <h1>Đăng kí</h1>
 
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
 
