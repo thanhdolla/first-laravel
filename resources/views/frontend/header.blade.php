@@ -269,7 +269,7 @@
 <style>
     [view=sub-header] {
         height: 48px;
-margin-top:30px;
+        margin-top:30px;
         display: flex;
         justify-content: center;
 
@@ -278,7 +278,7 @@ margin-top:30px;
 
     [view=sub-header] .menu {
         display: flex;
-text-align: center;
+        text-align: center;
         height: 100%;
         width: 800px;
     }
@@ -303,15 +303,24 @@ text-align: center;
         color: white;
     }
 
-    [view=sub-header] .tab:hover .sub-menu {
+    [view=sub-header] .tab .sub-menu {
+        display: none;
+
         position: absolute;
         top: 100%;
-        display: block;
-
+        left: 0px;
         width: 100%;
+
+        z-index: 100;
+
+        background: white;
     }
 
-    [view=sub-header] .tab:hover .sub-menu .item {
+    [view=sub-header] .tab:hover .sub-menu {
+        display: block;
+    }
+
+    [view=sub-header] .tab .sub-menu .item {
         display: flex;
         align-items: center;
 

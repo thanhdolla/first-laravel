@@ -13,6 +13,8 @@
         [view=detail] .main {
             width: 1000px;
             display: flex;
+
+            margin-top: 60px;
         }
 
         [view=detail] .main .left {
@@ -273,13 +275,13 @@
                     </p>
 
                     <div class="line">
-                        <a href="{{route('addcart',$chitiet->id)}}">
+                        <a href="addtocompare/{{$chitiet->id}}">
                             <button class="compare-button">
                                 <div class="icon">compare</div>
                                 <div class="text">Chọn so sánh</div>
                             </button>
                         </a>
-                        <a href="addtocompare/{{$chitiet->id}}">
+                        <a href="{{route('addcart',$chitiet->id)}}">
                             <button class="cart-button">
                                 <div class="icon">shopping_cart</div>
                                 <div class="text">

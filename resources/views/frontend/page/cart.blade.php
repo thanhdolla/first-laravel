@@ -168,8 +168,8 @@
 
     <div class="box-center" style="width:90%;margin:auto;margin-bottom: 200px;"><!-- The box-center product-->
         @if(Session::has('flag'))
-            <div class="alert alert-{{Session::get('flag')}}">{{Session::get('message')}}
-
+            <div class="alert alert-{{Session::get('flag')}}">
+                {{Session::get('message')}}
             </div>
         @endif
         @if(Session::has('thongbao'))

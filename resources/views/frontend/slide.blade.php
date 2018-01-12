@@ -3,7 +3,7 @@
     [view=carousel] {
         position: relative;
         width: 100%;
-        height: 200px;
+        height: 400px;
 
         overflow: hidden;
 

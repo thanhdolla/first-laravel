@@ -3,8 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Laravel </title>
+        <title>BKSmart</title>
         <base href="{{asset('')}}">
+        <link rel="stylesheet" title="style" href="css/index.css">
         <link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="source/frontend/assets/dest/css/bootstrap.css">
@@ -17,22 +18,8 @@
         <link rel="stylesheet" title="style" href="source/frontend/assets/dest/css/huong-style.css">
         <link rel="stylesheet" title="style" href="source/frontend/assets/dest/css/custom.css">
 
-        <link rel="stylesheet" title="style" href="css/index.css">
     </head>
     <body>
-
-        <style>
-            html, body {
-                border: 0px;
-                padding: 0px;
-                margin: 0px;
-            }
-
-            * {
-                box-sizing: border-box;
-            }
-        </style>
-
         @include('frontend.header')
         @include('frontend.slide')
         @yield('content')
@@ -64,6 +51,7 @@
         <script src="source/frontend/assets/dest/js/wow.min.js"></script>
         <!--customjs-->
         <script src="source/frontend/assets/dest/js/custom2.js"></script>
+        
         <script>
             (function () {
                 var header = document.getElementById('header')

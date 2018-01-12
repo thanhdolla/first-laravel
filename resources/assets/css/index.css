@@ -2,3 +2,26 @@
   font-family: 'Material Icons';
   src: url(../fonts/MaterialIcons-Regular.ttf);
 }
+
+@font-face {
+  font-family: 'Lato';
+  src: url(../fonts/lato/Lato-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Lato Medium';
+  src: url(../fonts/lato/Lato-Medium.ttf);
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: black;
+  text-decoration: none !important;
+}
