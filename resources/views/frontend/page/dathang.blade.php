@@ -163,7 +163,7 @@
                 </div>
                 <div class="input">
                     <div class="labe">Điện thoại</div>
-                    <input type="number" name="sdt" value="<?php echo isset($kh->sdt_kh) ? $kh->sdt_kh :'' ?>">
+                    <input type="number" name="sdt" value="<?php echo '0'.isset($kh->sdt_kh) ? '0'.$kh->sdt_kh :'' ?>">
                     <div class="bottom-line"></div>
                 </div>
 

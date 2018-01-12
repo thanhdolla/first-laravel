@@ -96,8 +96,8 @@
                                 </td>
                                 <td class ="text">
                                     <?php if($row->id==1):?>
-                                    <span style="color:red"> <?php echo $row->sdt_ad; ?></span>
-                                    <?php  else :{echo $row->sdt_ad;}endif; ?>
+                                    <span style="color:red"> <?php echo '0'.$row->sdt_ad; ?></span>
+                                    <?php  else :{echo '0'.$row->sdt_ad;}endif; ?>
                                 </td>
 
                                 <td class="option textC">

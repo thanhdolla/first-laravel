@@ -80,7 +80,7 @@
                                     <label for="param_name" class="formLeft">Số điện thoại<span class="req">*</span></label>
                                     <div class="formRight">
                                         <span class="oneTwo"><input type="number"
-                                                                    value="{{ $nhanvien->sdt_ad }}" name="sdt"></span>
+                                                                    value="0{{ $nhanvien->sdt_ad }}" name="sdt"></span>
                                     </div>
                                     <div class="clear"></div>
                                 </div>

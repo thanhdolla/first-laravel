@@ -30,7 +30,7 @@ class NhanVienController extends Controller
                 'name' => 'required',
                 'mk' => 'required',
                 'email' => 'required',
-                'sdt' => 'required|max:11',
+                'sdt' => 'required|min:6|max:11',
             ],
             [
                 'name.required' => "Nhập tên nhân viên",
@@ -74,13 +74,14 @@ class NhanVienController extends Controller
                 'name' => 'required',
                 'mk' => 'required',
                 'email' => 'required',
-                'sdt' => 'required|min:6',
+                'sdt' => 'required|min:6|max:11',
             ],
             [
                 'name.required' => "Nhập tên nhân viên",
                 'mk.required' => "Nhập mật khẩu",
                 'email.required' => "Nhập email nhân viên",
                 'sdt.min' => 'Số điện thoại phải lớn hơn 5 số',
+                'sdt.max' => 'Số điện thoại phải nhỏ hơn 12 số',
                 'sdt.required' => 'Vui lòng nhập số điện thoại',
 
             ]

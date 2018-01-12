@@ -266,7 +266,7 @@ $ids = San_pham::find($id);
             [
                 'email' => 'required|email',
                 'name' => 'required',
-                'sdt' => 'required|min:6',
+                'sdt' => 'required|min:6|max:12',
                 'diachi' => 'required',
                 'note' => 'required'
 
@@ -279,6 +279,7 @@ $ids = San_pham::find($id);
                 'note.required' => "Vui lòng nhập chú thích ngày giờ bạn muốn nhận hàng",
                 'diachi.required' => "Vui lòng nhập địa chỉ",
                 'sdt.min' => 'Số điện thoại phải lớn hơn 5 số',
+                'sdt.max' => 'Số điện thoại phải nhở hơn 12 số',
                 'sdt.required' => 'Vui lòng nhập số điện thoại',
 
             ]
@@ -372,7 +373,7 @@ $ids = San_pham::find($id);
                 'email' => 'required|email',
                 'password' => 'required|min:6',
                 'fullname' => 'required',
-                'phone' => 'required|min:6',
+                'phone' => 'required|min:6|max:11',
                 're_password' => 'required|same:password'
 
             ],
@@ -382,8 +383,8 @@ $ids = San_pham::find($id);
                 'email.email' => "Email không hợp lệ",
                 'email.umique' => 'Email đã tồn tại',
                 'phone.required' => 'Vui lòng nhập số điện thoại',
-                'password.required' => "Vui lòng nhập mật khẩu",
-                'password.min' => 'Mật khẩu ít nhất 6 kí tự',
+                'phone.max' => 'Số điện thoại nhỏ hơn 12 kí tự',
+                'phone.min' => 'Số điện thoại lớn hơn 5 kí tự',
                 're_password.same' => "Mật khẩu không giống nhau",
                 're_password.required' => "Vui lòng nhập lại mật khẩu",
 

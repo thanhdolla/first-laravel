@@ -90,7 +90,7 @@
                                 <td class="textC"><?php echo $row->ten_kh?></td>
                                 <td class="textC"><?php echo $row->mk_kh?></td>
                                 <td class="textC"><?php echo $row->email_kh?></td>
-                                <td class="textC"><?php echo $row->sdt_kh?></td>
+                                <td class="textC"><?php echo '0'.$row->sdt_kh?></td>
                                 <td class="textC">{{ date('d-m-Y', strtotime($row->created_at)) }}</td>
                                 <td class="option textC">
                                     <a class="tipS verify_action" title="Xóa"
